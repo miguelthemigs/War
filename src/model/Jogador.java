@@ -2,7 +2,7 @@ package model;
 
 class Jogador {
     private enum Cor {
-        vermelho, azul, verde, amarelo, roxo, laranja
+        vermelho, azul, verde, amarelo, preto, branco
     }
     private Cor cor;
     private int premio;
