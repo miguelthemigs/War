@@ -28,8 +28,8 @@ class Cartas {
         private String pais;
         private Poligono poligono;
 
-        public Territorio(String countryName, Poligono poligono) {
-            this.pais = countryName;
+        public Territorio(String pais, Poligono poligono) {
+            this.pais = pais;
             this.poligono = poligono;
         }
         public Territorio(){
