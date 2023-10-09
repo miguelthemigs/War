@@ -47,7 +47,7 @@ class Cartas {
             return poligono;
         }
 
-        private Cartas.Territorio[] listaTerritoriosAfrica = {
+        public Cartas.Territorio[] listaTerritoriosAfrica = {
                 new Cartas.Territorio("África do Sul", Cartas.Poligono.triangulo),
                 new Cartas.Territorio("Angola", Cartas.Poligono.quadrado),
                 new Cartas.Territorio("Argelia", Cartas.Poligono.bola),
@@ -56,7 +56,7 @@ class Cartas {
                 new Cartas.Territorio("Somália", Cartas.Poligono.quadrado)
         };
 
-        private Cartas.Territorio[] ListaTerritoriosAmericaDoNorte = {
+        public Cartas.Territorio[] ListaTerritoriosAmericaDoNorte = {
                 new Cartas.Territorio("Alasca", Cartas.Poligono.triangulo),
                 new Cartas.Territorio("Calgary", Cartas.Poligono.bola),
                 new Cartas.Territorio("California", Cartas.Poligono.quadrado),
@@ -68,7 +68,7 @@ class Cartas {
                 new Cartas.Territorio("Vancouver", Cartas.Poligono.triangulo)
         };
 
-        private Cartas.Territorio[] ListaTerritoriosAsia = {
+        public Cartas.Territorio[] ListaTerritoriosAsia = {
                 new Cartas.Territorio("Arábia Saudita", Cartas.Poligono.bola),
                 new Cartas.Territorio("Bangladesh", Cartas.Poligono.bola),
                 new Cartas.Territorio("Cazaquistão", Cartas.Poligono.bola),
@@ -90,14 +90,14 @@ class Cartas {
                 new Cartas.Territorio("Tailândia", Cartas.Poligono.triangulo),
                 new Cartas.Territorio("Turquia", Cartas.Poligono.triangulo)
         };
-        private Cartas.Territorio[] ListaTerritoriosAmericaDoSul = {
+        public Cartas.Territorio[] ListaTerritoriosAmericaDoSul = {
                 new Cartas.Territorio("Argentina", Cartas.Poligono.quadrado),
                 new Cartas.Territorio("Brasil", Cartas.Poligono.bola),
                 new Cartas.Territorio("Peru", Cartas.Poligono.triangulo),
                 new Cartas.Territorio("Venezuela", Cartas.Poligono.triangulo),
         };
 
-        private Cartas.Territorio[] ListaTerritoriosEuropa = {
+        public Cartas.Territorio[] ListaTerritoriosEuropa = {
                 new Cartas.Territorio("Espanha", Poligono.bola),
                 new Cartas.Territorio("França", Poligono.triangulo),
                 new Cartas.Territorio("Itália", Poligono.quadrado),
@@ -109,7 +109,7 @@ class Cartas {
 
         };
 
-        private Cartas.Territorio[] ListaTerritoriosOceania = {
+        public Cartas.Territorio[] ListaTerritoriosOceania = {
                 new Cartas.Territorio("Austrália", Poligono.triangulo),
                 new Cartas.Territorio("Indonésia", Poligono.triangulo),
                 new Cartas.Territorio("Nova Zelândia", Poligono.quadrado),
