@@ -20,6 +20,10 @@ class Cartas {
      "Conquistar 24 territórios de sua escolha",
      "Conquistar 18 territórios e ocupar cada um deles com pelo menos 2 exércitos"
     };
+    private Integer[] ListaCartasCoringa = {
+        100, 100
+    };
+
 
     enum Poligono {
         quadrado,
@@ -27,16 +31,12 @@ class Cartas {
         triangulo
     }
     public static class Territorio {
-        private List<Territorio> territorios;
         private String pais;
         private Poligono poligono;
 
         public Territorio(String pais, Poligono poligono) {
             this.pais = pais;
             this.poligono = poligono;
-        }
-        public void adicionarTerritorio(Territorio territorio) {
-            this.territorios.add(territorio);
         }
 
         public String getPais() {
@@ -47,9 +47,76 @@ class Cartas {
             return poligono;
         }
 
+        private Cartas.Territorio[] listaTerritoriosAfrica = {
+                new Cartas.Territorio("África do Sul", Cartas.Poligono.triangulo),
+                new Cartas.Territorio("Angola", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("Argelia", Cartas.Poligono.bola),
+                new Cartas.Territorio("Egito", Cartas.Poligono.triangulo),
+                new Cartas.Territorio("Nigéria", Cartas.Poligono.bola),
+                new Cartas.Territorio("Somália", Cartas.Poligono.quadrado)
+        };
 
+        private Cartas.Territorio[] ListaTerritoriosAmericaDoNorte = {
+                new Cartas.Territorio("Alasca", Cartas.Poligono.triangulo),
+                new Cartas.Territorio("Calgary", Cartas.Poligono.bola),
+                new Cartas.Territorio("California", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("Groenlândia", Cartas.Poligono.bola),
+                new Cartas.Territorio("Nova York", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("México", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("Québec", Cartas.Poligono.bola),
+                new Cartas.Territorio("Texas", Cartas.Poligono.triangulo),
+                new Cartas.Territorio("Vancouver", Cartas.Poligono.triangulo)
+        };
 
-    }
+        private Cartas.Territorio[] ListaTerritoriosAsia = {
+                new Cartas.Territorio("Arábia Saudita", Cartas.Poligono.bola),
+                new Cartas.Territorio("Bangladesh", Cartas.Poligono.bola),
+                new Cartas.Territorio("Cazaquistão", Cartas.Poligono.bola),
+                new Cartas.Territorio("China", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("Coréia do Norte", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("Coréia do Sul", Cartas.Poligono.triangulo),
+                new Cartas.Territorio("Estônia", Cartas.Poligono.bola),
+                new Cartas.Territorio("Índia", Cartas.Poligono.triangulo),
+                new Cartas.Territorio("Irã", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("Iraque", Cartas.Poligono.triangulo),
+                new Cartas.Territorio("Japão", Cartas.Poligono.bola),
+                new Cartas.Territorio("Jordânia", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("Letônia", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("Mongólia", Cartas.Poligono.triangulo),
+                new Cartas.Territorio("Paquistão", Cartas.Poligono.bola),
+                new Cartas.Territorio("Russía", Cartas.Poligono.triangulo),
+                new Cartas.Territorio("Sibéria", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("Síria", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("Tailândia", Cartas.Poligono.triangulo),
+                new Cartas.Territorio("Turquia", Cartas.Poligono.triangulo)
+        };
+        private Cartas.Territorio[] ListaTerritoriosAmericaDoSul = {
+                new Cartas.Territorio("Argentina", Cartas.Poligono.quadrado),
+                new Cartas.Territorio("Brasil", Cartas.Poligono.bola),
+                new Cartas.Territorio("Peru", Cartas.Poligono.triangulo),
+                new Cartas.Territorio("Venezuela", Cartas.Poligono.triangulo),
+        };
+
+        private Cartas.Territorio[] ListaTerritoriosEuropa = {
+                new Cartas.Territorio("Espanha", Poligono.bola),
+                new Cartas.Territorio("França", Poligono.triangulo),
+                new Cartas.Territorio("Itália", Poligono.quadrado),
+                new Cartas.Territorio("Polônia", Poligono.triangulo),
+                new Cartas.Territorio("Reino Unido", Poligono.bola),
+                new Cartas.Territorio("Romênia", Poligono.triangulo),
+                new Cartas.Territorio("Suécia", Poligono.quadrado),
+                new Cartas.Territorio("Ucrânia", Cartas.Poligono.bola),
+
+        };
+
+        private Cartas.Territorio[] ListaTerritoriosOceania = {
+                new Cartas.Territorio("Austrália", Poligono.triangulo),
+                new Cartas.Territorio("Indonésia", Poligono.triangulo),
+                new Cartas.Territorio("Nova Zelândia", Poligono.quadrado),
+                new Cartas.Territorio("Perth", Poligono.bola),
+        };
+
+}
 }
 
 /*
