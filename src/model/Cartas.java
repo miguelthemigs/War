@@ -52,11 +52,11 @@ class Cartas {
 
         public Cartas.Territorio[] listaTerritoriosAfrica = {
                 new Cartas.Territorio("África do Sul", Cartas.Poligono.triangulo, new String[]{"Angola", "Somália"}),
-                new Cartas.Territorio("Angola", Cartas.Poligono.quadrado),
-                new Cartas.Territorio("Argelia", Cartas.Poligono.bola),
-                new Cartas.Territorio("Egito", Cartas.Poligono.triangulo),
-                new Cartas.Territorio("Nigéria", Cartas.Poligono.bola),
-                new Cartas.Territorio("Somália", Cartas.Poligono.quadrado)
+                new Cartas.Territorio("Angola", Cartas.Poligono.quadrado, new String[]{"África do Sul","Nigéria","Somália"}),
+                new Cartas.Territorio("Argélia", Cartas.Poligono.bola, new String[]{"Egito","Espanha","França","Itália","Nigéria"}),
+                new Cartas.Territorio("Egito", Cartas.Poligono.triangulo, new String[]{"Argélia","Jordânia","Nigéria","Romênia","Somália"}),
+                new Cartas.Territorio("Nigéria", Cartas.Poligono.bola, new String[]{"Angola","Argélia","Brasil","Egito","Somália"}),
+                new Cartas.Territorio("Somália", Cartas.Poligono.quadrado, new String[]{"África do Sul","Angola","Arábia Saudita","Egito","Nigéria"})
         };
 
         public Cartas.Territorio[] ListaTerritoriosAmericaDoNorte = {
@@ -74,36 +74,36 @@ class Cartas {
         public Cartas.Territorio[] ListaTerritoriosAsia = {
                 new Cartas.Territorio("Arábia Saudita", Cartas.Poligono.bola, new String[]{"Iraque","Jordânia","Somália"}),
                 new Cartas.Territorio("Bangladesh", Cartas.Poligono.bola, new String[]{"Coréia do Sul","Índia","Indonésia","Tailândia"}),
-                new Cartas.Territorio("Cazaquistão", Cartas.Poligono.bola, new String[]{}),
-                new Cartas.Territorio("China", Cartas.Poligono.quadrado),
-                new Cartas.Territorio("Coréia do Norte", Cartas.Poligono.quadrado),
-                new Cartas.Territorio("Coréia do Sul", Cartas.Poligono.triangulo),
-                new Cartas.Territorio("Estônia", Cartas.Poligono.bola),
-                new Cartas.Territorio("Índia", Cartas.Poligono.triangulo),
-                new Cartas.Territorio("Irã", Cartas.Poligono.quadrado),
-                new Cartas.Territorio("Iraque", Cartas.Poligono.triangulo),
-                new Cartas.Territorio("Japão", Cartas.Poligono.bola),
-                new Cartas.Territorio("Jordânia", Cartas.Poligono.quadrado),
-                new Cartas.Territorio("Letônia", Cartas.Poligono.quadrado),
-                new Cartas.Territorio("Mongólia", Cartas.Poligono.triangulo),
-                new Cartas.Territorio("Paquistão", Cartas.Poligono.bola),
-                new Cartas.Territorio("Russía", Cartas.Poligono.triangulo),
-                new Cartas.Territorio("Sibéria", Cartas.Poligono.quadrado),
-                new Cartas.Territorio("Síria", Cartas.Poligono.quadrado),
-                new Cartas.Territorio("Tailândia", Cartas.Poligono.triangulo),
-                new Cartas.Territorio("Turquia", Cartas.Poligono.triangulo)
+                new Cartas.Territorio("Cazaquistão", Cartas.Poligono.bola, new String[]{"China","Japão","Letônia","Mongólia","Sibéria","turquia"}),
+                new Cartas.Territorio("China", Cartas.Poligono.quadrado, new String[]{"Cazaquistão","Coréia do Norte","Coréia do Sul","Índia","Mongólia","Paquistão","Turquia"}),
+                new Cartas.Territorio("Coréia do Norte", Cartas.Poligono.quadrado, new String[]{"China","Coréia do sul", "Japão"}),
+                new Cartas.Territorio("Coréia do Sul", Cartas.Poligono.triangulo, new String[]{"Bangladesh","China","Coréia do Norte","Índia","Tailândia"}),
+                new Cartas.Territorio("Estônia", Cartas.Poligono.bola, new String[]{"Letônia","Russia","Suécia"}),
+                new Cartas.Territorio("Índia", Cartas.Poligono.triangulo, new String[]{"Bangladesh","China","Coréia do Sul","Paquistão"}),
+                new Cartas.Territorio("Irã", Cartas.Poligono.quadrado, new String[]{"Iraque","Paquistão","Síria"}),
+                new Cartas.Territorio("Iraque", Cartas.Poligono.triangulo, new String[]{"Arábia Saudita","Irã","Jordânia","Síria"}),
+                new Cartas.Territorio("Japão", Cartas.Poligono.bola, new String[]{"Cazaquistão","Coréia do Norte","Mongólia"}),
+                new Cartas.Territorio("Jordânia", Cartas.Poligono.quadrado, new String[]{"Arábia Saudita","Egito","Iraque","Síria"}),
+                new Cartas.Territorio("Letônia", Cartas.Poligono.quadrado, new String[]{"Cazaquistão","Estônia","Polônia","Rússia","Suécia","Turquia","Ucrânia"}),
+                new Cartas.Territorio("Mongólia", Cartas.Poligono.triangulo, new String[]{"Cazaquistão","China","Japão"}),
+                new Cartas.Territorio("Paquistão", Cartas.Poligono.bola, new String[]{}),
+                new Cartas.Territorio("Russía", Cartas.Poligono.triangulo, new String[]{"Cazaquistão","Estônia","Letônia","Sibéria"}),
+                new Cartas.Territorio("Sibéria", Cartas.Poligono.quadrado, new String[]{"Alasca","Cazaquistão","Rússia"}),
+                new Cartas.Territorio("Síria", Cartas.Poligono.quadrado, new String[]{}),
+                new Cartas.Territorio("Tailândia", Cartas.Poligono.triangulo, new String[]{"Bangladesh","Coréia do Sul"}),
+                new Cartas.Territorio("Turquia", Cartas.Poligono.triangulo, new String[]{"Cazaquistão","China","Letônia","Paquistão","Síria","Ucrânia"})
         };
         public Cartas.Territorio[] ListaTerritoriosAmericaDoSul = {
                 new Cartas.Territorio("Argentina", Cartas.Poligono.quadrado, new String[]{"Brasil","Peru"}),
-                new Cartas.Territorio("Brasil", Cartas.Poligono.bola, new String[]{"Argentina","Peru","Venezuela","Nigeria"}),
+                new Cartas.Territorio("Brasil", Cartas.Poligono.bola, new String[]{"Argentina","Peru","Venezuela","Nigéria"}),
                 new Cartas.Territorio("Peru", Cartas.Poligono.triangulo, new String[]{"Brasil","Argentina","Venezuela"}),
                 new Cartas.Territorio("Venezuela", Cartas.Poligono.triangulo, new String[]{"Brasil","Peru"}),
         };
 
         public Cartas.Territorio[] ListaTerritoriosEuropa = {
-                new Cartas.Territorio("Espanha", Poligono.bola, new String[]{"Argelia","França"}),
-                new Cartas.Territorio("França", Poligono.triangulo, new String[]{"Argelia","Espanha","Itália","Suécia"}),
-                new Cartas.Territorio("Itália", Poligono.quadrado, new String[]{"Argelia","França","Polônia","Romênia","Suécia"}),
+                new Cartas.Territorio("Espanha", Poligono.bola, new String[]{"Argélia","França"}),
+                new Cartas.Territorio("França", Poligono.triangulo, new String[]{"Argélia","Espanha","Itália","Suécia"}),
+                new Cartas.Territorio("Itália", Poligono.quadrado, new String[]{"Argélia","França","Polônia","Romênia","Suécia"}),
                 new Cartas.Territorio("Polônia", Poligono.triangulo, new String[]{"Itália","Letônia","Ucrânia"}),
                 new Cartas.Territorio("Reino Unido", Poligono.bola, new String[]{"França","Groenlândia"}),
                 new Cartas.Territorio("Romênia", Poligono.triangulo, new String[]{"Egito","Itália","Polônia","Ucrânia"}),
@@ -113,10 +113,10 @@ class Cartas {
         };
 
         public Cartas.Territorio[] ListaTerritoriosOceania = {
-                new Cartas.Territorio("Austrália", Poligono.triangulo),
-                new Cartas.Territorio("Indonésia", Poligono.triangulo),
-                new Cartas.Territorio("Nova Zelândia", Poligono.quadrado),
-                new Cartas.Territorio("Perth", Poligono.bola),
+                new Cartas.Territorio("Austrália", Poligono.triangulo, new String[]{"Indonésia","Nova Zelândia","Perth"}),
+                new Cartas.Territorio("Indonésia", Poligono.triangulo, new String[]{"Austrália","Bangladesh","Índia","Nova Zelândia"}),
+                new Cartas.Territorio("Nova Zelândia", Poligono.quadrado, new String[]{"Austrália","Indonésia"}),
+                new Cartas.Territorio("Perth", Poligono.bola, new String[]{"Austrália"}),
         };
 
 }
