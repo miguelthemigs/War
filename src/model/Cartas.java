@@ -49,7 +49,7 @@ class Cartas {
         public Poligono getPoligono() {
             return poligono;
         }
-/*
+
         public Cartas.Territorio[] listaTerritoriosAfrica = {
                 new Cartas.Territorio("África do Sul", Cartas.Poligono.triangulo, new String[]{"Angola", "Somália"}),
                 new Cartas.Territorio("Angola", Cartas.Poligono.quadrado),
@@ -121,7 +121,7 @@ class Cartas {
 
 }
 }
-*/
+
 /*
  class myMain{
     public static void main(String[] args) {
