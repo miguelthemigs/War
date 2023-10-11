@@ -1,4 +1,8 @@
+import model.Jogador;
 import model.Pais;
+
+import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,6 +20,32 @@ public class Main {
                 | |              | | |              | | |              | |
                 | '--------------' | '--------------' | '--------------' |
                  '----------------' '----------------' '----------------'\s""");
+
+
+        Scanner scanner = new Scanner(System.in);
+
+        // Pergunte o número de jogadores
+        System.out.print("Digite o número de jogadores: ");
+        int numJogadores = scanner.nextInt();
+
+        // Crie um array para armazenar os jogadores
+        Jogador[] jogadores = new Jogador[numJogadores];
+
+        // Cores disponíveis
+        Cor[] cores = {Cor.VERMELHO, Cor.AZUL, Cor.VERDE, Cor.AMARELO, Cor.ROXO, Cor.LARANJA};
+
+
+        // Inicialize cada jogador
+        for (int i = 0; i < numJogadores; i++) {
+            Jogador jogador = new Jogador();
+
+            // Defina uma cor aleatória para o jogador
+            Random random = new Random();
+            int indiceCorAleatoria = random.nextInt(cores.length);
+            Cor corAleatoria = cores[indiceCorAleatoria];
+
+            jogador.setCor(Jogador.Cor.vermelho);
+
 
         // Inicializando
         Pais Argelia = new Pais("Argélia");

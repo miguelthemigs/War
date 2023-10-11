@@ -4,7 +4,7 @@ import model.Cartas.Territorio;
 
 import java.util.ArrayList;
 
-class Jogador {
+public class Jogador {
     private enum Cor {
         vermelho, azul, verde, amarelo, preto, branco
     }
