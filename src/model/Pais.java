@@ -3,7 +3,7 @@ package model;
 public class Pais {
     private String nome;
     private int tropas;
-    private Pais[] fronteiras;
+    public Pais[] fronteiras;
 
 
     public Pais(String nome) {
@@ -32,5 +32,16 @@ public class Pais {
     public void setFronteiras(Pais[] fronteiras) {
         this.fronteiras = fronteiras;
     }
+
+    Pais Angola = new Pais("Angola");
+    Pais Africa = new Pais("Africa");
+    Pais Madagascar = new Pais("Madagascar");
+
+    //Fronteiras
+    //Angola.setFronteiras(new Pais[]{Africa, Madagascar});
+
+    //Continentes
+    //Pais[] America = {Africa, Madagascar};
+
 
 }
