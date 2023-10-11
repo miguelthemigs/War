@@ -5,37 +5,32 @@ public class Pais {
     private int tropas;
     private Pais[] fronteiras;
 
+
     public Pais(String nome) {
         this.nome = nome;
+    }
+    public String getNome() {
+        return nome;
     }
 
     public int getTropas() {
         return tropas;
     }
-
     public void setTropas(int tropas) {
         this.tropas = tropas;
     }
+    public void addTropas(int tropas) {
+        this.tropas += tropas;
+    }
+    public void removeTropas(int tropas) {
+        this.tropas -= tropas;
+    }
 
-
-    Pais Angola = new Pais("Angola");
-    Pais Africa = new Pais("Africa");
-    Pais Madagascar = new Pais("Madagascar");
-
-    //Fronteiras
-    Angola.fronteiras =
-
+    public Pais[] getFronteiras() {
+        return fronteiras;
+    }
+    public void setFronteiras(Pais[] fronteiras) {
+        this.fronteiras = fronteiras;
+    }
 
 }
-
-//{
-// new Pais = Angola Pais("Angola")
-// new Pais = Brasil Pais("Brasil")
-// new Pais = Portugal Pais("Portugal")
-// ...
-
-// Angola ([Brasil, Portugal])
-
-// Brasil.fronteiras = {Chile, Argentina}
-// new Pais = Portugal Pais("Portugal")
-//}
