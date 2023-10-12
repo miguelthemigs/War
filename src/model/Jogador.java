@@ -5,7 +5,7 @@ import model.Cartas.Territorio;
 import java.util.ArrayList;
 
 public class Jogador {
-    private enum Cor {
+    public enum Cor {
         vermelho, azul, verde, amarelo, preto, branco
     }
     private Cor cor;
@@ -27,12 +27,9 @@ public class Jogador {
     }
 
     public Cor getCor() {
-        return cor;
+        return this.cor;
     }
 
-    public void setCor(Cor cor) {
-        this.cor = cor;
-    }
 
 
 }
