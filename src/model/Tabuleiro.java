@@ -3,9 +3,7 @@ package model;
 
 public class Tabuleiro {
 
-    // Inicializando
-
-
+    // Inicializando instancias dos paises
     public static Pais AfricaSul = new Pais(Cartas.Territorio.allTerritorios[0].getPais(), Cartas.Territorio.allTerritorios[0].getFronteira());
     public static Pais Angola = new Pais(Cartas.Territorio.allTerritorios[1].getPais(), Cartas.Territorio.allTerritorios[1].getFronteira());
     public static Pais Argelia = new Pais(Cartas.Territorio.allTerritorios[2].getPais(), Cartas.Territorio.allTerritorios[2].getFronteira());
@@ -63,8 +61,14 @@ public class Tabuleiro {
     public static Pais NovaZelandia = new Pais(Cartas.Territorio.allTerritorios[49].getPais(), Cartas.Territorio.allTerritorios[49].getFronteira());
     public static Pais Perth = new Pais(Cartas.Territorio.allTerritorios[50].getPais(), Cartas.Territorio.allTerritorios[50].getFronteira());
 
-
-
+    // Continentes
+    public static Pais[] Africa = {AfricaSul, Angola, Argelia, Egito, Nigeria, Somalia};
+    public static Pais[] AmericaNorte = {Alasca, Calgary, California, Groelandia, NovaYork, Mexico, Quebec, Texas, Vancouver};
+    public static Pais[] Asia = {ArabiaSaudita, Bangladesh, Cazaquistao, China, CoreiadoNorte, CoreiadoSul, Estonia, India, Ira,
+            Iraque, Japao, Jordania, Letonia, Mongolia, Paquistao, Russia, Siberia, Siria, Tailandia, Turquia};
+    public static Pais[] AmericaSul = {Argentina, Brasil, Peru, Venezuela};
+    public static Pais[] Europa = {Espanha, Franca, Italia, Polonia, ReinoUnido, Romenia, Suecia, Ucrania};
+    public static Pais[] Oceania = {Australia, Indonesia, NovaZelandia, Perth};
 
     }
 /*

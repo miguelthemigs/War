@@ -12,11 +12,11 @@ public class Jogador {
     private int premio;
     private int numContinentes;
     private int numTerritorios;
-    private ArrayList<Territorio> territoriosPossuidos; // aqui so usarei o nome dos paises getPais()
+    private ArrayList<Pais> territoriosPossuidos;
     private ArrayList<Continentes> continentesPossuidos;
     private ArrayList<Territorio> poligonosPossuidos; // aqui so usarei os poligonos getPoligono()
+    private String objetivo;
 
-    // deve ter Objetivo objetivo
     // deve numero de cartas e Cartas cartas
 
     public Jogador() {
@@ -30,7 +30,12 @@ public class Jogador {
         return this.cor;
     }
 
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
+    }
 
-
+    public String getObjetivo() {
+        return objetivo;
+    }
 }
 

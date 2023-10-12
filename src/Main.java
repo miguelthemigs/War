@@ -1,3 +1,4 @@
+import model.ApiAcess;
 import model.Jogador;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class Main {
 
         ArrayList<String> coresEscolhidas = new ArrayList<>();
         String resposta;
+        ApiAcess api = new ApiAcess();
 
         System.out.println("Cores disponíveis: vermelho, verde, azul, amarelo, preto, branco");
         do {
@@ -51,9 +53,15 @@ public class Main {
         for (int i = 0; i < jogadores.size(); i++) {
             System.out.println("Jogador " + (i+1) + " escolheu a cor: " + jogadores.get(i).getCor());
         }
-
         System.out.println("Cores escolhidas: " + coresEscolhidas);
+        System.out.println("--------------------------------------------------------");
 
+        api.sorteiaObjetivo(jogadores);
+        System.out.println();
+
+        for (int i = 0; i < jogadores.size(); i++){
+            System.out.println("Objetivo jogador "+ (i+1) + ": "+ jogadores.get(i).getObjetivo());
+        }
 
     }
 }
