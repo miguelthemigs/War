@@ -3,11 +3,12 @@ package model;
 class Pais {
     private String nome;
     private int tropas;
-    public Pais[] fronteiras;
+    public String[] fronteiras;
 
 
-    public Pais(String nome) {
+    public Pais(String nome, String[] fronteiras) {
         this.nome = nome;
+        this.fronteiras = fronteiras;
     }
     public String getNome() {
         return nome;
@@ -26,10 +27,10 @@ class Pais {
         this.tropas -= tropas;
     }
 
-    public Pais[] getFronteiras() {
+    public String[] getFronteiras() {
         return fronteiras;
     }
-    public void setFronteiras(Pais[] fronteiras) {
+    public void setFronteiras(String[] fronteiras) {
         this.fronteiras = fronteiras;
     }
 

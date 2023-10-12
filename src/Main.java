@@ -41,7 +41,7 @@ public class Main {
             resposta = scanner.nextLine();
         } while (resposta.equalsIgnoreCase("S"));
 
-        ArrayList<Jogador> jogadores = new ArrayList<>();
+        ArrayList<Jogador> jogadores = new ArrayList<>(); // guardares os jogadores aqui
 
         for (String cor : coresEscolhidas) {
             jogadores.add(new Jogador(Jogador.Cor.valueOf(cor)));
@@ -54,13 +54,6 @@ public class Main {
 
         System.out.println("Cores escolhidas: " + coresEscolhidas);
 
-
-
-        //Fronteiras
-        //Angola.setFronteiras(new Pais[]{Africa, Madagascar});
-
-        //Continentes
-        //Pais[] America = {Africa, Madagascar};
 
     }
 }

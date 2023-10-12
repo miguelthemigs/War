@@ -1,24 +1,30 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Tabuleiro {
 
     // Inicializando
-    Pais Argelia = new Pais("Argélia");
-    Pais Nigeria = new Pais("Nigéria");
-    Pais Angola = new Pais("Angola");
-    Pais Egito = new Pais("Egito");
-    Pais Somalia = new Pais("Somália");
-    Pais AfricaSul = new Pais("África do Sul");
 
-    Pais Mexico = new Pais("México");
-    Pais California = new Pais("Califórnia");
+
+    public static Pais AfricaSul = new Pais(Cartas.Territorio.allTerritorios[0].getPais(), Cartas.Territorio.allTerritorios[0].getFronteira());
+    Pais Angola = new Pais(Cartas.Territorio.allTerritorios[1].getPais(), Cartas.Territorio.allTerritorios[1].getFronteira());
+    Pais Argelia = new Pais(Cartas.Territorio.allTerritorios[2].getPais(), Cartas.Territorio.allTerritorios[2].getFronteira());
+    Pais Egito = new Pais(Cartas.Territorio.allTerritorios[3].getPais(), Cartas.Territorio.allTerritorios[3].getFronteira());
+    Pais Nigeria = new Pais(Cartas.Territorio.allTerritorios[4].getPais(), Cartas.Territorio.allTerritorios[4].getFronteira());
+    Pais Somalia = new Pais(Cartas.Territorio.allTerritorios[5].getPais(), Cartas.Territorio.allTerritorios[5].getFronteira());
+
+    Pais Alasca = new Pais(Cartas.Territorio.allTerritorios[6].getPais(), Cartas.Territorio.allTerritorios[6].getFronteira());
+    Pais Calgary = new Pais(Cartas.Territorio.allTerritorios[7].getPais(), Cartas.Territorio.allTerritorios[7].getFronteira());
+    Pais California = new Pais(Cartas.Territorio.allTerritorios[8].getPais(), Cartas.Territorio.allTerritorios[8].getFronteira());
+    Pais Groelandia = new Pais(Cartas.Territorio.allTerritorios[9].getPais(), Cartas.Territorio.allTerritorios[9].getFronteira());
+    Pais NovaYork = new Pais(Cartas.Territorio.allTerritorios[10].getPais(), Cartas.Territorio.allTerritorios[10].getFronteira());
+    Pais Mexico = new Pais(Cartas.Territorio.allTerritorios[11].getPais(), Cartas.Territorio.allTerritorios[11].getFronteira());
+    /*
+    Pais Quebec = new Pais("Quebec");
     Pais Texas = new Pais("Texas");
     Pais Vancouver = new Pais("Vancouver");
-    Pais NovaYork = new Pais("Nova York");
-    Pais Quebec = new Pais("Quebec");
-    Pais Alasca = new Pais("Alasca");
-    Pais Calgary = new Pais("Calgary");
-    Pais Groelandia = new Pais("Groelândia");
 
     Pais Letonia = new Pais("Letônia");
     Pais Estonia = new Pais("Estônia");
@@ -59,5 +65,17 @@ public class Tabuleiro {
     Pais Indonesia = new Pais("Indonésia");
     Pais NovaZelandia = new Pais("Nova Zelândia");
     Pais Perth = new Pais("Perth");
+*/
 
+
+
+    }
+/*
+    class myMain{
+        public static void main(String[] args) {
+            System.out.println(Tabuleiro.AfricaSul.getNome());
+            System.out.println(Arrays.toString(Tabuleiro.AfricaSul.getFronteiras()));
+
+        }
 }
+*/
