@@ -30,7 +30,7 @@ public class Main {
         ArrayList<String> coresEscolhidas = new ArrayList<>();
         String resposta;
 
-        System.out.println("Cores disponíveis: vermelho, azul, amarelo, preto, branco");
+        System.out.println("Cores disponíveis: vermelho, verde, azul, amarelo, preto, branco");
         do {
             System.out.print("Digite a cor que você quer ser: ");
             String corEscolhida = scanner.nextLine();
