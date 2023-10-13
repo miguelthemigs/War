@@ -10,6 +10,7 @@ public class Jogador {
     }
     private Cor cor;
     private int premio;
+    private int tropasParaAdicionar; // exercitos para o jogador adicionar
     private int numContinentes;
     private ArrayList<Pais> territoriosPossuidos;
     private ArrayList<Pais[]> continentesPossuidos;
