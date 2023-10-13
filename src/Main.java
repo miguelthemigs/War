@@ -1,5 +1,6 @@
 import model.ApiAcess;
 import model.Jogador;
+import model.Tabuleiro;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -56,12 +57,25 @@ public class Main {
         System.out.println("Cores escolhidas: " + coresEscolhidas);
         System.out.println("--------------------------------------------------------");
 
+        // Aqui realizamos e colocamos cada jogador para ter seu objetivo
         api.sorteiaObjetivo(jogadores);
         System.out.println();
 
         for (int i = 0; i < jogadores.size(); i++){
             System.out.println("Objetivo jogador "+ (i+1) + ": "+ jogadores.get(i).getObjetivo());
         }
+
+        // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
+        api.sorteiaTerritorios(jogadores);
+        for (int i = 0; i < jogadores.size(); i++){
+            System.out.println("Territorios jogador "+ (i+1));
+            api.imprimeListaTerritorios(jogadores.get(i).getTerritoriosPossuidos());
+            System.out.println("Numero de territorios: "+jogadores.get(i).getNumTerritorios());
+
+
+        }
+
+
 
     }
 }

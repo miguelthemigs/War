@@ -70,6 +70,7 @@ public class Tabuleiro {
     public static Pais[] Europa = {Espanha, Franca, Italia, Polonia, ReinoUnido, Romenia, Suecia, Ucrania};
     public static Pais[] Oceania = {Australia, Indonesia, NovaZelandia, Perth};
 
+
     }
 /*
     class myMain{
