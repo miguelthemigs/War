@@ -59,5 +59,30 @@ public class Jogador {
     public int getNumTerritorios() {
         return territoriosPossuidos.size();
     }
+    public int getNumNovasTropas() {
+        return (territoriosPossuidos.size())/2;
+    }
+    public void checaContinentes(){
+
+        Pais[][] Continentes = {Tabuleiro.Africa, Tabuleiro.AmericaSul, Tabuleiro.AmericaNorte, Tabuleiro.Asia, Tabuleiro.Oceania, Tabuleiro.Europa};
+        String[] contNome = {"Africa", "AmericaSul", "AmericaNorte", "Asia", "Oceania", "Europa"};
+        int contIndice = 0;
+
+        // Verifique se todos os territórios do continente estão na lista de territórios possuídos
+        for (Pais[] continente : Continentes) {
+            boolean todosNoContinente = true;
+            for (Pais pais : continente) {
+                if (!getTerritoriosPossuidos().contains(pais)) {
+                    todosNoContinente = false;
+                    break;  // Se um território não estiver na lista, não é necessário continuar verificando
+                }
+            }
+            // Se todos os territórios do continente estiverem na lista, imprima "OPAAAA"
+            if (todosNoContinente) {
+                System.out.println("Este jogador possui o seguinte continente:" + contNome[contIndice]);
+            }
+            contIndice++;
+        }
+    }
 }
 

@@ -69,9 +69,10 @@ public class Tabuleiro {
     public static Pais[] AmericaSul = {Argentina, Brasil, Peru, Venezuela};
     public static Pais[] Europa = {Espanha, Franca, Italia, Polonia, ReinoUnido, Romenia, Suecia, Ucrania};
     public static Pais[] Oceania = {Australia, Indonesia, NovaZelandia, Perth};
+    public static Pais[] Teste = {Australia};
 
 
-    }
+}
 /*
     class myMain{
         public static void main(String[] args) {
