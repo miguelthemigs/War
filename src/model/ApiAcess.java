@@ -53,19 +53,6 @@ public class ApiAcess {
        }
    }
 
-   /*
-   public void addExercito(Jogador jogador, Pais pais, int num){ // vai na lista todos os paises, se esse pais tiver esse nome, add esse pais e add exercito nesse pais
-        ArrayList<Pais> paises = geraListaSorteioTerritorios();
-       for(Pais territorio: paises){
-           if(territorio.getNome().equals(pais.getNome())){
-               pais.addTropas(num);
-           }
-       }
-   }
-   */
-
-
-
 }
 /*
 class myMain{
