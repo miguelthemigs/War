@@ -1,7 +1,7 @@
 package model;
 
 
-public class Tabuleiro {
+class Tabuleiro {
 
     // Inicializando instancias dos paises
     public static Pais AfricaSul = new Pais(Cartas.Territorio.allTerritorios[0].getPais(), Cartas.Territorio.allTerritorios[0].getFronteira());

@@ -1,6 +1,4 @@
 import model.ApiAcess;
-import model.Jogador;
-import model.Tabuleiro;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -44,49 +42,35 @@ public class Main {
             resposta = scanner.nextLine();
         } while (resposta.equalsIgnoreCase("S"));
 
-        ArrayList<Jogador> jogadores = new ArrayList<>(); // guardares os jogadores aqui
-
-        for (String cor : coresEscolhidas) {
-            jogadores.add(new Jogador(Jogador.Cor.valueOf(cor)));
-        }
-
-        // Agora você tem uma lista de jogadores com as cores escolhidas
-        for (int i = 0; i < jogadores.size(); i++) {
-            System.out.println("Jogador " + (i+1) + " escolheu a cor: " + jogadores.get(i).getCor());
-        }
-        System.out.println("Cores escolhidas: " + coresEscolhidas);
-        System.out.println("--------------------------------------------------------");
+        api.gerarJogadores(coresEscolhidas);
 
         // Aqui realizamos e colocamos cada jogador para ter seu objetivo
-        api.sorteiaObjetivo(jogadores);
-        System.out.println();
-
-        for (int i = 0; i < jogadores.size(); i++){
-            System.out.println("\nObjetivo jogador "+ (i+1) + ": "+ jogadores.get(i).getObjetivo());
-        }
+        api.sorteiaObjetivo();
 
         // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
-        api.sorteiaTerritorios(jogadores);
-        for (int i = 0; i < jogadores.size(); i++){
-            System.out.println("\nTerritorios jogador "+ (i+1));
-            api.imprimeListaTerritorios(jogadores.get(i).getTerritoriosPossuidos());
-            System.out.println("Numero de territorios: "+jogadores.get(i).getNumTerritorios());
-
-
-        }
+        api.sorteiaTerritorios();
 
         System.out.println("------- Checando se os jogadores possuem algum continente --------");
         // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente
-        for (int i = 0; i < jogadores.size(); i++) {
-            System.out.printf("Jogador (%d):\n", i + 1);
-            // Chama o método checaContinentes para o jogador atual
-            jogadores.get(i).checaContinentes();
-            System.out.println("Fim\n");
-        }
+        api.checaContinentesJogador();
 
+        // Vamos chegar as tropas a receber, de cada jogador
+        api.checarTropasGanhar();
+        api.imprimeTropasARecber();
 
-
+        // Vamos realizar a distribuição de exércitos de cada jogador em cada território
+        api.posicionamentoExercitos();
 
 
     }
+
 }
+
+
+
+
+
+
+
+
+

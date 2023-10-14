@@ -4,6 +4,7 @@ class Pais {
     private final String nome;
     private int tropas;
     public String[] fronteiras;
+    private Jogador dono;
 
 
     public Pais(String nome, String[] fronteiras) {
@@ -12,6 +13,10 @@ class Pais {
     }
     public String getNome() {
         return nome;
+    }
+
+    public void setDono(Jogador dono) {
+        this.dono = dono;
     }
 
     public int getTropas() {
