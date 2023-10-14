@@ -79,7 +79,7 @@ public class Jogador {
             }
             // Se todos os territórios do continente estiverem na lista, imprima "OPAAAA"
             if (todosNoContinente) {
-                System.out.println("Este jogador possui o seguinte continente:" + contNome[contIndice]);
+                System.out.println("Este jogador possui o seguinte continente: " + contNome[contIndice]);
             }
             contIndice++;
         }

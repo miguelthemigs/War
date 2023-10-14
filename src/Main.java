@@ -75,10 +75,10 @@ public class Main {
 
         }
 
-        System.out.println("Checando se os jogadores possuem algum continente -");
+        System.out.println("------- Checando se os jogadores possuem algum continente --------");
         // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente
         for (int i = 0; i < jogadores.size(); i++) {
-            System.out.printf("Jogador (%d):", i + 1);
+            System.out.printf("Jogador (%d):\n", i + 1);
             // Chama o método checaContinentes para o jogador atual
             jogadores.get(i).checaContinentes();
             System.out.println("Fim\n");
