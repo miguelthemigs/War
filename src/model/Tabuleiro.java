@@ -73,12 +73,3 @@ class Tabuleiro {
 
 
 }
-/*
-    class myMain{
-        public static void main(String[] args) {
-            System.out.println(Tabuleiro.AfricaSul.getNome());
-            System.out.println(Arrays.toString(Tabuleiro.AfricaSul.getFronteiras()));
-
-        }
-}
-*/

@@ -19,11 +19,3 @@ class Dados {
         return yellowDado[indiceAleatorio];
     }
 }
-/*
-class myMain{
-    public static void main(String[] args) {
-        System.out.println("Amarelo:"+ Dados.jogarAmarelo());
-        System.out.println("Vermelho:"+ Dados.jogarAmarelo());
-    }
-}
-*/
