@@ -1,41 +1,24 @@
 package model;
-/*
-import org.junit.Test;
-import static org.junit.Assert.*;
+
+import org.junit.*;
 import java.util.*;
-
-
-public class ApiAcessTeste {
-	@Test
-	public void Teste(){
-		ApiAcess api = new ApiAcess();
-		ArrayList<String> coresEscolhidas = new ArrayList<>();
-		coresEscolhidas.add("azul");
-		api.gerarJogadores(coresEscolhidas);
-		Jogador a = new Jogador(Jogador.Cor.valueOf("azul"));
-		assertTrue(api.jogadores.contains(a));
-	}
-}
-*/
-import org.junit.Test;
-import java.util.ArrayList;
-import java.util.Arrays;
 import static org.junit.Assert.*;
 
 public class ApiAcessTeste {
 
-    
-    @Test
-    public void testGerarJogadores() {
-        ApiAcess api = new ApiAcess();
+    private static ApiAcess api;
+    @Before
+    public void inicializa() {
+        // Configuração comum antes de todos os testes
+        api = new ApiAcess();
         ArrayList<String> coresEscolhidas = new ArrayList<>();
         coresEscolhidas.add("vermelho");
         coresEscolhidas.add("azul");
         coresEscolhidas.add("verde");
-
-        // Executa o método que você deseja testar
         api.gerarJogadores(coresEscolhidas);
-
+    }
+    @Test
+    public void testeGerarJogadores() {
         // Verifica se a lista de jogadores foi criada corretamente
         assertEquals(3, api.jogadores.size());
 
@@ -45,13 +28,15 @@ public class ApiAcessTeste {
         }
     }
     @Test
-    public void testSorteiaObjetivo() {
+    public void testeSorteiaObjetivo() {
+        api=null;
         ApiAcess api = new ApiAcess();
         ArrayList<String> coresEscolhidas = new ArrayList<>();
         coresEscolhidas.add("vermelho");
         coresEscolhidas.add("azul");
         coresEscolhidas.add("verde");
         api.gerarJogadores(coresEscolhidas);
+
 
         // Executa o método que você deseja testar
         api.sorteiaObjetivo();
@@ -70,14 +55,7 @@ public class ApiAcessTeste {
     }
     
     @Test
-    public void testSorteiaTerritorios() {
-        ApiAcess api = new ApiAcess();
-        ArrayList<String> coresEscolhidas = new ArrayList<>();
-        coresEscolhidas.add("vermelho");
-        coresEscolhidas.add("azul");
-        coresEscolhidas.add("verde");
-        api.gerarJogadores(coresEscolhidas);
-
+    public void testeSorteiaTerritorios() {
         // Executa o método que você deseja testar
         api.sorteiaTerritorios();
 
@@ -96,7 +74,7 @@ public class ApiAcessTeste {
         assertEquals(totalTerritoriosAntes, totalTerritoriosApos);
     }
     @Test
-    public void testChecaContinentesJogador() {
+    public void testeChecaContinentesJogador() {
     	int expected= 6;
     	int actual;
         ApiAcess api = new ApiAcess();
@@ -111,21 +89,14 @@ public class ApiAcessTeste {
         api.checaContinentesJogador();
 
         // Verifica se cada jogador tem continentes atribuídos
-        
+
         for (Jogador jogador : api.jogadores) {
         	actual = jogador.getNumContinentesPossuidos();
             assertEquals(expected,actual);
         }
     }
     @Test
-    public void testChecarTropasGanhar() {
-        ApiAcess api = new ApiAcess();
-        ArrayList<String> coresEscolhidas = new ArrayList<>();
-        coresEscolhidas.add("vermelho");
-        coresEscolhidas.add("azul");
-        coresEscolhidas.add("verde");
-        api.gerarJogadores(coresEscolhidas);
-
+    public void testeChecarTropasGanhar() {
         // Adiciona alguns territórios fictícios aos jogadores para teste
         for (Jogador jogador : api.jogadores) {
         	api.sorteiaTerritorios();
@@ -138,6 +109,28 @@ public class ApiAcessTeste {
         for (Jogador jogador : api.jogadores) {
             assertTrue(jogador.getTropasParaAdicionar() >= 3);
         }
+    }
+    @Test
+    public void testePosicionamentoExercitos() {
+        // Adiciona alguns territórios fictícios aos jogadores para teste
+        for (Jogador jogador : api.jogadores) {
+            api.sorteiaTerritorios();
+        }
+
+        // Executa o método que você deseja testar
+        api.posicionamentoExercitos();
+
+        // Verifica se as tropas foram adicionadas corretamente aos territórios
+        for (Jogador jogador : api.jogadores) {
+            for (Pais territorio : jogador.getTerritoriosPossuidos()) {
+                assertTrue(territorio.getTropas() > 0);
+            }
+        }
+    }
+    @After
+    public  void limpa() {
+        // Limpeza após todos os testes
+        api = null;  // Define api como null para liberar recursos, se necessário
     }
 }
 
