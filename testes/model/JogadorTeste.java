@@ -13,17 +13,17 @@ public class JogadorTeste {
 	}
 	@Test
 	public void testGetCor() {
-		assertEquals(Jogador.Cor.azul, jogador.getCor());
+		assertEquals("Jogador com cor inserida indevidamente",Jogador.Cor.azul, jogador.getCor());
 	}
 	@Test
 	public void testSetObjetivo() {
 		jogador.setObjetivo("Conquistar a Europa");
-		assertEquals("Conquistar a Europa", jogador.getObjetivo());
+		assertEquals("Jogador com objetivo inserido indevidamente","Conquistar a Europa", jogador.getObjetivo());
 	}
 	@Test
 	public void testSetTropasParaAdicionar() {
 		jogador.setTropasParaAdicionar(5);
-		assertEquals(5, jogador.getTropasParaAdicionar());
+		assertEquals("Tropas para jogador adicionar inserido indevidamente",5, jogador.getTropasParaAdicionar());
 	}
 	//Outras funções já testadas na API
 }
