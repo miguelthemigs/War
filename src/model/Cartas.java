@@ -112,13 +112,5 @@ class Cartas {
 }
 }
 
-/*
- class myMain{
-    pupublic static void main(String[] args) {
-        // nomear os territorios em passar para uma estrutura que os armazenam (nao sera nessa main, sera no continente, que estara no tabuleiro)
-        Cartas.Territorio territorio = new Cartas.Territorio("Brasil", Cartas.Poligono.quadrado);
-        System.out.println(territorio.getPoligono());
-    }
-}
-*/
+
 
