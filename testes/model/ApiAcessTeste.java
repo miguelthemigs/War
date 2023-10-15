@@ -12,44 +12,35 @@ public class ApiAcessTeste {
         // Configuração comum antes de todos os testes
         api = new ApiAcess();
         ArrayList<String> coresEscolhidas = new ArrayList<>();
-        coresEscolhidas.add("vermelho");
-        coresEscolhidas.add("azul");
         coresEscolhidas.add("verde");
+        coresEscolhidas.add("branco");
+        coresEscolhidas.add("vermelho");
         api.gerarJogadores(coresEscolhidas);
     }
     @Test
     public void testeGerarJogadores() {
         // Verifica se a lista de jogadores foi criada corretamente
-        assertEquals(3, api.jogadores.size());
+        assertEquals("Quantidade de jogadores criadas errado",3, api.jogadores.size());
 
         // Verifica se cada jogador possui uma cor válida
         for (Jogador jogador : api.jogadores) {
-            assertNotNull(jogador.getCor());
+            assertNotNull("Jogador com cor inválida",jogador.getCor());
         }
     }
     @Test
     public void testeSorteiaObjetivo() {
-        api=null;
-        ApiAcess api = new ApiAcess();
-        ArrayList<String> coresEscolhidas = new ArrayList<>();
-        coresEscolhidas.add("vermelho");
-        coresEscolhidas.add("azul");
-        coresEscolhidas.add("verde");
-        api.gerarJogadores(coresEscolhidas);
-
-
         // Executa o método que você deseja testar
         api.sorteiaObjetivo();
 
         // Verifica se cada jogador tem um objetivo atribuído
         for (Jogador jogador : api.jogadores) {
-            assertNotNull(jogador.getObjetivo());
+            assertNotNull("Jogador sem objetivo",jogador.getObjetivo());
         }
 
         // Verifica se os objetivos são diferentes entre os jogadores
         for (int i = 0; i < api.jogadores.size() - 1; i++) {
             for (int j = i + 1; j < api.jogadores.size(); j++) {
-                assertNotEquals(api.jogadores.get(i).getObjetivo(), api.jogadores.get(j).getObjetivo());
+                assertNotEquals("Objetivos iguais entre jogadores",api.jogadores.get(i).getObjetivo(), api.jogadores.get(j).getObjetivo());
             }
         }
     }
@@ -61,7 +52,7 @@ public class ApiAcessTeste {
 
         // Verifica se cada jogador possui territórios atribuídos
         for (Jogador jogador : api.jogadores) {
-            assertTrue(jogador.getNumTerritorios() > 0);
+            assertTrue("Jogador sem território",jogador.getNumTerritorios() > 0);
         }
 
         // Verifica se o número total de territórios é o mesmo antes e depois da atribuição
@@ -70,8 +61,8 @@ public class ApiAcessTeste {
         for (Jogador jogador : api.jogadores) {
             totalTerritoriosApos += jogador.getNumTerritorios();
         }
-        assertEquals(51,totalTerritoriosAntes);
-        assertEquals(totalTerritoriosAntes, totalTerritoriosApos);
+        assertEquals("Mais territórios que o devido",51,totalTerritoriosAntes);
+        assertEquals("Número de territórios diferentes antes e depois de atribuição",totalTerritoriosAntes, totalTerritoriosApos);
     }
     @Test
     public void testeChecaContinentesJogador() {
@@ -89,10 +80,9 @@ public class ApiAcessTeste {
         api.checaContinentesJogador();
 
         // Verifica se cada jogador tem continentes atribuídos
-
         for (Jogador jogador : api.jogadores) {
         	actual = jogador.getNumContinentesPossuidos();
-            assertEquals(expected,actual);
+            assertEquals("Jogador sem continente atribuído",expected,actual);
         }
     }
     @Test
@@ -107,7 +97,7 @@ public class ApiAcessTeste {
 
         // Verifica se cada jogador tem tropas para adicionar atribuídas
         for (Jogador jogador : api.jogadores) {
-            assertTrue(jogador.getTropasParaAdicionar() >= 3);
+            assertTrue("Jogador sem tropas para ser adicionadas",jogador.getTropasParaAdicionar() >= 3);
         }
     }
     @Test
@@ -123,7 +113,7 @@ public class ApiAcessTeste {
         // Verifica se as tropas foram adicionadas corretamente aos territórios
         for (Jogador jogador : api.jogadores) {
             for (Pais territorio : jogador.getTerritoriosPossuidos()) {
-                assertTrue(territorio.getTropas() > 0);
+                assertTrue("Tropa adicionada incorretamente",territorio.getTropas() > 0);
             }
         }
     }
