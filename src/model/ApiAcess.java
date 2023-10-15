@@ -24,7 +24,7 @@ public class ApiAcess {
 
    }
 
-   private ArrayList<Pais> geraListaSorteioTerritorios(){
+   ArrayList<Pais> geraListaSorteioTerritorios(){
        ArrayList<Pais> listaTodosPaises = new ArrayList<>();
        listaTodosPaises.addAll(Arrays.asList(Tabuleiro.Africa));
        listaTodosPaises.addAll(Arrays.asList(Tabuleiro.Asia));
