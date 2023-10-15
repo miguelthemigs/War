@@ -139,65 +139,213 @@ public class ApiAcess {
             System.out.println();
         }
     }
-       public void posicionamentoExercitos() {
-           for (Jogador jogador : jogadores) {
-               System.out.println("\nJogador: " + jogador.getCor());
-               imprimirTerritoriosETropas(jogador);
+    public void posicionamentoExercitos() {
+       for (Jogador jogador : jogadores) {
+           System.out.println("\nJogador: " + jogador.getCor());
+           imprimirTerritoriosETropas(jogador);
 
-               while (jogador.getTropasParaAdicionar() > 0) {
-                   System.out.println("Tropas disponíveis: "+ jogador.getTropasParaAdicionar());
-                   // Aqui você pode pedir ao jogador quantas tropas ele quer adicionar
-                   // e em qual território
-                   // Você pode usar Scanner para isso
+           while (jogador.getTropasParaAdicionar() > 0) {
+               System.out.println("Tropas disponíveis: "+ jogador.getTropasParaAdicionar());
+               // Aqui você pode pedir ao jogador quantas tropas ele quer adicionar
+               // e em qual território
+               // Você pode usar Scanner para isso
 
-                   // Exemplo:
-                   Scanner scanner = new Scanner(System.in);
-                   System.out.println("Em qual território você quer adicionar as tropas?");
-                   String territorioNome = scanner.next();
+               // Exemplo:
+               Scanner scanner = new Scanner(System.in);
+               System.out.println("Em qual território você quer adicionar as tropas?");
+               String territorioNome = scanner.next();
 
-                   Pais territorio = null;
-                   for (Pais pais : jogador.getTerritoriosPossuidos()) {
-                       if (pais.getNome().equals(territorioNome)) {
-                           territorio = pais;
-                           break;
-                       }
+               Pais territorio = null;
+               for (Pais pais : jogador.getTerritoriosPossuidos()) {
+                   if (pais.getNome().equals(territorioNome)) {
+                           territorio = pais;break;
                    }
-
-                   if (territorio == null) {
-                       System.out.println("Território inválido.");
-                       continue;
-                   }
-
-                   System.out.println("Quantas tropas você quer adicionar? (Digite 0 para sair)");
-                   int quantidade = scanner.nextInt();
-                   if (quantidade > jogador.getTropasParaAdicionar()){
-                       System.out.println("Mais tropas do que você tem. Tente novamente");
-                       continue;
-                   }
-
-                   if (quantidade == 0) {
-                       break;
-                   }
-                       territorio.addTropas(quantidade);
-                       imprimirTerritoriosETropas(jogador);
-                       jogador.diminuiTropasParaAdicionar(quantidade);
-
-
                }
+
+               if (territorio == null) {
+                   System.out.println("Território inválido.");
+                   continue;
+               }
+
+               System.out.println("Quantas tropas você quer adicionar? (Digite 0 para sair)");
+               int quantidade = scanner.nextInt();
+               if (quantidade > jogador.getTropasParaAdicionar()){
+                   System.out.println("Mais tropas do que você tem. Tente novamente");
+                   continue;
+               }
+
+               if (quantidade == 0) {
+                   break;
+               }
+               territorio.addTropas(quantidade);
+               imprimirTerritoriosETropas(jogador);
+               jogador.diminuiTropasParaAdicionar(quantidade);
+
            }
        }
    }
+   public void trocaCartasPoligono(){
+       Scanner scanner = new Scanner(System.in);
+
+       System.out.println("Deseja trocar cartas? (s/n): ");
+       String resposta = scanner.nextLine();
+
+       if (!resposta.equalsIgnoreCase("s")) {
+           return;
+       }
+
+       System.out.println("Escolha três formas para trocar:");
+
+       for (int i = 0; i < jogadores.size(); i++) {
+           System.out.println("\nJogador: "+ jogadores.get(i).getCor());
+           for(Cartas.Territorio carta: jogadores.get(i).getPoligonosPossuidos()){
+               System.out.println("Forma: " + carta.getPoligono()+ "\nPais: "+ carta.getPais()+"\n");
+           }
+
+           System.out.println("Digite o nome do primeiro país:");
+           String pais1 = scanner.nextLine();
+
+           System.out.println("Digite o nome do segundo país:");
+           String pais2 = scanner.nextLine();
+
+           System.out.println("Digite o nome do terceiro país:");
+           String pais3 = scanner.nextLine();
+
+           Cartas.Territorio pais1Selecionada = null;
+           Cartas.Territorio pais2Selecionada = null;
+           Cartas.Territorio pais3Selecionada = null;
+
+           for (Cartas.Territorio territorio : jogadores.get(i).getPoligonosPossuidos()) {
+               if (territorio.getPais().equals(pais1)) {
+                   pais1Selecionada = territorio;
+               }
+               if (territorio.getPais().equals(pais2)) {
+                   pais2Selecionada = territorio;
+               }
+               if (territorio.getPais().equals(pais3)) {
+                   pais3Selecionada = territorio;
+               }
+               if (pais1Selecionada != null && pais2Selecionada != null && pais3Selecionada != null) {
+                   break;
+               }
+           }
+
+           if (pais1Selecionada != null && pais2Selecionada != null && pais3Selecionada != null) {
+               // Agora você pode verificar se os três países selecionados são iguais ou diferentes
+               if (pais1Selecionada.equals(pais2Selecionada) && pais2Selecionada.equals(pais3Selecionada)) {
+                   System.out.println("Troca bem-sucedida! Adicionando tropas ao prêmio...");
+                   comparaPremios(jogadores.get(i));
+                   jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
+                   jogadores.get(i).removePoligonosPossuidos(pais2Selecionada);
+                   jogadores.get(i).removePoligonosPossuidos(pais3Selecionada);
+                   // adicionar novamente ao baralho apos criar distribuicao de cartas
+
+               } else if (!pais1Selecionada.equals(pais2Selecionada) && !pais2Selecionada.equals(pais3Selecionada) && !pais1Selecionada.equals(pais3Selecionada)) {
+                   System.out.println("Troca bem-sucedida! Adicionando tropas ao prêmio...");
+                   comparaPremios(jogadores.get(i));
+                   jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
+                   jogadores.get(i).removePoligonosPossuidos(pais2Selecionada);
+                   jogadores.get(i).removePoligonosPossuidos(pais3Selecionada);
+                   // adicionar novamente ao baralho apos criar distribuicao de cartas
+
+               } else {
+                   System.out.println("Combinação inválida de formas.");
+               }
+           } else {
+               System.out.println("Um ou mais países não foram encontrados na lista de polígonos.");
+           }
+     }
+   }
+   private void comparaPremios(Jogador jogador){
+       if(jogador.getPremio() == 0){
+           jogador.adicionaTropasParaAdicionar(4);
+       }
+       else if(jogador.getPremio() == 1){
+           jogador.adicionaTropasParaAdicionar(6);
+       }
+       else if(jogador.getPremio() == 2){
+           jogador.adicionaTropasParaAdicionar(8);
+       }
+       else if(jogador.getPremio() == 3){
+           jogador.adicionaTropasParaAdicionar(10);
+       }
+       else if(jogador.getPremio() == 4){
+           jogador.adicionaTropasParaAdicionar(12);
+       }
+       else if(jogador.getPremio() == 5){
+           jogador.adicionaTropasParaAdicionar(15);
+       }
+       else if(jogador.getPremio() == 6){
+           jogador.adicionaTropasParaAdicionar(20);
+       }
+       else {
+           jogador.adicionaTropasParaAdicionar(25);
+       }
+       jogador.addPremio();
+   }
+}
 
 
-/*
+
 class myMain{
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Pergunte o número de jogadores
+
+        ArrayList<String> coresEscolhidas = new ArrayList<>();
+        String resposta;
         ApiAcess api = new ApiAcess();
-        ArrayList<Pais> paises = new ArrayList<>();
-        paises = api.geraListaSorteioTerritorios();
-        for(Pais pais: paises){
-            System.out.println(pais.getNome());
-        }
+
+        System.out.println("Cores disponíveis: vermelho, verde, azul, amarelo, preto, branco");
+        do {
+            System.out.print("Digite a cor que você quer ser: ");
+            String corEscolhida = scanner.nextLine();
+
+            coresEscolhidas.add(corEscolhida);
+
+            System.out.print("Quer adicionar mais cores? (S/N): ");
+            resposta = scanner.nextLine();
+        } while (resposta.equalsIgnoreCase("S"));
+
+        api.gerarJogadores(coresEscolhidas);
+
+        // Aqui realizamos e colocamos cada jogador para ter seu objetivo
+        api.sorteiaObjetivo();
+
+        // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
+        api.sorteiaTerritorios();
+
+        System.out.println("------- Checando se os jogadores possuem algum continente --------");
+        // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente
+        api.checaContinentesJogador();
+
+        // Vamos chegar as tropas a receber, de cada jogador
+        api.checarTropasGanhar();
+        api.imprimeTropasARecber();
+
+        // Vamos realizar a distribuição de exércitos de cada jogador em cada território
+        api.posicionamentoExercitos();
+
+
+        // Adicionando polígonos ao jogador
+        Cartas.Territorio territorio1 = Cartas.Territorio.allTerritorios[0];
+        Cartas.Territorio territorio2 = Cartas.Territorio.allTerritorios[1];
+        Cartas.Territorio territorio3 = Cartas.Territorio.allTerritorios[2];
+
+        ArrayList<Cartas.Territorio> poligonosPossuidos = new ArrayList<>();
+        poligonosPossuidos.add(territorio1);
+        poligonosPossuidos.add(territorio2);
+        poligonosPossuidos.add(territorio3);
+
+
+        api.jogadores.get(0).setPoligonosPossuidos(poligonosPossuidos);
+
+        api.trocaCartasPoligono();
+
+        //System.out.println(api.jogadores.get(0).getPoligonosPossuidos().get(0)); // expected == null
+        System.out.println(api.jogadores.get(0).getPremio()); // expected 1
+
     }
 }
-*/
+

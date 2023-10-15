@@ -6,8 +6,6 @@
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/ApiAcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ApiAcess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Jogador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pais.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pais.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Tabuleiro.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +46,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.myMain">
     <configuration name="Cartas" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.Cartas" />
       <module name="War" />
@@ -97,8 +95,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.myMain" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Cartas" />
         <item itemvalue="Application.Jogador" />
       </list>

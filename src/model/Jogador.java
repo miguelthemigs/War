@@ -22,11 +22,36 @@ class Jogador {
     public Jogador() {
     }
 
+    public int getPremio() {
+        return premio;
+    }
+
+    public void addPremio() {
+        this.premio++;
+    }
+
     public Jogador(Cor cor){
         this.cor = cor;
         this.territoriosPossuidos = new ArrayList<Pais>();
         this.continentesPossuidos = new ArrayList<String>();
     }
+
+    public ArrayList<Territorio> getPoligonosPossuidos() {
+        return poligonosPossuidos;
+    }
+
+    public void setPoligonosPossuidos(ArrayList<Cartas.Territorio> poligonosPossuidos) {
+        this.poligonosPossuidos = poligonosPossuidos;
+    }
+
+    public void addPoligonosPossuidos(Cartas.Territorio poligonosPossuidos) {
+        this.poligonosPossuidos.add(poligonosPossuidos);
+    }
+
+    public void removePoligonosPossuidos(Cartas.Territorio poligonosPossuidos) {
+        this.poligonosPossuidos.remove(poligonosPossuidos);
+    }
+
 
 
     public Cor getCor() {
@@ -51,6 +76,9 @@ class Jogador {
 
     public void diminuiTropasParaAdicionar(int tropas){
         tropasParaAdicionar -= tropas;
+    }
+    public void adicionaTropasParaAdicionar(int tropas){
+        tropasParaAdicionar += tropas;
     }
 
     public ArrayList<String> getContinentesPossuidos() {
