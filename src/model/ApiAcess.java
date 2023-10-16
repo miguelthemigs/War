@@ -205,6 +205,25 @@ public class ApiAcess {
            System.out.println("Digite o nome do primeiro país:");
            String pais1 = scanner.nextLine();
 
+           if(pais1.equals("Coringa1") || pais1.equals("Coringa2")) {
+               Cartas.Territorio pais1Selecionada = null;
+               for (Cartas.Territorio territorio : jogadores.get(i).getPoligonosPossuidos()) {
+                   if (territorio.getPais().equals(pais1)) {
+                       pais1Selecionada = territorio;
+                   }
+                   if (pais1Selecionada != null) break;
+               }
+                   if (pais1Selecionada != null){
+                       System.out.println("Troca bem-sucedida! Adicionando tropas ao prêmio...");
+                       comparaPremios(jogadores.get(i));
+                       jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
+                       break;
+                   }
+                   else{
+                       System.out.println("Você não tem a carta coringa");
+                   }
+               }
+
            System.out.println("Digite o nome do segundo país:");
            String pais2 = scanner.nextLine();
 
@@ -329,7 +348,7 @@ class myMain{
 
 
         // Adicionando polígonos ao jogador
-        Cartas.Territorio territorio1 = Cartas.Territorio.allTerritorios[0];
+        Cartas.Territorio territorio1 = Cartas.Territorio.allTerritorios[51];
         Cartas.Territorio territorio2 = Cartas.Territorio.allTerritorios[1];
         Cartas.Territorio territorio3 = Cartas.Territorio.allTerritorios[2];
 

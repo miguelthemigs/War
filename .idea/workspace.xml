@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26fffd74-6cca-4fef-9bdd-fcb43b92b8d2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/War.iml" beforeDir="false" afterPath="$PROJECT_DIR$/War.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/ApiAcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ApiAcess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Cartas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Cartas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Dados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Dados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Tabuleiro.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,39 +37,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/cance/OneDrive/PUC/POO(INF1636)/Projeto/war&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/migro/Desktop/Programming/war/war",
+    "settings.editor.selected.configurable": "Errors"
   }
-}</component>
-  <component name="RunManager" selected="Application.Main">
+}]]></component>
+  <component name="RunManager" selected="Application.myMain">
     <configuration name="Cartas" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="model.Cartas" />
       <module name="War" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Jogador" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="model.Jogador" />
-      <module name="War" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="model.CartasTeste" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -91,7 +76,7 @@
       <module name="War" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="model.*" />
+          <option name="PATTERN" value="model.CartasTeste" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -99,12 +84,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All in War" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="War" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DadosTeste.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="War" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.CartasTeste" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.DadosTeste" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.myMain" />
+        <item itemvalue="JUnit.DadosTeste.test" />
+        <item itemvalue="JUnit.All in War" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Cartas" />
-        <item itemvalue="Application.Jogador" />
       </list>
     </recent_temporary>
   </component>

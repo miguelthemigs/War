@@ -18,15 +18,14 @@ class Cartas {
      "Conquistar 24 territórios a sua escolha",
      "Conquistar 18 territorios com pelo menos 2 exercitos em cada"
     };
-    public Integer[] ListaCartasCoringa = {
-        100, 100
-    };
 
 
     enum Poligono {
         quadrado,
         bola,
-        triangulo
+        triangulo,
+
+        coringa
     }
     public static class Territorio {
         private final String pais;
@@ -107,7 +106,10 @@ class Cartas {
                 new Cartas.Territorio("Austrália", Poligono.triangulo, new String[]{"Indonésia","Nova Zelândia","Perth"}),
                 new Cartas.Territorio("Indonésia", Poligono.triangulo, new String[]{"Austrália","Bangladesh","Índia","Nova Zelândia"}),
                 new Cartas.Territorio("Nova Zelândia", Poligono.quadrado, new String[]{"Austrália","Indonésia"}),
-                new Cartas.Territorio("Perth", Poligono.bola, new String[]{"Austrália"})
+                new Cartas.Territorio("Perth", Poligono.bola, new String[]{"Austrália"}),
+
+                new Cartas.Territorio("Coringa1", Poligono.coringa, new String[]{}),
+                new Cartas.Territorio("Coringa2", Poligono.coringa, new String[]{}),
         };
 }
 }
