@@ -1,12 +1,18 @@
 import model.ApiAcess;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
 import java.util.Scanner;
+
+import static model.MapView.createFrameInit;
+import static model.MapView.createFrameMap;
 
 public class Main {
     public static void main(String[] args) {
+        //createFrameMap();
+        createFrameInit();
 
         System.out.println("""
                                        BEM VINDO AO
