@@ -1,4 +1,5 @@
 import model.ApiAcess;
+import model.MapView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,13 +7,15 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static model.MapView.createFrameInit;
-import static model.MapView.createFrameMap;
 
 public class Main {
     public static void main(String[] args) {
+        MapView.generateBeginning();
+
         //createFrameMap();
-        createFrameInit();
+        //createFrameInit();
+
+
 
         System.out.println("""
                                        BEM VINDO AO
