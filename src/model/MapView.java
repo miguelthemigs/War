@@ -22,7 +22,7 @@ public class MapView {
                 e.printStackTrace();
             }
 
-            clickableRect = new Rectangle(100, 100, 100, 50); // Define um retângulo clicável
+            clickableRect = new Rectangle(335, 100, 220, 70); // Define um retângulo clicável
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -31,6 +31,7 @@ public class MapView {
 
                     if (clickableRect.contains(x, y)) {
                         System.out.println("O retângulo foi clicado!");
+                        // fazer funcao que abre uma caixa e faz as perguntas que estamos fazendo no terminal
                     }
                 }
             });
@@ -40,14 +41,14 @@ public class MapView {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.setColor(Color.BLACK);
-            g.fillRect(100, 10, getWidth(), getHeight());
+            g.fillRect(0, 0, getWidth(), getHeight());
             if (image != null) {
                 g.drawImage(image, 0, 0, null);
             }
 
             // Desenha o retângulo clicável
-            g.setColor(Color.BLUE);
-            g.fillRect(clickableRect.x, clickableRect.y, clickableRect.width, clickableRect.height);
+            //g.setColor(Color.BLACK);
+            //g.fillRect(clickableRect.x, clickableRect.y, clickableRect.width, clickableRect.height);
         }
 
         @Override
