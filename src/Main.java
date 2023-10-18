@@ -1,7 +1,7 @@
 import model.ApiAcess;
 
-import model.MapView;
-import model.MapView.*;
+
+import view.InitGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        MapView.generateBeginning();
+        InitGame view = new InitGame();
+        view.generateBeginning();
+
 
         //createFrameMap();
         //createFrameInit();
@@ -33,7 +35,17 @@ public class Main {
                 | '--------------' | '--------------' | '--------------' |
                  '----------------' '----------------' '----------------'\s""");
 
+        System.out.println("Esperando pelo clique do botão...");
 
+        try {
+            synchronized (view.getLock()) {
+                view.getLock().wait(); // Espere pela notificação do clique do botão
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Continuando a execução...");
         Scanner scanner = new Scanner(System.in);
 
         // Pergunte o número de jogadores
@@ -41,7 +53,7 @@ public class Main {
         ArrayList<String> coresEscolhidas = new ArrayList<>();
         String resposta;
         ApiAcess api = new ApiAcess();
-
+/*
         System.out.println("Cores disponíveis: vermelho, verde, azul, amarelo, preto, branco");
         do {
             System.out.print("Digite a cor que você quer ser: ");
@@ -52,9 +64,11 @@ public class Main {
             System.out.print("Quer adicionar mais cores? (S/N): ");
             resposta = scanner.nextLine();
         } while (resposta.equalsIgnoreCase("S"));
-
-
-        api.gerarJogadores(coresEscolhidas);
+*/
+        //ArrayList<String> coresView = InitGame.;
+        InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
+        ArrayList<String> coresSelecionadas = customPanel.getCoresSelecionadas();
+        api.gerarJogadores(coresSelecionadas);
 
         // Aqui realizamos e colocamos cada jogador para ter seu objetivo
         api.sorteiaObjetivo();
