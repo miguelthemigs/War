@@ -64,8 +64,23 @@ public class ApiAcess {
            System.out.println(pais.getNome());
        }
    }
+/*
+    public void gerarJogadores(){
+        ArrayList<Jogador.Cor> coresSelecionadas = MapView.CustomPanel.getCoresSelecionadas();
+        for (Jogador.Cor cor : coresSelecionadas) {
+            jogadores.add(new Jogador(Jogador.Cor.valueOf(String.valueOf(cor))));
+        }
+        // Agora você tem uma lista de jogadores com as cores escolhidas
+        for (int i = 0; i < jogadores.size(); i++) {
+            System.out.println("Jogador " + (i+1) + " escolheu a cor: " + jogadores.get(i).getCor());
+        }
+        System.out.println("Cores escolhidas: " + coresSelecionadas);
+        System.out.println("--------------------------------------------------------");
+    }
+*/
 
    public void gerarJogadores(ArrayList<String> coresEscolhidas){
+
        for (String cor : coresEscolhidas) {
            jogadores.add(new Jogador(Jogador.Cor.valueOf(cor)));
        }

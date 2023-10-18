@@ -1,5 +1,7 @@
 import model.ApiAcess;
+
 import model.MapView;
+import model.MapView.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,6 +52,7 @@ public class Main {
             System.out.print("Quer adicionar mais cores? (S/N): ");
             resposta = scanner.nextLine();
         } while (resposta.equalsIgnoreCase("S"));
+
 
         api.gerarJogadores(coresEscolhidas);
 
