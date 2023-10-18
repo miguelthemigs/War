@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MapView {
+public class MapView { // Classe onde exibiremos o inicio do jogo
     public static CustomPanel getCustomPanel() {
         return new CustomPanel();
     }
@@ -20,11 +20,11 @@ public class MapView {
         public static ArrayList<JCheckBox> checkBoxes; // Lista de checkboxes
         private final JButton enviarButton; // Botão de enviar
 
-        public static ArrayList<Jogador.Cor> getCoresSelecionadas() {
-            ArrayList<Jogador.Cor> coresSelecionadas = new ArrayList<>();
+        public static ArrayList<String> getCoresSelecionadas() {
+            ArrayList<String> coresSelecionadas = new ArrayList<>();
             for (JCheckBox checkBox : checkBoxes) {
                 if (checkBox.isSelected()) {
-                    coresSelecionadas.add(Jogador.Cor.valueOf(checkBox.getText()));
+                    coresSelecionadas.add(checkBox.getText());
                 }
             }
             return coresSelecionadas;
@@ -42,24 +42,24 @@ public class MapView {
             clickableRect = new Rectangle(335, 100, 220, 70); // Define um retângulo clicável
 
             checkBoxes = new ArrayList<>();
-            Jogador.Cor[] options = Jogador.Cor.values();
+            Jogador.Cor[] options = Jogador.Cor.values(); // as opcoes da checkbox sao as cores que o jogador pode escolher
             for (Jogador.Cor cor : options) {
                 JCheckBox checkBox = new JCheckBox(cor.name());
-                checkBox.setBounds(335, 100 + checkBoxes.size() * 30, 150, 30);
+                checkBox.setBounds(335, 200 + checkBoxes.size() * 50, 200, 70);
                 checkBox.setVisible(false); // Começa invisível
                 checkBoxes.add(checkBox);
                 add(checkBox);
             }
 
-            enviarButton = new JButton("Enviar");
-            enviarButton.setBounds(335, 100 + options.length * 30, 100, 30);
+            enviarButton = new JButton("Iniciar");
+            enviarButton.setBounds(335, 220 + options.length * 50, 200, 70);
             enviarButton.setVisible(false); // Começa invisível
             add(enviarButton);
 
             enviarButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    ArrayList<Jogador.Cor> coresSelecionadas = getCoresSelecionadas();
+                    ArrayList<String> coresSelecionadas = getCoresSelecionadas();
                     System.out.println("Cores selecionadas: " + coresSelecionadas);
                 }
             });
