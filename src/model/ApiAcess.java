@@ -18,8 +18,8 @@ public class ApiAcess {
                indicesAntigos.add(indiceAleatorio);
            }
        }
-       for (int i = 0; i < jogadores.size(); i++){
-           System.out.println("\nObjetivo jogador "+ (i+1) + ": "+ jogadores.get(i).getObjetivo());
+       for (Jogador jogador : jogadores) {
+           System.out.println("\nObjetivo jogador " + jogador.getCor() + ": " + jogador.getObjetivo());
        }
 
    }
@@ -51,10 +51,10 @@ public class ApiAcess {
                }
            }
        }
-       for (int i = 0; i < jogadores.size(); i++){
-           System.out.println("\nTerritorios jogador "+ (i+1));
-           imprimeListaTerritorios(jogadores.get(i).getTerritoriosPossuidos());
-           System.out.println("Numero de territorios: "+jogadores.get(i).getNumTerritorios());
+       for (Jogador jogador : jogadores) {
+           System.out.println("\nTerritorios jogador " + jogador.getCor());
+           imprimeListaTerritorios(jogador.getTerritoriosPossuidos());
+           System.out.println("Numero de territorios: " + jogador.getNumTerritorios());
        }
 
    }
@@ -86,19 +86,19 @@ public class ApiAcess {
        }
 
        // Agora você tem uma lista de jogadores com as cores escolhidas
-       for (int i = 0; i < jogadores.size(); i++) {
-           System.out.println("Jogador " + (i+1) + " escolheu a cor: " + jogadores.get(i).getCor());
+       for (Jogador jogador : jogadores) {
+           System.out.println("Jogador " + jogador.getCor() + " escolheu a cor: " + jogador.getCor());
        }
        System.out.println("Cores escolhidas: " + coresEscolhidas);
        System.out.println("--------------------------------------------------------");
    }
 
    public void checaContinentesJogador(){
-       for (int i = 0; i < jogadores.size(); i++) {
-          // System.out.printf("Jogador (%d):\n", i + 1);
+       for (Jogador jogador : jogadores) {
+           // System.out.printf("Jogador (%d):\n", i + 1);
            // Chama o método checaContinentes para o jogador atual
-           jogadores.get(i).checaContinentes();
-           System.out.println("Jogador "+ (i+1) + " tem os seguintes continentes: " + jogadores.get(i).getContinentesPossuidos());
+           jogador.checaContinentes();
+           System.out.println("Jogador " + jogador.getCor() + " tem os seguintes continentes: " + jogador.getContinentesPossuidos());
            //System.out.println("Fim\n");
        }
    }

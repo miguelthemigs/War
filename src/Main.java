@@ -13,11 +13,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         InitGame view = new InitGame();
+        InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
         view.generateBeginning();
-
-
-        //createFrameMap();
-        //createFrameInit();
 
 
 
@@ -50,8 +47,6 @@ public class Main {
 
         // Pergunte o número de jogadores
 
-        ArrayList<String> coresEscolhidas = new ArrayList<>();
-        String resposta;
         ApiAcess api = new ApiAcess();
 /*
         System.out.println("Cores disponíveis: vermelho, verde, azul, amarelo, preto, branco");
@@ -66,9 +61,9 @@ public class Main {
         } while (resposta.equalsIgnoreCase("S"));
 */
         //ArrayList<String> coresView = InitGame.;
-        InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
-        ArrayList<String> coresSelecionadas = customPanel.getCoresSelecionadas();
-        api.gerarJogadores(coresSelecionadas);
+
+        ArrayList<String> coresEscolhidas = customPanel.getCoresSelecionadas();
+        api.gerarJogadores(coresEscolhidas);
 
         // Aqui realizamos e colocamos cada jogador para ter seu objetivo
         api.sorteiaObjetivo();
