@@ -320,18 +320,15 @@ public class ApiAcess {
 
     public void distribuiCartas() { // distribui cartas para cada jogador que conquistou um territorio
         Collections.shuffle(cartasEmJogo);
-        List<Cartas.Territorio> cartasARemover = new ArrayList<>();
 
         for (Jogador jogador : jogadores) {
             if (jogador.conquistouTerritorio) {
                 jogador.addPoligonosPossuidos(cartasEmJogo.get(0)); // damos uma carta ao jogador
                 jogador.conquistouTerritorio = false; // setamos como false para próxima rodada
-                cartasARemover.add(cartasEmJogo.get(0)); // adicionamos a carta à lista de remoção
+                cartasEmJogo.remove(cartasEmJogo.get(0)); // adicionamos a carta à lista de remoção
             }
         }
 
-        // Removemos as cartas da lista cartasEmJogo após o loop
-        cartasEmJogo.removeAll(cartasARemover);
     }
 }
 
