@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="26fffd74-6cca-4fef-9bdd-fcb43b92b8d2" name="Changes" comment="" />
+    <list default="true" id="26fffd74-6cca-4fef-9bdd-fcb43b92b8d2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ApiAcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ApiAcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Jogador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Tabuleiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Tabuleiro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testes/model/ApiAcessTeste.java" beforeDir="false" afterPath="$PROJECT_DIR$/testes/model/ApiAcessTeste.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,20 +51,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Cartas" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="model.Cartas" />
-      <module name="War" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.CartasTeste" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ApiAcessTeste.testaDistribuicaoCartas">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="War" />
@@ -87,6 +80,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ApiAcessTeste.testaDistribuicaoCartas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="War" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.ApiAcessTeste" />
+      <option name="METHOD_NAME" value="testaDistribuicaoCartas" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DadosTeste.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="War" />
       <extension name="coverage">
@@ -105,11 +114,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ApiAcessTeste.testaDistribuicaoCartas" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.myMain" />
         <item itemvalue="JUnit.DadosTeste.test" />
         <item itemvalue="JUnit.All in War" />
-        <item itemvalue="Application.Cartas" />
       </list>
     </recent_temporary>
   </component>
@@ -134,5 +143,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/model/Jogador.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

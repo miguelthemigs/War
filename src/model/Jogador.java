@@ -17,6 +17,8 @@ class Jogador {
     private ArrayList<Territorio> poligonosPossuidos; // aqui so usarei os poligonos getPoligono()
     private String objetivo;
 
+    public boolean conquistouTerritorio = false;
+
     // deve numero de cartas e Cartas cartas
 
     public Jogador() {
@@ -34,6 +36,7 @@ class Jogador {
         this.cor = cor;
         this.territoriosPossuidos = new ArrayList<Pais>();
         this.continentesPossuidos = new ArrayList<String>();
+        this.poligonosPossuidos = new ArrayList<Territorio>();
     }
 
     public ArrayList<Territorio> getPoligonosPossuidos() {

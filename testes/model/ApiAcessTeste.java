@@ -117,6 +117,20 @@ public class ApiAcessTeste {
             }
         }
     }
+    @Test
+    public void testaDistribuicaoCartas(){
+
+        assertEquals(53, api.cartasEmJogo.size()); // ter certeza que tem todas as cartas
+        for(Jogador jogador: api.jogadores){
+            jogador.conquistouTerritorio = true;
+            api.distribuiCartas();
+        }
+        for(Jogador jogador: api.jogadores){
+            assertTrue(jogador.getPoligonosPossuidos().size() > 0); // os jogadores devem ter pelo menos uma carta
+        }
+        assertEquals(50, api.cartasEmJogo.size()); // pois removi da lista 3 cartas
+
+    }
     @After
     public  void limpa() {
         // Limpeza após todos os testes
