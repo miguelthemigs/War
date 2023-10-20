@@ -325,7 +325,7 @@ public class ApiAcess {
             if (jogador.conquistouTerritorio) {
                 jogador.addPoligonosPossuidos(cartasEmJogo.get(0)); // damos uma carta ao jogador
                 jogador.conquistouTerritorio = false; // setamos como false para próxima rodada
-                cartasEmJogo.remove(cartasEmJogo.get(0)); // adicionamos a carta à lista de remoção
+                cartasEmJogo.remove(cartasEmJogo.get(0)); // removemos a carta
             }
         }
 
