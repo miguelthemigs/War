@@ -129,6 +129,10 @@ public class ApiAcessTeste {
             assertTrue(jogador.getPoligonosPossuidos().size() > 0); // os jogadores devem ter pelo menos uma carta
         }
         assertEquals(50, api.cartasEmJogo.size()); // pois removi da lista 3 cartas
+        for(Jogador jogador: api.jogadores)
+            assertFalse(jogador.conquistouTerritorio);
+
+
 
     }
     @After
