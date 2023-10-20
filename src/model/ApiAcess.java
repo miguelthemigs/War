@@ -238,6 +238,7 @@ public class ApiAcess {
                     System.out.println("Troca bem-sucedida! Adicionando tropas ao prêmio...");
                     comparaPremios(jogadores.get(i));
                     jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
+                    cartasEmJogo.add(pais1Selecionada); // devolvo a carta para as cartas em jogo
                     break;
                 } else {
                     System.out.println("Você não tem a carta coringa");
@@ -277,6 +278,9 @@ public class ApiAcess {
                     jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
                     jogadores.get(i).removePoligonosPossuidos(pais2Selecionada);
                     jogadores.get(i).removePoligonosPossuidos(pais3Selecionada);
+                    cartasEmJogo.add(pais1Selecionada);
+                    cartasEmJogo.add(pais2Selecionada);
+                    cartasEmJogo.add(pais3Selecionada);
                     // adicionar novamente ao baralho apos criar distribuicao de cartas
 
                 } else if (!pais1Selecionada.equals(pais2Selecionada) && !pais2Selecionada.equals(pais3Selecionada) && !pais1Selecionada.equals(pais3Selecionada)) {
@@ -285,6 +289,9 @@ public class ApiAcess {
                     jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
                     jogadores.get(i).removePoligonosPossuidos(pais2Selecionada);
                     jogadores.get(i).removePoligonosPossuidos(pais3Selecionada);
+                    cartasEmJogo.add(pais1Selecionada);
+                    cartasEmJogo.add(pais2Selecionada);
+                    cartasEmJogo.add(pais3Selecionada);
                     // adicionar novamente ao baralho apos criar distribuicao de cartas
 
                 } else {
