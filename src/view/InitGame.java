@@ -104,10 +104,6 @@ public class InitGame {
             }
         }
 
-        @Override
-        public Dimension getPreferredSize() {
-            return new Dimension(1100, 810);
-        }
     }
 
     public void generateBeginning() {

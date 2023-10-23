@@ -43,6 +43,8 @@ public class Main {
         }
 
         System.out.println("Continuando a execução...");
+
+        // aqui coloca-se o mapa e o jogo continuara na imagem. ai faremos draw tudo
         Scanner scanner = new Scanner(System.in);
 
         // Pergunte o número de jogadores
