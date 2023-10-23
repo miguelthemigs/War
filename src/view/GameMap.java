@@ -17,6 +17,7 @@ public class GameMap extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        setLayout(null);
         this.setPreferredSize(new Dimension(imagem.getWidth(), imagem.getHeight()));
         this.setBackground(new Color(50, 50, 50));
     }
