@@ -1,6 +1,7 @@
 import model.ApiAcess;
 
 
+import view.GameMap;
 import view.InitGame;
 
 import javax.swing.*;
@@ -13,26 +14,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         InitGame view = new InitGame();
+        JFrame frame = new JFrame("War PUC-Rio");
         InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
-        view.generateBeginning();
+        frame = view.generateBeginning();
 
-
-
-        System.out.println("""
-                                       BEM VINDO AO
-                 .----------------. .----------------. .----------------.\s
-                | .--------------. | .--------------. | .--------------. |
-                | | _____  _____ | | |      __      | | |  _______     | |
-                | ||_   _||_   _|| | |     /  \\     | | | |_   __ \\    | |
-                | |  | | /\\ | |  | | |    / /\\ \\    | | |   | |__) |   | |
-                | |  | |/  \\| |  | | |   / ____ \\   | | |   |  __ /    | |
-                | |  |   /\\   |  | | | _/ /    \\ \\_ | | |  _| |  \\ \\_  | |
-                | |  |__/  \\__|  | | ||____|  |____|| | | |____| |___| | |
-                | |              | | |              | | |              | |
-                | '--------------' | '--------------' | '--------------' |
-                 '----------------' '----------------' '----------------'\s""");
-
-        System.out.println("Esperando pelo clique do botão...");
 
         try {
             synchronized (view.getLock()) {
@@ -43,6 +28,8 @@ public class Main {
         }
 
         System.out.println("Continuando a execução...");
+        frame.setVisible(false);
+        GameMap.iniciarPainelDesenho();
 
         // aqui coloca-se o mapa e o jogo continuara na imagem. ai faremos draw tudo
         Scanner scanner = new Scanner(System.in);

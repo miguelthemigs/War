@@ -3,8 +3,6 @@ package view;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -55,14 +53,16 @@ public class InitGame {
             enviarButton.setVisible(false);
             add(enviarButton);
 
-            enviarButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ArrayList<String> coresSelecionadas = getCoresSelecionadas();
-                    System.out.println("Cores selecionadas: " + coresSelecionadas);
+            enviarButton.addActionListener(e -> {
+                ArrayList<String> coresSelecionadas = getCoresSelecionadas();
+                System.out.println("Cores selecionadas: " + coresSelecionadas);
 
-                    synchronized (lock) {
-                        lock.notify(); // Notifique a Main para continuar
+
+                synchronized (lock) {
+                    lock.notify(); // Notifique a Main para continuar
+                    enviarButton.setVisible(false);
+                    for (JCheckBox checkBox : checkBoxes) {
+                        checkBox.setVisible(false);
                     }
                 }
             });
@@ -106,7 +106,7 @@ public class InitGame {
 
     }
 
-    public void generateBeginning() {
+    public JFrame generateBeginning() {
         JFrame frame = new JFrame("War PUC-Rio");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1100, 810);
@@ -115,6 +115,8 @@ public class InitGame {
         frame.add(customPanel);
 
         frame.setVisible(true);
+        return frame;
+
     }
 
     public Object getLock() {
