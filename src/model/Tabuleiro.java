@@ -7,6 +7,7 @@ class Tabuleiro {
 
     // Inicializando instancias dos paises
     public static Pais AfricaSul = new Pais(Cartas.Territorio.allTerritorios[0].getPais(), Cartas.Territorio.allTerritorios[0].getFronteira());
+
     public static Pais Angola = new Pais(Cartas.Territorio.allTerritorios[1].getPais(), Cartas.Territorio.allTerritorios[1].getFronteira());
     public static Pais Argelia = new Pais(Cartas.Territorio.allTerritorios[2].getPais(), Cartas.Territorio.allTerritorios[2].getFronteira());
     public static Pais Egito = new Pais(Cartas.Territorio.allTerritorios[3].getPais(), Cartas.Territorio.allTerritorios[3].getFronteira());

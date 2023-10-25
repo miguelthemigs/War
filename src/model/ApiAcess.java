@@ -1,6 +1,10 @@
 package model;
 
+import view.GameMap;
+
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class ApiAcess {
     String[] objetivos = Cartas.objetivo; // devo tirar um onjetivo da lista a cada sorteio
@@ -338,6 +342,69 @@ public class ApiAcess {
 
     }
 }
+/*
+    public void paintComponentApi(Graphics g) {
+
+        for (Jogador jogador : jogadores) {
+            ArrayList<Pais> territoriosDoJogador = jogador.getTerritoriosPossuidos();
+
+            for (Pais territorio : territoriosDoJogador) {
+                int x = territorio.getX();
+                int y = territorio.getY();
+
+                if(jogador.getCor() == Jogador.Cor.azul){
+                    g.setColor(Color.BLUE);
+                } else if (jogador.getCor() == Jogador.Cor.preto) {
+                    g.setColor(Color.BLACK);
+                }
+                else if (jogador.getCor() == Jogador.Cor.branco) {
+                    g.setColor(Color.WHITE);
+                }
+                else if (jogador.getCor() == Jogador.Cor.vermelho) {
+                    g.setColor(Color.RED);
+                }
+                else if (jogador.getCor() == Jogador.Cor.verde) {
+                    g.setColor(Color.GREEN);
+                }
+                else {
+                    g.setColor(Color.YELLOW);
+                }
+
+                g.fillOval(x, y, 25, 25);
+
+                if (jogador.getCor() == Jogador.Cor.branco)
+                    g.setColor(Color.BLACK);
+
+                else
+                    g.setColor(Color.WHITE);
+
+                g.drawString(Integer.toString(territorio.getTropas()), x + 7, y + 16);
+                System.out.println("Loop dos territaaas\n");
+            }
+        }
+    }
+}
+
+*/
+
+/*
+ public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(imagem, 0, 0, null);
+
+        for (Jogador jogador : jogadores) {
+            List<Territorio> territoriosDoJogador = jogador.getTerritorios();
+
+            for (Territorio territorio : territoriosDoJogador) {
+                int x = territorio.getX();
+                int y = territorio.getY();
+                g.setColor(jogador.getCor());
+                g.fillOval(x, y, 50, 30);
+                g.setColor(Color.WHITE);
+                g.drawString("99", x + 20, y + 20);
+            }
+        }
+ */
 
 
 /*
@@ -403,3 +470,5 @@ class myMain{
     }
 }
 */
+
+

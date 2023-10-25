@@ -1,11 +1,18 @@
 package view;
 
+
+import model.ApiAcess;
+import model.ApiToView;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Observable;
+import java.util.Observer;
 import javax.imageio.ImageIO;
 // precisamos usar o observer eu acho, para poder ver a mudanca de territorios possuidos de cada jogador, e assim ir pintando as bolinhas nos territorios
 /*
@@ -28,8 +35,12 @@ no Game Map ter public GameMap() {
        O método update é a lógica para atualizar as elipses dos territórios que pertencem a esse jogador.
 */
 
-public class GameMap extends JPanel {
+public class GameMap extends JPanel implements Observer {
     private BufferedImage imagem;
+    private List observers;
+private static Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHITE,Color.GREEN,Color.YELLOW};
+    private static ArrayList<Integer> tropas = new ArrayList<>();
+
 
     public GameMap() {
         try {
@@ -44,14 +55,50 @@ public class GameMap extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(imagem, 0, 0, null);
+        criaElipse(g);
+
+
+    }
+    public static void criaElipse(Graphics g){
+        int a = 0;
+        ApiToView api = new ApiToView();
+        tropas = api.iterarPaises();
+        for(Integer i:tropas){
+            int qTropas = i%100;
+            int cor = i/100;
+            g.setColor(cores[cor]);
+            g.fillOval(a+10, a+20, 25, 25); // Ajuste o tamanho conforme necessário
+            g.setColor(Color.WHITE);
+            g.drawString(Integer.toString(qTropas), a+6, a+17);
+            a++;
+
+        }
+       // g.setColor(Color.BLACK); // Supondo que o jogador tem um método 'getCor()' que retorna a cor associada a ele
+
     }
     public static void iniciarPainelDesenho() {
        JFrame frame = new JFrame("War PUC-Rio");
         GameMap painel = new GameMap();
 
+
         frame.add(painel);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
+        // Desenha a elipse antes de exibir o JFrame
+        //Graphics g = painel.getGraphics();
+
+
+
+
+
+
+
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }
