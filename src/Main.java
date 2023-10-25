@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         InitGame view = new InitGame();
-        JFrame frame = new JFrame("War PUC-Rio");
+        JFrame frame;
         InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
         frame = view.generateBeginning();
 
@@ -29,7 +29,7 @@ public class Main {
 
         System.out.println("Continuando a execução...");
         frame.setVisible(false);
-        GameMap.iniciarPainelDesenho();
+        GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
 
         // aqui coloca-se o mapa e o jogo continuara na imagem. ai faremos draw tudo
         Scanner scanner = new Scanner(System.in);
