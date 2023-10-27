@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ApiAcess {
     String[] objetivos = Cartas.objetivo; // devo tirar um onjetivo da lista a cada sorteio
-    ArrayList<Jogador> jogadores = new ArrayList<>();
+    public static ArrayList<Jogador> jogadores = new ArrayList<>();
     ArrayList<Cartas.Territorio> cartasEmJogo = new ArrayList<>(List.of(Cartas.Territorio.allTerritorios));
 
     public void sorteiaObjetivo() {

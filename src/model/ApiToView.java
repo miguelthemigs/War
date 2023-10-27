@@ -11,8 +11,11 @@ public class ApiToView {
 
     public ArrayList<Integer> iterarPaises(){
         for (Pais pais: listaPaises){
-            for(Jogador jogador: inst.jogadores){
+            cor = -1;
+            for(Jogador jogador: ApiAcess.jogadores){
+
                 if(jogador.getTerritoriosPossuidos().contains(pais)){
+                    //System.out.println("Jogador" +jogador.getCor()+ "tem pais"+ pais  );
                     if(jogador.getCor().equals(Jogador.Cor.vermelho))
                         cor = 0;
                     else if(jogador.getCor().equals(Jogador.Cor.azul))

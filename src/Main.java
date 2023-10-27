@@ -29,7 +29,7 @@ public class Main {
 
         System.out.println("Continuando a execução...");
         frame.setVisible(false);
-        GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
+
 
         // aqui coloca-se o mapa e o jogo continuara na imagem. ai faremos draw tudo
         Scanner scanner = new Scanner(System.in);
@@ -59,6 +59,8 @@ public class Main {
 
         // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
         api.sorteiaTerritorios();
+        GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
+
 
         System.out.println("------- Checando se os jogadores possuem algum continente --------");
         // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente
@@ -68,8 +70,10 @@ public class Main {
         api.checarTropasGanhar();
         api.imprimeTropasARecber();
 
+
         // Vamos realizar a distribuição de exércitos de cada jogador em cada território
         api.posicionamentoExercitos();
+
 
 
 

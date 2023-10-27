@@ -38,7 +38,7 @@ no Game Map ter public GameMap() {
 public class GameMap extends JPanel implements Observer {
     private BufferedImage imagem;
     private List observers;
-private static Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHITE,Color.GREEN,Color.YELLOW};
+private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHITE,Color.GREEN,Color.YELLOW};
     private static ArrayList<Integer> tropas = new ArrayList<>();
 
 
@@ -67,10 +67,21 @@ private static Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHITE,Col
             int qTropas = i%100;
             int cor = i/100;
             g.setColor(cores[cor]);
+            System.out.println(cores[cor]);
             g.fillOval(a+10, a+20, 25, 25); // Ajuste o tamanho conforme necessário
-            g.setColor(Color.WHITE);
+            Font originalFont = g.getFont(); // Salva a fonte original
+            Font novaFonte = originalFont.deriveFont(originalFont.getSize() + 4.0f); // Ajuste o valor +4.0f para alterar o tamanho
+            g.setFont(novaFonte);
+
+            if (cor == 3 || cor == 5)
+                g.setColor(Color.BLACK);
+
+            else
+                g.setColor(Color.WHITE);
+
             g.drawString(Integer.toString(qTropas), a+6, a+17);
-            a++;
+            a += 20;
+            g.setFont(originalFont); // Restaura a fonte original
 
         }
        // g.setColor(Color.BLACK); // Supondo que o jogador tem um método 'getCor()' que retorna a cor associada a ele
@@ -85,6 +96,7 @@ private static Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHITE,Col
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        painel.repaint();
 
         // Desenha a elipse antes de exibir o JFrame
         //Graphics g = painel.getGraphics();
