@@ -70,14 +70,13 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
         int x = 450; int y = 370;
         ApiToView api = new ApiToView();
         tropas = api.iterarPaises();
+        System.out.println(tropas.size());
         for(Integer i:tropas){
             int qTropas = i%100;
             int cor = i/100;
             g.setColor(cores[cor]);
-            if (i >= 0 && i < coordX.length && i < coordY.length) {
                 x = coordX[i];
                 y = coordY[i];
-            }
 
             g.fillOval(x, y, 25, 25); // Ajuste o tamanho conforme necessário
             Font originalFont = g.getFont(); // Salva a fonte original
