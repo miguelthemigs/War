@@ -37,38 +37,45 @@ no Game Map ter public GameMap() {
 
 public class GameMap extends JPanel implements Observer {
     private BufferedImage imagem;
+    private BufferedImage imagemFundo;
     private List observers;
+    public static GameMap painel = new GameMap();
 private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHITE,Color.GREEN,Color.YELLOW};
     private static ArrayList<Integer> tropas = new ArrayList<>();
+    private static final Integer[] coordX = {570};
+    private static final Integer[] coordY = {570};
+
 
 
     public GameMap() {
         try {
+
             imagem = ImageIO.read(Objects.requireNonNull(getClass().getResource("/model/imagens/images/war_tabuleiro_mapa copy.png")));
+            imagemFundo = ImageIO.read(Objects.requireNonNull(getClass().getResource("/model/imagens/images/war_tabuleiro_fundo.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
         setLayout(null);
         this.setPreferredSize(new Dimension(imagem.getWidth(), imagem.getHeight())); // vai ser o tamanho que escolhemos padrao
-        this.setBackground(new Color(50, 50, 50));
+
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.drawImage(imagemFundo, 0, 0, this);
         g.drawImage(imagem, 0, 0, null);
         criaElipse(g);
 
-
     }
     public static void criaElipse(Graphics g){
-        int a = 0;
+        int x = 0; int y = 0;
         ApiToView api = new ApiToView();
         tropas = api.iterarPaises();
         for(Integer i:tropas){
             int qTropas = i%100;
             int cor = i/100;
             g.setColor(cores[cor]);
-            System.out.println(cores[cor]);
-            g.fillOval(a+10, a+20, 25, 25); // Ajuste o tamanho conforme necessário
+
+            g.fillOval(x+10, y+20, 25, 25); // Ajuste o tamanho conforme necessário
             Font originalFont = g.getFont(); // Salva a fonte original
             Font novaFonte = originalFont.deriveFont(originalFont.getSize() + 4.0f); // Ajuste o valor +4.0f para alterar o tamanho
             g.setFont(novaFonte);
@@ -79,18 +86,22 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
             else
                 g.setColor(Color.WHITE);
 
-            g.drawString(Integer.toString(qTropas), a+6, a+17);
-            a += 20;
+            g.drawString(Integer.toString(qTropas), x+6, y+17);
             g.setFont(originalFont); // Restaura a fonte original
+            x+=20; y+= 20;
 
         }
        // g.setColor(Color.BLACK); // Supondo que o jogador tem um método 'getCor()' que retorna a cor associada a ele
 
     }
+    public static void atualizarElipses() {
+        // Atualize os dados (números de tropas e cores) conforme necessário
+        // Por exemplo, você pode chamar novamente api.iterarPaises() aqui
+        // e depois ajustar os valores de tropas e cores.
+        painel.repaint(); // Isso vai forçar o componente a ser redesenhado
+    }
     public static void iniciarPainelDesenho() {
        JFrame frame = new JFrame("War PUC-Rio");
-        GameMap painel = new GameMap();
-
 
         frame.add(painel);
         frame.pack();

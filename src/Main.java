@@ -73,6 +73,7 @@ public class Main {
 
         // Vamos realizar a distribuição de exércitos de cada jogador em cada território
         api.posicionamentoExercitos();
+        GameMap.atualizarElipses();
 
 
 
