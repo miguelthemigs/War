@@ -42,10 +42,10 @@ public class GameMap extends JPanel implements Observer {
     public static GameMap painel = new GameMap();
 private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHITE,Color.GREEN,Color.YELLOW};
     private static ArrayList<Integer> tropas = new ArrayList<>();
-    private static final Integer[] coordX = {570};
-    private static final Integer[] coordY = {570};
+    private static final Integer[] coordX = {560, 540, 450, 550, 515, 600, 90, 170, 110, 310, 210, 140, 290, 180, 150, 100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100};
+    private static final Integer[] coordY = {570, 500, 370, 380, 430, 460, 140, 140, 250, 100, 260, 350, 180, 225, 180, 100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100};
 
-
+// parou america norte
 
     public GameMap() {
         try {
@@ -67,15 +67,19 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
 
     }
     public static void criaElipse(Graphics g){
-        int x = 0; int y = 0;
+        int x = 450; int y = 370;
         ApiToView api = new ApiToView();
         tropas = api.iterarPaises();
         for(Integer i:tropas){
             int qTropas = i%100;
             int cor = i/100;
             g.setColor(cores[cor]);
+            if (i >= 0 && i < coordX.length && i < coordY.length) {
+                x = coordX[i];
+                y = coordY[i];
+            }
 
-            g.fillOval(x+10, y+20, 25, 25); // Ajuste o tamanho conforme necessário
+            g.fillOval(x, y, 25, 25); // Ajuste o tamanho conforme necessário
             Font originalFont = g.getFont(); // Salva a fonte original
             Font novaFonte = originalFont.deriveFont(originalFont.getSize() + 4.0f); // Ajuste o valor +4.0f para alterar o tamanho
             g.setFont(novaFonte);
@@ -88,7 +92,7 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
 
             g.drawString(Integer.toString(qTropas), x+6, y+17);
             g.setFont(originalFont); // Restaura a fonte original
-            x+=20; y+= 20;
+
 
         }
        // g.setColor(Color.BLACK); // Supondo que o jogador tem um método 'getCor()' que retorna a cor associada a ele
