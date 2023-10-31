@@ -70,13 +70,12 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
         int x = 450; int y = 370;
         ApiToView api = new ApiToView();
         tropas = api.iterarPaises();
-        System.out.println(tropas.size());
-        for(Integer i:tropas){
-            int qTropas = i%100;
-            int cor = i/100;
+        for(int i = 0; i < tropas.size(); i++){
+            int qTropas = tropas.get(i)%100;
+            int cor = tropas.get(i)/100;
             g.setColor(cores[cor]);
-                x = coordX[i];
-                y = coordY[i];
+            x = coordX[i];
+            y = coordY[i];
 
             g.fillOval(x, y, 25, 25); // Ajuste o tamanho conforme necessário
             Font originalFont = g.getFont(); // Salva a fonte original
@@ -94,6 +93,7 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
 
 
         }
+
        // g.setColor(Color.BLACK); // Supondo que o jogador tem um método 'getCor()' que retorna a cor associada a ele
 
     }
