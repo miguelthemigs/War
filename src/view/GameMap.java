@@ -42,10 +42,61 @@ public class GameMap extends JPanel implements Observer {
     public static GameMap painel = new GameMap();
 private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHITE,Color.GREEN,Color.YELLOW};
     private static ArrayList<Integer> tropas = new ArrayList<>();
-    private static final Integer[] coordX = {560, 540, 450, 550, 515, 600, 90, 170, 110, 310, 210, 140, 290, 180, 150, 100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100};
-    private static final Integer[] coordY = {570, 500, 370, 380, 430, 460, 140, 140, 250, 100, 260, 350, 180, 225, 180, 100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100};
+    private static final Integer[] coordX = {560, 540, 450, 550, 515, 600, 90, 170, 110, 310, 210, 140, 290, 180, 150, 670, 840, 830, 785, 855, 855, 675, 790, 705, 670, 942, 615, 645, 840, 735, 775, 880, 645, 890, 715, 260, 265, 220, 182, 438, 471, 528, 565, 450, 570, 510, 590, 855, 880, 915, 800};
+    private static final Integer[] coordY = {570, 500, 370, 380, 430, 460, 140, 140, 250, 100, 260, 350, 180, 225, 180, 400, 360, 210, 280, 297, 322, 130, 370, 328, 330, 258, 345, 185, 245, 305, 150, 130, 278, 355, 240, 560, 440, 470, 435, 272, 235, 222, 200, 160, 253, 145, 225, 600, 490, 645, 580};
 
-// parou america norte
+/*
+* ÁfricadoSul: (560, 570)
+Angola: (540, 500)
+Argélia: (450, 370)
+Egito: (550, 380)
+Nigéria: (515, 430)
+Somália: (600, 460)
+Alasca: (90, 140)
+Calgary: (170, 140)
+California: (110, 250)
+Groenlândia: (310, 100)
+NovaYork: (210, 260)
+México: (140, 350)
+Québec: (290, 180)
+Texas: (180, 225)
+Vancouver: (150, 180)
+ArábiaSaudita: (670, 400)
+Bangladesh: (840, 360)
+Cazaquistão: (830, 210)
+China: (785, 280)
+CoréiadoNorte: (855, 297)
+CoréiadoSul: (855, 322)
+Estônia: (675, 130)
+Índia: (790, 370)
+Irã: (705, 328)
+Iraque: (670, 330)
+Japão: (942, 258)
+Jordânia: (615, 345)
+Letônia: (645, 185)
+Mongólia: (840, 245)
+Paquistão: (735, 305)
+Rússia: (775, 150)
+Sibéria: (880, 130)
+Síria: (645, 278)
+Tailândia: (890, 355)
+Turquia: (715, 240)
+Argentina: (260, 560)
+Brasil: (265, 440)
+Peru: (220, 470)
+Venezuela: (182, 435)
+Espanha: (438, 272)
+França: (471, 235)
+Itália: (528, 222)
+Polônia: (565, 200)
+ReinoUnido: (450, 160)
+Romênia: (570, 253)
+Suécia: (510, 145)
+Ucrânia: (590, 225)
+Austrália: (855, 600)
+Indonésia: (880, 490)
+NovaZelândia: (915, 645)
+Perth: (800, 580)*/
 
     public GameMap() {
         try {
@@ -67,7 +118,7 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
 
     }
     public static void criaElipse(Graphics g){
-        int x = 450; int y = 370;
+        int x, y;
         ApiToView api = new ApiToView();
         tropas = api.iterarPaises();
         for(int i = 0; i < tropas.size(); i++){

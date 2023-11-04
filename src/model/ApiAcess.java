@@ -32,8 +32,8 @@ public class ApiAcess {
     ArrayList<Pais> geraListaSorteioTerritorios() {
         ArrayList<Pais> listaTodosPaises = new ArrayList<>();
         listaTodosPaises.addAll(Arrays.asList(Tabuleiro.Africa));
-        listaTodosPaises.addAll(Arrays.asList(Tabuleiro.Asia));
         listaTodosPaises.addAll(Arrays.asList(Tabuleiro.AmericaNorte));
+        listaTodosPaises.addAll(Arrays.asList(Tabuleiro.Asia));
         listaTodosPaises.addAll(Arrays.asList(Tabuleiro.AmericaSul));
         listaTodosPaises.addAll(Arrays.asList(Tabuleiro.Europa));
         listaTodosPaises.addAll(Arrays.asList(Tabuleiro.Oceania));
