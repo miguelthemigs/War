@@ -37,19 +37,6 @@ public class Main {
         // Pergunte o número de jogadores
 
         ApiAcess api = new ApiAcess();
-/*
-        System.out.println("Cores disponíveis: vermelho, verde, azul, amarelo, preto, branco");
-        do {
-            System.out.print("Digite a cor que você quer ser: ");
-            String corEscolhida = scanner.nextLine();
-
-            coresEscolhidas.add(corEscolhida);
-
-            System.out.print("Quer adicionar mais cores? (S/N): ");
-            resposta = scanner.nextLine();
-        } while (resposta.equalsIgnoreCase("S"));
-*/
-        //ArrayList<String> coresView = InitGame.;
 
         ArrayList<String> coresEscolhidas = customPanel.getCoresSelecionadas();
         api.gerarJogadores(coresEscolhidas);

@@ -12,7 +12,7 @@ class Cartas {
     "Conquistar na totalidade a America do Norte e a Africa",
     "Conquistar na totalidade a Asia e a Africa",
     "Conquistar na totalidade a America do Norte e a Oceania",
-    "Conquistar na totalidade Asia e America do Sul",
+    "Conquistar na totalidade Asia e America do  Sul",
     "Conquistar na totalidade a Europa, a America do Sul e mais um continente a sua escolha",
      "Conquistar na totalidade a Europa, a Oceania e mais um continente a sua escolha",
      "Conquistar 24 territórios a sua escolha",

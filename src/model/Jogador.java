@@ -19,7 +19,7 @@ class Jogador {
 
     public boolean conquistouTerritorio = false;
 
-    // deve numero de cartas e Cartas cartas
+    public boolean ganhouJogo = false;
 
     public Jogador() {
     }

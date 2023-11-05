@@ -28,6 +28,226 @@ public class ApiAcess {
         }
 
     }
+private boolean temCor(Jogador.Cor cor){
+        for(Jogador jogador: jogadores){
+            if(jogador.getCor().equals(cor)) // se essa cor existir na lista de jogadores, retorna true
+                return true;
+        }
+        return false;
+}
+    private boolean atendeCriterioVitoriaCores(Jogador jogador, String objetivo, Jogador.Cor corAlvo){
+        return jogador.getObjetivo().equals(objetivo) &&
+                (jogador.getCor().equals(corAlvo) || !temCor(corAlvo)) &&
+                jogador.getTerritoriosPossuidos().size() == 24;
+    }
+    public void checaSeGanhou(){ // deve ser chamada ao fim de cada ataque
+        for (Jogador jogador : jogadores) { // checa os objetivos de cores
+            for (int i = 0; i <= 5; i++) { // itero pelos objetivos de cores
+                String objetivo = objetivos[i];
+                Jogador.Cor corAlvo = Jogador.Cor.values()[i];
+
+                if (atendeCriterioVitoriaCores(jogador, objetivo, corAlvo)) { // se o jogador tiver algum objetivo de cores, ele entra aqui
+                    jogador.ganhouJogo = true;
+                    System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                    break;
+                }
+            }
+            if (jogador.getObjetivo().equals(objetivos[6])){
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("AmericaNorte") && continentesDoJogador.contains("Africa")) {
+                    jogador.ganhouJogo = true;
+                    System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                    break;
+                }
+            }
+            else if((jogador.getObjetivo().equals(objetivos[7]))){
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("Asia") && continentesDoJogador.contains("Africa")) {
+                    jogador.ganhouJogo = true;
+                    System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                    break;
+                }
+            }
+            else if((jogador.getObjetivo().equals(objetivos[8]))){
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("Oceania") && continentesDoJogador.contains("AmericaNorte")) {
+                    jogador.ganhouJogo = true;
+                    System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                    break;
+                }
+            }
+            else if((jogador.getObjetivo().equals(objetivos[9]))){
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("Asia") && continentesDoJogador.contains("AmericaSul")) {
+                    jogador.ganhouJogo = true;
+                    System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                    break;
+                }
+            }
+            else if((jogador.getObjetivo().equals(objetivos[10]))){
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("Europa") && continentesDoJogador.contains("AmericaSul") && continentesDoJogador.size() >= 3) {
+                    jogador.ganhouJogo = true;
+                    System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                    break;
+                }
+            }
+            else if((jogador.getObjetivo().equals(objetivos[11]))){
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("Europa") && continentesDoJogador.contains("Oceania") && continentesDoJogador.size() >= 3) {
+                    jogador.ganhouJogo = true;
+                    System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                    break;
+                }
+            }
+            else if((jogador.getObjetivo().equals(objetivos[12])) && jogador.getTerritoriosPossuidos().size() >= 24){
+                jogador.ganhouJogo = true;
+                System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                break;
+            }
+            else if ((jogador.getObjetivo().equals(objetivos[13]))) {
+                ArrayList<Pais> territorios = jogador.getTerritoriosPossuidos();
+                int contagem = 0;
+                if (territorios.size() >= 18){
+                    for (Pais pais: territorios){
+                        if(pais.getTropas() >= 2)
+                            contagem++; // significa que esse pais tem 2 ou mais tropas. deve ser 18 vezes
+                    }
+                    if (contagem >= 18){ // significa que tenho mais de 18 territorios com 2 ou mais tropas
+                        jogador.ganhouJogo = true;
+                        System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                        break;
+                    }
+                }
+
+            }
+        }
+
+        /*
+        for(Jogador jogador: jogadores){
+            if (jogador.getObjetivo().equals(objetivos[0])){ // destruir o verde
+                if(jogador.getCor().equals(Jogador.Cor.verde) || !temCor(Jogador.Cor.verde)){ // se eu sou verde ou nao tem verde
+                    if(jogador.getTerritoriosPossuidos().size() == 24){
+                        jogador.ganhouJogo = true;
+                        System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                        break;
+                    }
+                }
+                if (temCor(Jogador.Cor.verde)){
+                    for(Jogador jog: jogadores){
+                        if(jog.getCor().equals(Jogador.Cor.verde)){
+                            if(jog.getTerritoriosPossuidos().isEmpty()){ // && jogador.getTerritoriosPossuidos().size() == 24 ???
+                                jogador.ganhouJogo = true;
+                                System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            } else if(jogador.getObjetivo().equals(objetivos[1])){ // destruir o azul
+                if(jogador.getCor().equals(Jogador.Cor.azul) || !temCor(Jogador.Cor.azul)){
+                    if(jogador.getTerritoriosPossuidos().size() == 24){
+                        jogador.ganhouJogo = true;
+                        System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                        break;
+                    }
+                }
+                if (temCor(Jogador.Cor.azul)){
+                    for(Jogador jog: jogadores){
+                        if(jog.getCor().equals(Jogador.Cor.azul)){
+                            if(jog.getTerritoriosPossuidos().isEmpty()){
+                                jogador.ganhouJogo = true;
+                                System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                                break;
+                            }
+                        }
+                    }
+                }
+            } else if(jogador.getObjetivo().equals(objetivos[2])){ // destruir o amarelo
+                if(jogador.getCor().equals(Jogador.Cor.amarelo) || !temCor(Jogador.Cor.amarelo)){
+                    if(jogador.getTerritoriosPossuidos().size() == 24){
+                        jogador.ganhouJogo = true;
+                        System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                        break;
+                    }
+                }
+                if (temCor(Jogador.Cor.amarelo)){
+                    for(Jogador jog: jogadores){
+                        if(jog.getCor().equals(Jogador.Cor.amarelo)){
+                            if(jog.getTerritoriosPossuidos().isEmpty()){
+                                jogador.ganhouJogo = true;
+                                System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                                break;
+                            }
+                        }
+                    }
+                }
+                }
+            else if (jogador.getObjetivo().equals(objetivos[3])){ // destruir o vermelho
+                if(jogador.getCor().equals(Jogador.Cor.vermelho) || !temCor(Jogador.Cor.vermelho)){
+                    if(jogador.getTerritoriosPossuidos().size() == 24){
+                        jogador.ganhouJogo = true;
+                        System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                        break;
+                    }
+                }
+                if (temCor(Jogador.Cor.vermelho)){
+                    for(Jogador jog: jogadores){
+                        if(jog.getCor().equals(Jogador.Cor.vermelho)){
+                            if(jog.getTerritoriosPossuidos().isEmpty()){
+                                jogador.ganhouJogo = true;
+                                System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                                break;
+                            }
+                        }
+                    }
+                }
+            } else if (jogador.getObjetivo().equals(objetivos[4])) { // destruir o preto
+                if(jogador.getCor().equals(Jogador.Cor.preto) || !temCor(Jogador.Cor.preto)){
+                    if(jogador.getTerritoriosPossuidos().size() == 24){
+                        jogador.ganhouJogo = true;
+                        System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                        break;
+                    }
+                }
+                if (temCor(Jogador.Cor.preto)){
+                    for(Jogador jog: jogadores){
+                        if(jog.getCor().equals(Jogador.Cor.preto)){
+                            if(jog.getTerritoriosPossuidos().isEmpty()){
+                                jogador.ganhouJogo = true;
+                                System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                                break;
+                            }
+                        }
+                    }
+                }
+            } else if (jogador.getObjetivo().equals(objetivos[5])){
+                if(jogador.getCor().equals(Jogador.Cor.branco) || !temCor(Jogador.Cor.branco)){
+                    if(jogador.getTerritoriosPossuidos().size() == 24){
+                        jogador.ganhouJogo = true;
+                        System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                        break;
+                    }
+                }
+                if (temCor(Jogador.Cor.branco)){
+                    for(Jogador jog: jogadores){
+                        if(jog.getCor().equals(Jogador.Cor.branco)){
+                            if(jog.getTerritoriosPossuidos().isEmpty()){
+                                jogador.ganhouJogo = true;
+                                System.out.println("Jogador "+ jogador.getCor() + "ganhou!");
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            }
+        */
+
+        }
+
 
     ArrayList<Pais> geraListaSorteioTerritorios() {
         ArrayList<Pais> listaTodosPaises = new ArrayList<>();
