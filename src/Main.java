@@ -3,6 +3,7 @@ import model.ApiAcess;
 
 import view.GameMap;
 import view.InitGame;
+import view.TextBoxes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ public class Main {
     public static void main(String[] args) {
         InitGame view = new InitGame();
         JFrame frame;
+        JFrame combo = new JFrame();
         InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
         frame = view.generateBeginning();
 
@@ -57,6 +59,17 @@ public class Main {
         api.checarTropasGanhar();
         api.imprimeTropasARecber();
 
+        JComboBox<String> comboBox = new JComboBox<>();
+        comboBox.addItem("Opção 1");
+        comboBox.addItem("Opção 2");
+        comboBox.addItem("Opção 3");
+
+        // Adiciona a JComboBox ao JFrame
+        combo.add(comboBox);
+
+        // Define o tamanho e a visibilidade do JFrame
+        combo.setSize(300, 200);
+        combo.setVisible(true);
 
         // Vamos realizar a distribuição de exércitos de cada jogador em cada território
         api.posicionamentoExercitos();

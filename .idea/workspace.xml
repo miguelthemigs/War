@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26fffd74-6cca-4fef-9bdd-fcb43b92b8d2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/controller/MigracaoTropas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/TextBoxes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ApiAcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ApiAcess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GameMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
