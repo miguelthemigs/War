@@ -2,12 +2,90 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26fffd74-6cca-4fef-9bdd-fcb43b92b8d2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/testes/view/GameMapTeste.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ApiAcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ApiAcess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Cartas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Cartas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Jogador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/bgconfiguracao.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/bgconfiguracao.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/complete(1).png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/complete(1).png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/complete.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/complete.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_ataque_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_ataque_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_ataque_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_ataque_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_ataque_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_ataque_3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_ataque_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_ataque_4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_ataque_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_ataque_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_ataque_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_ataque_6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_defesa_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_defesa_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_defesa_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_defesa_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_defesa_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_defesa_3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_defesa_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_defesa_4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_defesa_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_defesa_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_defesa_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_defesa_6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/dado_desativado.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/dado_desativado.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_btnJogarDados.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_btnJogarDados.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_btnProxJogada.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_btnProxJogada.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_af_africadosul.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_af_africadosul.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_af_angola.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_af_angola.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_af_argelia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_af_argelia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_af_egito.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_af_egito.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_af_nigeria.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_af_nigeria.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_af_somalia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_af_somalia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_an_alasca.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_an_alasca.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_an_calgary.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_an_calgary.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_an_california.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_an_california.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_an_groelandia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_an_groelandia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_an_mexico.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_an_mexico.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_an_novayork.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_an_novayork.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_an_quebec.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_an_quebec.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_an_texas.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_an_texas.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_an_vancouver.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_an_vancouver.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_arabiasaudita.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_arabiasaudita.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_bangladesh.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_bangladesh.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_cazaquistao.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_cazaquistao.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_china.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_china.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_coreiadonorte.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_coreiadonorte.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_coreiadosul.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_coreiadosul.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_estonia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_estonia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_india.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_india.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_ira.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_ira.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_iraque.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_iraque.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_japao.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_japao.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_jordania.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_jordania.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_letonia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_letonia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_mongolia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_mongolia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_paquistao.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_paquistao.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_russia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_russia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_siberia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_siberia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_siria.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_siria.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_tailandia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_tailandia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_as_turquia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_as_turquia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_asl_argentina.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_asl_argentina.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_asl_brasil.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_asl_brasil.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_asl_peru.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_asl_peru.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_asl_venezuela.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_asl_venezuela.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_coringa.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_coringa.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_eu_espanha.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_eu_espanha.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_eu_franca.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_eu_franca.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_eu_italia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_eu_italia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_eu_polonia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_eu_polonia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_eu_reinounido.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_eu_reinounido.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_eu_romenia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_eu_romenia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_eu_suecia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_eu_suecia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_eu_ucrania.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_eu_ucrania.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_objetivo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_objetivo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_objetivo_grande.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_objetivo_grande.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_oc_australia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_oc_australia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_oc_indonesia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_oc_indonesia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_oc_novazelandia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_oc_novazelandia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_oc_perth.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_oc_perth.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_placeholder.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_placeholder.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_carta_verso.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_carta_verso.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_iconeCartas.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_iconeCartas.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_tabela_bonus_continente.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_tabela_bonus_continente.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_tabela_troca.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_tabela_troca.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_tabuleiro_bottom.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_tabuleiro_bottom.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_tabuleiro_fundo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_tabuleiro_fundo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_tabuleiro_linhas.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_tabuleiro_linhas.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_tabuleiro_mapa copy - Copia.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_tabuleiro_mapa copy - Copia.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/imagens/images/war_tabuleiro_mapa copy.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/images/war_tabuleiro_mapa copy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GameMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/InitGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/InitGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

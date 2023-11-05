@@ -1,12 +1,10 @@
 package view;
 
 
-import model.ApiAcess;
 import model.ApiToView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -101,8 +99,8 @@ Perth: (800, 580)*/
     public GameMap() {
         try {
 
-            imagem = ImageIO.read(Objects.requireNonNull(getClass().getResource("/model/imagens/images/war_tabuleiro_mapa copy.png")));
-            imagemFundo = ImageIO.read(Objects.requireNonNull(getClass().getResource("/model/imagens/images/war_tabuleiro_fundo.png")));
+            imagem = ImageIO.read(Objects.requireNonNull(getClass().getResource("images/war_tabuleiro_mapa copy.png")));
+            imagemFundo = ImageIO.read(Objects.requireNonNull(getClass().getResource("images/war_tabuleiro_fundo.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }

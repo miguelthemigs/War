@@ -31,7 +31,7 @@ public class InitGame {
             setLayout(null);
 
             try {
-                image = ImageIO.read(new File("src/model/imagens/images/complete(1).png"));
+                image = ImageIO.read(new File("src/view/images/complete(1).png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
