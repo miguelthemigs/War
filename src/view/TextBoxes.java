@@ -61,19 +61,30 @@ public class TextBoxes {
                }else {
                    // Todos os jogadores fizeram suas seleções, aqui você pode fazer o que for necessário
                    // (por exemplo, iniciar o jogo)
-                   for (int i = 0; i < spinners.size(); i++) {
-                       JSpinner spinner = spinners.get(i);
-                       int tropas = (int) spinner.getValue();
-                       //System.out.println(tropas);
-                       tropasLista.add(tropas);
+                  // int valorTotalTropas = 0;
+                  // for(Object jog: jogadores){
+                    //   valorTotalTropas += ApiToView.retornaTropas(jog);
+                 //  }
+                  // int valorUsadoTropas = 0;
+                  // while(valorTotalTropas > valorUsadoTropas){
+                       for (int i = 0; i < spinners.size(); i++) {
+                           JSpinner spinner = spinners.get(i);
+                           int tropas = (int) spinner.getValue();
+                           //System.out.println(tropas);
+                           tropasLista.add(tropas);
+                           //valorUsadoTropas+=tropas;
+
+                       }
+                  // }
+                   ArrayList<String> territorios = new ArrayList<>();
+                   for(Object jogador: jogadores) {
+                       territorios.addAll(ApiToView.retornaTerritorios(jogador));
                    }
-                   for(Object jogador: jogadores){
-                        ArrayList<String> territorios = ApiToView.retornaTerritorios(jogador);
-                        for(int i = 0; i < territorios.size(); i++){
-                            ApiToView.setarTropas(territorios.get(i), tropasLista.get(i)); // acertar os territorios pois nao estao certos
-                            System.out.println("Territorio "+territorios.get(i)+" tropas: "+ tropasLista.get(i));
-                        }
-                   }
+                    for(int i = 0; i < tropasLista.size(); i++){
+                        ApiToView.setarTropas(territorios.get(i), tropasLista.get(i)); // acertar os territorios pois nao estao certos
+                        System.out.println("Territorio "+territorios.get(i)+" tropas: "+ tropasLista.get(i));
+                    }
+
                    frame.setVisible(false);
                    panel.removeAll();
                    synchronized (lock) {

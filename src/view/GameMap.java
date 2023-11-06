@@ -87,7 +87,7 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
             Font novaFonte = originalFont.deriveFont(originalFont.getSize() + 4.0f); // Ajuste o valor +4.0f para alterar o tamanho
             g.setFont(novaFonte);
 
-            if (cor == 3 || cor == 5)
+            if (cor == 3 || cor == 4 ||cor == 5)
                 g.setColor(Color.BLACK);
 
             else

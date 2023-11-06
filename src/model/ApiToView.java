@@ -50,6 +50,7 @@ public class ApiToView {
             }
         }
     }
+
     public static ArrayList<String> retornaTerritorios(Object jog){
         ArrayList<Pais> lista_territorios = ((Jogador) jog).getTerritoriosPossuidos();
         ArrayList<String> new_lista = new ArrayList<>();
