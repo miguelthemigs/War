@@ -59,11 +59,26 @@ public class Main {
         api.checarTropasGanhar();
         api.imprimeTropasARecber();
 
-        box.criarInterface();
+        box.criarInterface(() -> {
+            System.out.println("estou aqui");
+
+        });
+        try {
+            synchronized (box.getLock()) {
+                box.getLock().wait(); // Espere pela notificação do onde finalizamos onde queremos colocar o territorio
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Continuando a execução...");
+
+        System.out.println("aa");
         GameMap.atualizarElipses();
 
+        //GameMap.atualizarElipses();
+
         // Vamos realizar a distribuição de exércitos de cada jogador em cada território
-        api.posicionamentoExercitos();
+      //  api.posicionamentoExercitos();
 
 
 

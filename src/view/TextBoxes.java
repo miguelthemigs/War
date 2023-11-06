@@ -17,14 +17,14 @@ import static model.ApiAcess.jogadores;
 public class TextBoxes {
    // primeiro devemos colocar a combobox, para cada jogador, e mostrar os territorios que ele tem, e ele escolher quantas e aonde colocar
     // depois, no clique do botao adicionar, ter um actionlistener, que chama uma funcao do controller, que posiciona as tropas para gente, e repinta o painel com as elipses
-
-   public void criarInterface() {
+   private static final Object lock = new Object(); // Adicionado aqui
+   public void criarInterface(Runnable callback) {
 
 
 
        JFrame frame = new JFrame("Seleção de Territórios");
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       frame.setSize(500, 400);
+       frame.setSize(500, 700);
 
        JPanel panel = new JPanel();
        frame.add(panel);
@@ -42,15 +42,15 @@ public class TextBoxes {
                    panel.removeAll(); // Limpa o painel para a próxima iteração
 
                    Object jogador = jogadores.get(atual);
-
+                   panel.add(new JLabel("Jogador "+ ApiToView.retornaCor(jogador) +" tropas: "+ ApiToView.retornaTropas(jogador)+ "                                                                                                 "));
                    for (Object territorio : ApiToView.retornaTerritorios(jogador)) {
                        SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, ApiToView.retornaTropas(jogador), 1);
                        JSpinner spinnerTropas = new JSpinner(spinnerModel);
                        spinners.add(spinnerTropas);
 
-                       panel.add(new JLabel("Território " + territorio + " - tropas: " + ApiToView.retornaTropas(jogador)));
+                       panel.add(new JLabel(territorio + " - "));
                        panel.add(spinnerTropas);
-                       panel.add(Box.createRigidArea(new Dimension(10, 10)));
+                       panel.add(Box.createRigidArea(new Dimension(350, 10)));
                    }
 
                    panel.add(startButton);
@@ -64,13 +64,21 @@ public class TextBoxes {
                    for (int i = 0; i < spinners.size(); i++) {
                        JSpinner spinner = spinners.get(i);
                        int tropas = (int) spinner.getValue();
+                       //System.out.println(tropas);
                        tropasLista.add(tropas);
                    }
                    for(Object jogador: jogadores){
                         ArrayList<String> territorios = ApiToView.retornaTerritorios(jogador);
                         for(int i = 0; i < territorios.size(); i++){
-                            ApiToView.setarTropas(territorios.get(i), tropasLista.get(i));
+                            ApiToView.setarTropas(territorios.get(i), tropasLista.get(i)); // acertar os territorios pois nao estao certos
+                            System.out.println("Territorio "+territorios.get(i)+" tropas: "+ tropasLista.get(i));
                         }
+                   }
+                   frame.setVisible(false);
+                   panel.removeAll();
+                   synchronized (lock) {
+                       lock.notify(); // Notifique a Main para continuar
+                       startButton.setVisible(false);
                    }
                }
            }
@@ -79,10 +87,13 @@ public class TextBoxes {
        panel.add(startButton);
        frame.setVisible(true);
 
+       callback.run();
 
 
        }
-
+    public Object getLock() {
+        return lock;
+    }
 
 
 }
