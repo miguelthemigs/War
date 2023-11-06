@@ -3,11 +3,11 @@ package model;
 import java.util.ArrayList;
 
 public class ApiToView {
-    ApiAcess inst = new ApiAcess();
+    static ApiAcess inst = new ApiAcess();
     ArrayList<Integer> corTropas = new ArrayList<>();
     Integer cor;
     Integer tropas;
-    private final ArrayList<Pais> listaPaises = inst.geraListaSorteioTerritorios(); // vai ter todos os paises aqui
+    private static final ArrayList<Pais> listaPaises = inst.geraListaSorteioTerritorios(); // vai ter todos os paises aqui
 
     public ArrayList<Integer> iterarPaises(){
         for (Pais pais: listaPaises){
@@ -35,5 +35,27 @@ public class ApiToView {
         }
         return corTropas;
     }
+    public static Jogador.Cor retornaCor(Object jog){
+        return ((Jogador) jog).getCor();
+    }
 
+    public static int retornaTropas(Object jog){
+        return ((Jogador) jog).getTropasParaAdicionar();
+    }
+
+    public static void setarTropas(String territorio, int tropas){
+        for(Pais pais: listaPaises){
+            if(territorio.equals(pais.getNome())){
+                pais.addTropas(tropas);
+            }
+        }
+    }
+    public static ArrayList<String> retornaTerritorios(Object jog){
+        ArrayList<Pais> lista_territorios = ((Jogador) jog).getTerritoriosPossuidos();
+        ArrayList<String> new_lista = new ArrayList<>();
+        for(Pais pais: lista_territorios){
+            new_lista.add(pais.getNome());
+        }
+        return new_lista;
+    }
 }
