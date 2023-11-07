@@ -42,15 +42,16 @@ public class TextBoxes {
                    panel.removeAll(); // Limpa o painel para a próxima iteração
 
                    Object jogador = jogadores.get(atual);
-                   panel.add(new JLabel("Jogador "+ ApiToView.retornaCor(jogador) +" tropas: "+ ApiToView.retornaTropas(jogador)+ "                                                                                                 "));
+                   panel.add(new JLabel("Jogador "+ ApiToView.retornaCor(jogador) +" tropas: "+ ApiToView.retornaTropas(jogador)+ "    "));
+                   panel.add(Box.createRigidArea(new Dimension(400, 20)));
                    for (Object territorio : ApiToView.retornaTerritorios(jogador)) {
                        SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, ApiToView.retornaTropas(jogador), 1);
                        JSpinner spinnerTropas = new JSpinner(spinnerModel);
                        spinners.add(spinnerTropas);
 
-                       panel.add(new JLabel(territorio + " - "));
+                       panel.add(new JLabel("                    "+territorio + " - "));
                        panel.add(spinnerTropas);
-                       panel.add(Box.createRigidArea(new Dimension(350, 10)));
+                       panel.add(Box.createRigidArea(new Dimension(460, 5)));
                    }
 
                    panel.add(startButton);
