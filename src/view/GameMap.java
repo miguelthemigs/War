@@ -117,7 +117,6 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        //TENTANDO OBJETIVOS
 
         // Get the objectives from the Goal class and format them as a single string
         Goal goal = new Goal();
@@ -133,7 +132,7 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                Color lightBlue = new Color(26, 100, 180);
+                Color lightBlue = new Color(26, 100, 180,);
                 g.setColor(lightBlue);
                 g.fillRect(0, 0, getWidth(), getHeight());
             }
@@ -167,17 +166,10 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
             }
         });
 
-        //TENTANDO OBJETIVOS
         painel.repaint();
 
         // Desenha a elipse antes de exibir o JFrame
         //Graphics g = painel.getGraphics();
-
-
-
-
-
-
 
     }
 
