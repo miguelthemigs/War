@@ -1,10 +1,13 @@
 package view;
 
 
+import controller.Goal;
 import model.ApiToView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -113,6 +116,58 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
+        //TENTANDO OBJETIVOS
+
+        // Get the objectives from the Goal class and format them as a single string
+        Goal goal = new Goal();
+        ArrayList<String> objetivos = goal.retornaObjetivos();
+        StringBuilder objectivesText = new StringBuilder("<html>"); // Use HTML to allow line breaks
+        for (String objetivo : objetivos) {
+            objectivesText.append(objetivo).append("<br><br><br>");
+        }
+        objectivesText.append("</html");
+
+        // Create a JPanel to hold the text with a black background
+        JPanel objectivesPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Color lightBlue = new Color(26, 100, 180);
+                g.setColor(lightBlue);
+                g.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        objectivesPanel.setLayout(null);
+        objectivesPanel.setBounds(10, 10 + 10 + 30 , 1005, 640); // Adjust the text window position and size as needed
+
+        // Create a JLabel to display the formatted objectives
+        JLabel objectivesTextLabel = new JLabel(objectivesText.toString());
+        objectivesTextLabel.setBounds(5, 0, 990, 640); // Adjust the text position (inside window) and size as needed
+
+        Font objectivesFont = new Font("Stencil", Font.PLAIN, 20); // Increase the font size as needed
+        objectivesTextLabel.setFont(objectivesFont); // Set the font for the text
+
+        objectivesTextLabel.setForeground(Color.WHITE); // Set the text color to white
+
+        // Add the label to the objectives panel
+        objectivesPanel.add(objectivesTextLabel);
+        objectivesPanel.setVisible(false); // Initially set it to not visible
+        painel.add(objectivesPanel);
+
+        // Create a JButton to toggle the visibility of objectives
+        JButton toggleButton = new JButton("Objetivos");
+        toggleButton.setBounds(10, 10, 95, 30); // Adjust the button position and size as needed
+        painel.add(toggleButton);
+
+        // Add an ActionListener to the button to toggle the visibility of objectives
+        toggleButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                objectivesPanel.setVisible(!objectivesPanel.isVisible()); // Toggle visibility
+            }
+        });
+
+        //TENTANDO OBJETIVOS
         painel.repaint();
 
         // Desenha a elipse antes de exibir o JFrame

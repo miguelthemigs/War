@@ -1,3 +1,4 @@
+import controller.Goal;
 import model.ApiAcess;
 
 
@@ -73,6 +74,8 @@ public class Main {
         System.out.println("Continuando a execução...");
 
         System.out.println("aa");
+
+
         GameMap.atualizarElipses();
 
         // comecar ataque

@@ -11,7 +11,7 @@ public class Goal {
     private final ArrayList<String> objetivos = new ArrayList<>();
     public ArrayList<String> retornaObjetivos(){
         for(Object jogador: jogadores){
-            objetivos.add("Objetivo jogador "+ ApiToView.retornaCor(jogador) + ": \n" + ApiToView.retornaObjetivo(jogador));
+            objetivos.add("Objetivo jogador ''"+ ApiToView.retornaCor(jogador) + "'':<br> &nbsp; - " +  ApiToView.retornaObjetivo(jogador));
         }
         return objetivos;
     }

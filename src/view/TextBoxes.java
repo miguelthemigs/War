@@ -1,5 +1,6 @@
 package view;
 
+import controller.Goal;
 import model.ApiAcess;
 import model.ApiToView;
 
