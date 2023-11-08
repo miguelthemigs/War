@@ -43,6 +43,10 @@ public class ApiToView {
         return ((Jogador) jog).getTropasParaAdicionar();
     }
 
+    public static void reiniciarTropas(Object jog, Integer qnt){
+        ((Jogador) jog).diminuiTropasParaAdicionar(qnt);
+    }
+
     public static void setarTropas(String territorio, int tropas){
         for(Pais pais: listaPaises){
             if(territorio.equals(pais.getNome())){

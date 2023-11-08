@@ -9,6 +9,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -48,6 +49,7 @@ public class TextBoxes {
                    panel.add(new JLabel("Jogador " + ApiToView.retornaCor(jogador) + " tropas: " + ApiToView.retornaTropas(jogador) + "    "));
                    panel.add(Box.createRigidArea(new Dimension(400, 20)));
                    soma_tropas[0] += ApiToView.retornaTropas(jogador);
+                   System.out.printf("Tropas a adicionar: %d\n", ApiToView.retornaTropas(jogador) );
 
                    for (Object territorio : ApiToView.retornaTerritorios(jogador)) {
                        SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, ApiToView.retornaTropas(jogador), 1);
@@ -59,6 +61,7 @@ public class TextBoxes {
                        panel.add(Box.createRigidArea(new Dimension(460, 5)));
                        int finalSoma_tropas = soma_tropas[0];
                        System.out.println(finalSoma_tropas);
+
                        spinnerTropas.addChangeListener(new ChangeListener() {
                            public void stateChanged(ChangeEvent e) {
                                int soma = 0;
@@ -70,10 +73,15 @@ public class TextBoxes {
                            }
 
                        });
+
                    }
 
                    panel.add(startButton);
                    frame.setVisible(true);
+
+                   // Reiniciando tropas a adicionar (Remove o numero de tropas que o jogador é obrigado a adicionar)
+                   ApiToView.reiniciarTropas(jogador, ApiToView.retornaTropas(jogador));
+                   System.out.printf("Tropas a adicionar: %d\n", ApiToView.retornaTropas(jogador) );
 
                    jogadorAtual[0]++; // Vai para o próximo jogador
 
