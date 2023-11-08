@@ -132,7 +132,7 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                Color lightBlue = new Color(26, 100, 180,);
+                Color lightBlue = new Color(26, 100, 180);
                 g.setColor(lightBlue);
                 g.fillRect(0, 0, getWidth(), getHeight());
             }
