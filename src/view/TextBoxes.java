@@ -4,6 +4,8 @@ import model.ApiAcess;
 import model.ApiToView;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,23 +37,39 @@ public class TextBoxes {
        List<JSpinner> spinners = new ArrayList<>(); // Lista de spinners
 
        startButton.addActionListener(new ActionListener() {
+           final int[] soma_tropas = {0};
            public void actionPerformed(ActionEvent e) {
                ArrayList<Integer> tropasLista = new ArrayList<>();
                int atual = jogadorAtual[0]; // Obtem o valor atual
                if (atual < jogadores.size()) {
                    panel.removeAll(); // Limpa o painel para a próxima iteração
 
-                   Object jogador = jogadores.get(atual);
-                   panel.add(new JLabel("Jogador "+ ApiToView.retornaCor(jogador) +" tropas: "+ ApiToView.retornaTropas(jogador)+ "    "));
+                   Object jogador = jogadores.get(atual); // meu jogador atual
+                   panel.add(new JLabel("Jogador " + ApiToView.retornaCor(jogador) + " tropas: " + ApiToView.retornaTropas(jogador) + "    "));
                    panel.add(Box.createRigidArea(new Dimension(400, 20)));
+                   soma_tropas[0] += ApiToView.retornaTropas(jogador);
+
                    for (Object territorio : ApiToView.retornaTerritorios(jogador)) {
                        SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, ApiToView.retornaTropas(jogador), 1);
                        JSpinner spinnerTropas = new JSpinner(spinnerModel);
                        spinners.add(spinnerTropas);
 
-                       panel.add(new JLabel("                    "+territorio + " - "));
+                       panel.add(new JLabel("                    " + territorio + " - "));
                        panel.add(spinnerTropas);
                        panel.add(Box.createRigidArea(new Dimension(460, 5)));
+                       int finalSoma_tropas = soma_tropas[0];
+                       System.out.println(finalSoma_tropas);
+                       spinnerTropas.addChangeListener(new ChangeListener() {
+                           public void stateChanged(ChangeEvent e) {
+                               int soma = 0;
+                               for (JSpinner spinner : spinners) {
+                                   soma += (int) spinner.getValue();
+
+                               }
+                               startButton.setEnabled(soma == finalSoma_tropas); // botao so libera se colocar a quantidade certa de tropas
+                           }
+
+                       });
                    }
 
                    panel.add(startButton);
@@ -85,6 +103,7 @@ public class TextBoxes {
                         ApiToView.setarTropas(territorios.get(i), tropasLista.get(i)); // acertar os territorios pois nao estao certos
                         System.out.println("Territorio "+territorios.get(i)+" tropas: "+ tropasLista.get(i));
                     }
+
 
                    frame.setVisible(false);
                    panel.removeAll();
