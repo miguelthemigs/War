@@ -86,23 +86,15 @@ public class TextBoxes {
                    jogadorAtual[0]++; // Vai para o próximo jogador
 
                }else {
-                   // Todos os jogadores fizeram suas seleções, aqui você pode fazer o que for necessário
-                   // (por exemplo, iniciar o jogo)
-                  // int valorTotalTropas = 0;
-                  // for(Object jog: jogadores){
-                    //   valorTotalTropas += ApiToView.retornaTropas(jog);
-                 //  }
-                  // int valorUsadoTropas = 0;
-                  // while(valorTotalTropas > valorUsadoTropas){
+
                        for (int i = 0; i < spinners.size(); i++) {
                            JSpinner spinner = spinners.get(i);
                            int tropas = (int) spinner.getValue();
                            //System.out.println(tropas);
                            tropasLista.add(tropas);
-                           //valorUsadoTropas+=tropas;
 
                        }
-                  // }
+
                    ArrayList<String> territorios = new ArrayList<>();
                    for(Object jogador: jogadores) {
                        territorios.addAll(ApiToView.retornaTerritorios(jogador));

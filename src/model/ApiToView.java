@@ -63,4 +63,8 @@ public class ApiToView {
         }
         return new_lista;
     }
+
+    public static String retornaObjetivo(Object jog){
+        return ((Jogador) jog).getObjetivo();
+    }
 }

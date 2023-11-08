@@ -75,10 +75,7 @@ public class Main {
         System.out.println("aa");
         GameMap.atualizarElipses();
 
-        //GameMap.atualizarElipses();
-
-        // Vamos realizar a distribuição de exércitos de cada jogador em cada território
-      //  api.posicionamentoExercitos();
+        // comecar ataque
 
 
 
