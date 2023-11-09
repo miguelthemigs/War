@@ -10,9 +10,17 @@ import java.util.List;
 
 public class ApiAcess {
     String[] objetivos = Cartas.objetivo; // devo tirar um onjetivo da lista a cada sorteio
+    private static ApiAcess instancia = null;
     public static ArrayList<Jogador> jogadores = new ArrayList<>();
     ArrayList<Cartas.Territorio> cartasEmJogo = new ArrayList<>(List.of(Cartas.Territorio.allTerritorios));
 
+    // Método para obter a instância única
+    public static ApiAcess getInstancia() {
+        if (instancia == null) {
+            instancia = new ApiAcess();
+        }
+        return instancia;
+    }
     public void sorteiaObjetivo() {
         Random rand = new Random();
         ArrayList<Integer> indicesAntigos = new ArrayList<>();
@@ -129,9 +137,6 @@ private boolean temCor(Jogador.Cor cor){
         }
 
 
-
-
-
     ArrayList<Pais> geraListaSorteioTerritorios() {
         ArrayList<Pais> listaTodosPaises = new ArrayList<>();
         listaTodosPaises.addAll(Arrays.asList(Tabuleiro.Africa));
@@ -149,9 +154,9 @@ private boolean temCor(Jogador.Cor cor){
         ArrayList<Pais> listaTodosPaises;
         listaTodosPaises = geraListaSorteioTerritorios();
         Collections.shuffle(listaTodosPaises);
-        while (listaTodosPaises.size() != 0) {
+        while (!listaTodosPaises.isEmpty()) {
             for (Jogador jogador : jogadores) {
-                if (listaTodosPaises.size() >= 1) {
+                if (!listaTodosPaises.isEmpty()) {
                     jogador.addTerritoriosPossuidos(listaTodosPaises.get(0));
                     listaTodosPaises.get(0).addTropas(1); // eu add 1 exercito nesse pais
                     listaTodosPaises.get(0).setDono(jogador);
@@ -173,20 +178,6 @@ private boolean temCor(Jogador.Cor cor){
             System.out.println(pais.getNome());
         }
     }
-/*
-    public void gerarJogadores(){
-        ArrayList<Jogador.Cor> coresSelecionadas = MapView.CustomPanel.getCoresSelecionadas();
-        for (Jogador.Cor cor : coresSelecionadas) {
-            jogadores.add(new Jogador(Jogador.Cor.valueOf(String.valueOf(cor))));
-        }
-        // Agora você tem uma lista de jogadores com as cores escolhidas
-        for (int i = 0; i < jogadores.size(); i++) {
-            System.out.println("Jogador " + (i+1) + " escolheu a cor: " + jogadores.get(i).getCor());
-        }
-        System.out.println("Cores escolhidas: " + coresSelecionadas);
-        System.out.println("--------------------------------------------------------");
-    }
-*/
 
     public void gerarJogadores(ArrayList<String> coresEscolhidas) {
 
@@ -309,102 +300,129 @@ private boolean temCor(Jogador.Cor cor){
         }
     }
 
-    public void trocaCartasPoligono() {
-        Scanner scanner = new Scanner(System.in);
+public void trocaCartasPoligono() {
+        /*
+    int resposta = JOptionPane.showConfirmDialog(null, "Iniciar Troca de Cartas", "Trocar Cartas", JOptionPane.YES_NO_OPTION);
 
-        System.out.println("Deseja trocar cartas? (s/n): ");
-        String resposta = scanner.nextLine();
+    if (resposta != JOptionPane.YES_OPTION) {
+        resposta = JOptionPane.YES_OPTION;
+    }
 
-        if (!resposta.equalsIgnoreCase("s")) {
-            return;
+         */
+
+    JOptionPane.showMessageDialog(null, "TROCA DE CARTAS - Escolha três formas para trocar ou clique cancelar:");
+    //jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[0]);
+    //jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[1]);
+    //jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[2]);
+    //jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[52]);
+    for (int i = 0; i < jogadores.size(); i++) {
+        JOptionPane.showMessageDialog(null, "\nJogador: " + jogadores.get(i).getCor());
+
+        ArrayList<String> cartas = new ArrayList<>();
+        for (Cartas.Territorio carta : jogadores.get(i).getPoligonosPossuidos()) {
+            cartas.add("Forma: " + carta.getPoligono() + "\nPais: " + carta.getPais() + "\n");
+            //JOptionPane.showMessageDialog(null, "Forma: " + carta.getPoligono() + "\nPais: " + carta.getPais() + "\n");
+        }
+        // Agora, vamos exibir as informações
+        StringBuilder mensagem = new StringBuilder();
+        for(String carta : cartas){
+            mensagem.append(carta).append("\n");
+        }
+        JOptionPane.showMessageDialog(null, mensagem.toString());
+
+        if(jogadores.get(i).getPoligonosPossuidos().isEmpty()){
+            continue;
         }
 
-        System.out.println("Escolha três formas para trocar:");
+        String pais1 = JOptionPane.showInputDialog("Digite o nome do primeiro país:");
 
-        for (int i = 0; i < jogadores.size(); i++) {
-            System.out.println("\nJogador: " + jogadores.get(i).getCor());
-            for (Cartas.Territorio carta : jogadores.get(i).getPoligonosPossuidos()) {
-                System.out.println("Forma: " + carta.getPoligono() + "\nPais: " + carta.getPais() + "\n");
-            }
+        if (pais1 == null) { // Se o usuário pressionar Cancelar
+            continue;
+        }
 
-            System.out.println("Digite o nome do primeiro país:");
-            String pais1 = scanner.nextLine();
-
-            if (pais1.equals("Coringa1") || pais1.equals("Coringa2")) {
-                Cartas.Territorio pais1Selecionada = null;
-                for (Cartas.Territorio territorio : jogadores.get(i).getPoligonosPossuidos()) {
-                    if (territorio.getPais().equals(pais1)) {
-                        pais1Selecionada = territorio;
-                    }
-                    if (pais1Selecionada != null) break;
-                }
-                if (pais1Selecionada != null) {
-                    System.out.println("Troca bem-sucedida! Adicionando tropas ao prêmio...");
-                    comparaPremios(jogadores.get(i));
-                    jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
-                    cartasEmJogo.add(pais1Selecionada); // devolvo a carta para as cartas em jogo
-                    break;
-                } else {
-                    System.out.println("Você não tem a carta coringa");
-                }
-            }
-
-            System.out.println("Digite o nome do segundo país:");
-            String pais2 = scanner.nextLine();
-
-            System.out.println("Digite o nome do terceiro país:");
-            String pais3 = scanner.nextLine();
-
+        if (pais1.equals("Coringa1") || pais1.equals("Coringa2")) {
             Cartas.Territorio pais1Selecionada = null;
-            Cartas.Territorio pais2Selecionada = null;
-            Cartas.Territorio pais3Selecionada = null;
-
             for (Cartas.Territorio territorio : jogadores.get(i).getPoligonosPossuidos()) {
                 if (territorio.getPais().equals(pais1)) {
                     pais1Selecionada = territorio;
                 }
-                if (territorio.getPais().equals(pais2)) {
-                    pais2Selecionada = territorio;
-                }
-                if (territorio.getPais().equals(pais3)) {
-                    pais3Selecionada = territorio;
-                }
-                if (pais1Selecionada != null && pais2Selecionada != null && pais3Selecionada != null) {
-                    break;
-                }
+                if (pais1Selecionada != null) break;
             }
-
-            if (pais1Selecionada != null && pais2Selecionada != null && pais3Selecionada != null) {
-                // Agora você pode verificar se os três países selecionados são iguais ou diferentes
-                if (pais1Selecionada.equals(pais2Selecionada) && pais2Selecionada.equals(pais3Selecionada)) {
-                    System.out.println("Troca bem-sucedida! Adicionando tropas ao prêmio...");
-                    comparaPremios(jogadores.get(i));
-                    jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
-                    jogadores.get(i).removePoligonosPossuidos(pais2Selecionada);
-                    jogadores.get(i).removePoligonosPossuidos(pais3Selecionada);
-                    cartasEmJogo.add(pais1Selecionada);
-                    cartasEmJogo.add(pais2Selecionada);
-                    cartasEmJogo.add(pais3Selecionada);
-                    // adicionar novamente ao baralho apos criar distribuicao de cartas
-
-                } else if (!pais1Selecionada.equals(pais2Selecionada) && !pais2Selecionada.equals(pais3Selecionada) && !pais1Selecionada.equals(pais3Selecionada)) {
-                    System.out.println("Troca bem-sucedida! Adicionando tropas ao prêmio...");
-                    comparaPremios(jogadores.get(i));
-                    jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
-                    jogadores.get(i).removePoligonosPossuidos(pais2Selecionada);
-                    jogadores.get(i).removePoligonosPossuidos(pais3Selecionada);
-                    cartasEmJogo.add(pais1Selecionada);
-                    cartasEmJogo.add(pais2Selecionada);
-                    cartasEmJogo.add(pais3Selecionada);
-                    // adicionar novamente ao baralho apos criar distribuicao de cartas
-
-                } else {
-                    System.out.println("Combinação inválida de formas.");
-                }
+            if (pais1Selecionada != null) {
+                JOptionPane.showMessageDialog(null, "Troca bem-sucedida! Adicionando tropas ao prêmio...");
+                comparaPremios(jogadores.get(i));
+                jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
+                cartasEmJogo.add(pais1Selecionada); // devolvo a carta para as cartas em jogo
+                continue;
             } else {
-                System.out.println("Um ou mais países não foram encontrados na lista de polígonos.");
+                JOptionPane.showMessageDialog(null, "Você não tem a carta coringa");
             }
         }
+
+        String pais2 = JOptionPane.showInputDialog("Digite o nome do segundo país:");
+        String pais3 = JOptionPane.showInputDialog("Digite o nome do terceiro país:");
+
+        Cartas.Territorio pais1Selecionada = null;
+        Cartas.Territorio pais2Selecionada = null;
+        Cartas.Territorio pais3Selecionada = null;
+
+        for (Cartas.Territorio territorio : jogadores.get(i).getPoligonosPossuidos()) {
+            if (territorio.getPais().equals(pais1)) {
+                pais1Selecionada = territorio;
+            }
+            if (territorio.getPais().equals(pais2)) {
+                pais2Selecionada = territorio;
+            }
+            if (territorio.getPais().equals(pais3)) {
+                pais3Selecionada = territorio;
+            }
+            if (pais1Selecionada != null && pais2Selecionada != null && pais3Selecionada != null) {
+                break;
+            }
+        }
+
+        if (pais1Selecionada != null && pais2Selecionada != null && pais3Selecionada != null) {
+            // Agora você pode verificar se os três países selecionados são iguais ou diferentes
+            if (pais1Selecionada.equals(pais2Selecionada) && pais2Selecionada.equals(pais3Selecionada)) {
+                JOptionPane.showMessageDialog(null,"Troca bem-sucedida! Adicionando tropas ao prêmio...");
+                comparaPremios(jogadores.get(i));
+                jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
+                jogadores.get(i).removePoligonosPossuidos(pais2Selecionada);
+                jogadores.get(i).removePoligonosPossuidos(pais3Selecionada);
+                cartasEmJogo.add(pais1Selecionada);
+                cartasEmJogo.add(pais2Selecionada);
+                cartasEmJogo.add(pais3Selecionada);
+                // adicionar novamente ao baralho apos criar distribuicao de cartas
+
+            } else if (!pais1Selecionada.equals(pais2Selecionada) && !pais2Selecionada.equals(pais3Selecionada) && !pais1Selecionada.equals(pais3Selecionada)) {
+                JOptionPane.showMessageDialog(null,"Troca bem-sucedida! Adicionando tropas ao prêmio...");
+                comparaPremios(jogadores.get(i));
+                jogadores.get(i).removePoligonosPossuidos(pais1Selecionada);
+                jogadores.get(i).removePoligonosPossuidos(pais2Selecionada);
+                jogadores.get(i).removePoligonosPossuidos(pais3Selecionada);
+                cartasEmJogo.add(pais1Selecionada);
+                cartasEmJogo.add(pais2Selecionada);
+                cartasEmJogo.add(pais3Selecionada);
+                // adicionar novamente ao baralho apos criar distribuicao de cartas
+
+            } else {
+                JOptionPane.showMessageDialog(null,"Combinação inválida de formas.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null,"Um ou mais países não foram encontrados na lista de polígonos.");
+        }
+    }
+}
+
+    public void ataque() {
+
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja Atacar", "Trocar Cartas", JOptionPane.YES_NO_OPTION);
+
+        if (resposta != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        // ... Restante do código para a troca de cartas
     }
 
     private void comparaPremios(Jogador jogador) {

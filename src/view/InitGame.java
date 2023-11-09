@@ -14,7 +14,7 @@ public class InitGame {
     private static InitGame.CustomPanel customPanel;
     private static final Object lock = new Object(); // Adicionado aqui
 
-    public static InitGame.CustomPanel getCustomPanel() {
+    public static InitGame.CustomPanel getCustomPanel() { // singleton
         if (customPanel == null) {
             customPanel = new InitGame.CustomPanel();
         }

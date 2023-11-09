@@ -1,4 +1,3 @@
-import controller.Goal;
 import model.ApiAcess;
 
 
@@ -7,10 +6,7 @@ import view.InitGame;
 import view.TextBoxes;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class Main {
@@ -34,12 +30,9 @@ public class Main {
         frame.setVisible(false);
 
 
-        // aqui coloca-se o mapa e o jogo continuara na imagem. ai faremos draw tudo
-        Scanner scanner = new Scanner(System.in);
-
         // Pergunte o número de jogadores
 
-        ApiAcess api = new ApiAcess();
+        ApiAcess api = ApiAcess.getInstancia();
 
         ArrayList<String> coresEscolhidas = customPanel.getCoresSelecionadas();
         api.gerarJogadores(coresEscolhidas);
@@ -50,6 +43,7 @@ public class Main {
         // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
         api.sorteiaTerritorios();
         GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
+        api.trocaCartasPoligono();
 
 
         System.out.println("------- Checando se os jogadores possuem algum continente --------");
@@ -71,14 +65,11 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Continuando a execução...");
-
-        System.out.println("aa");
-
 
         GameMap.atualizarElipses();
 
-        // comecar ataque
+        //
+        // api.trocaCartasPoligono();
 
 
 

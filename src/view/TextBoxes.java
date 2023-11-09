@@ -1,7 +1,5 @@
 package view;
 
-import controller.Goal;
-import model.ApiAcess;
 import model.ApiToView;
 
 import javax.swing.*;
@@ -10,10 +8,8 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static model.ApiAcess.jogadores;
 
@@ -22,13 +18,12 @@ public class TextBoxes {
    // primeiro devemos colocar a combobox, para cada jogador, e mostrar os territorios que ele tem, e ele escolher quantas e aonde colocar
     // depois, no clique do botao adicionar, ter um actionlistener, que chama uma funcao do controller, que posiciona as tropas para gente, e repinta o painel com as elipses
    private static final Object lock = new Object(); // Adicionado aqui
+    ApiToView api = ApiToView.getInstancia();
    public void criarInterface(Runnable callback) {
-
-
 
        JFrame frame = new JFrame("Seleção de Territórios");
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       frame.setSize(500, 700);
+       frame.setSize(500, 1000);
 
        JPanel panel = new JPanel();
        frame.add(panel);
@@ -48,7 +43,7 @@ public class TextBoxes {
 
                    Object jogador = jogadores.get(atual); // meu jogador atual
                    panel.add(new JLabel("Jogador " + ApiToView.retornaCor(jogador) + " tropas: " + ApiToView.retornaTropas(jogador) + "    "));
-                   panel.add(Box.createRigidArea(new Dimension(400, 20)));
+                   panel.add(Box.createRigidArea(new Dimension(400, 10)));
                    soma_tropas[0] += ApiToView.retornaTropas(jogador);
                    System.out.printf("Tropas a adicionar: %d\n", ApiToView.retornaTropas(jogador) );
 
@@ -59,7 +54,7 @@ public class TextBoxes {
 
                        panel.add(new JLabel("                    " + territorio + " - "));
                        panel.add(spinnerTropas);
-                       panel.add(Box.createRigidArea(new Dimension(460, 5)));
+                       panel.add(Box.createRigidArea(new Dimension(460, 3)));
                        int finalSoma_tropas = soma_tropas[0];
                        System.out.println(finalSoma_tropas);
 

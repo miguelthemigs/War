@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static model.ApiAcess.jogadores;
 
-public class Goal {
+public class FunctionReturns {
     private final ArrayList<String> objetivos = new ArrayList<>();
     public ArrayList<String> retornaObjetivos(){
         for(Object jogador: jogadores){
@@ -15,4 +15,5 @@ public class Goal {
         }
         return objetivos;
     }
+
 }

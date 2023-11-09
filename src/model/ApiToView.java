@@ -3,12 +3,18 @@ package model;
 import java.util.ArrayList;
 
 public class ApiToView {
-    static ApiAcess inst = new ApiAcess();
+    static ApiAcess inst = ApiAcess.getInstancia();
+    private static ApiToView instancia = null;
     ArrayList<Integer> corTropas = new ArrayList<>();
     Integer cor;
     Integer tropas;
     private static final ArrayList<Pais> listaPaises = inst.geraListaSorteioTerritorios(); // vai ter todos os paises aqui
-
+    public static ApiToView getInstancia() {
+        if (instancia == null) {
+            instancia = new ApiToView();
+        }
+        return instancia;
+    }
     public ArrayList<Integer> iterarPaises(){
         for (Pais pais: listaPaises){
             cor = -1;

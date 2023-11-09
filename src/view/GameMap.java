@@ -1,7 +1,7 @@
 package view;
 
 
-import controller.Goal;
+import controller.FunctionReturns;
 import model.ApiToView;
 
 import javax.swing.*;
@@ -15,7 +15,6 @@ import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
 import javax.imageio.ImageIO;
-import view.TextBoxes;
 // precisamos usar o observer eu acho, para poder ver a mudanca de territorios possuidos de cada jogador, e assim ir pintando as bolinhas nos territorios
 /*
 no mapa ter
@@ -42,6 +41,7 @@ public class GameMap extends JPanel implements Observer {
     private BufferedImage imagemFundo;
     private List observers;
     private static TextBoxes textBoxes;
+
 
     public static GameMap painel = new GameMap();
 private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHITE,Color.GREEN,Color.YELLOW};
@@ -76,7 +76,7 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
     }
     public static void criaElipse(Graphics g){
         int x, y;
-        ApiToView api = new ApiToView();
+        ApiToView api = new ApiToView(); // teremos de ter essa instancia aqui
         tropas = api.iterarPaises();
         for(int i = 0; i < tropas.size(); i++){
             int qTropas = tropas.get(i)%100;
@@ -119,8 +119,8 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
 
 
         // Get the objectives from the Goal class and format them as a single string
-        Goal goal = new Goal();
-        ArrayList<String> objetivos = goal.retornaObjetivos();
+        FunctionReturns functionReturns = new FunctionReturns();
+        ArrayList<String> objetivos = functionReturns.retornaObjetivos();
         StringBuilder objectivesText = new StringBuilder("<html>"); // Use HTML to allow line breaks
         for (String objetivo : objetivos) {
             objectivesText.append(objetivo).append("<br><br><br>");
