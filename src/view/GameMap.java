@@ -168,9 +168,6 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
 
         painel.repaint();
 
-        // Desenha a elipse antes de exibir o JFrame
-        //Graphics g = painel.getGraphics();
-
     }
 
     @Override

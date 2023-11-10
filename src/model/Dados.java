@@ -18,4 +18,5 @@ class Dados {
         int indiceAleatorio = rand.nextInt(dado.length);
         return yellowDado[indiceAleatorio];
     }
+
 }

@@ -126,5 +126,15 @@ class Jogador {
         }
         return continentesPossuidos;
     }
+
+    // de uma jogador, retorna quantas tropas ele tem em um determinado pais
+    public int quantasTropasNoTerritorio(Jogador jogador, String territorio){
+        for(Pais pais: jogador.getTerritoriosPossuidos()){
+            if(territorio.equals(pais.getNome())){
+                return pais.getTropas();
+            }
+        }
+        throw new RuntimeException("O jogador nao possui esse pais");
+    }
 }
 

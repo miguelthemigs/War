@@ -1,6 +1,8 @@
 import model.ApiAcess;
 
 
+import model.ApiAttack;
+import view.AtaqueGUI;
 import view.GameMap;
 import view.InitGame;
 import view.TextBoxes;
@@ -68,7 +70,9 @@ public class Main {
 
         GameMap.atualizarElipses();
 
-        //
+        // Configurar e exibir a interface de ataque
+        AtaqueGUI ataque = AtaqueGUI.getInstancia();
+        ataque.mostraAtaque();
         // api.trocaCartasPoligono();
 
 

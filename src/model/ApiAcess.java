@@ -301,14 +301,6 @@ private boolean temCor(Jogador.Cor cor){
     }
 
 public void trocaCartasPoligono() {
-        /*
-    int resposta = JOptionPane.showConfirmDialog(null, "Iniciar Troca de Cartas", "Trocar Cartas", JOptionPane.YES_NO_OPTION);
-
-    if (resposta != JOptionPane.YES_OPTION) {
-        resposta = JOptionPane.YES_OPTION;
-    }
-
-         */
 
     JOptionPane.showMessageDialog(null, "TROCA DE CARTAS - Escolha três formas para trocar ou clique cancelar:");
     //jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[0]);
@@ -413,16 +405,23 @@ public void trocaCartasPoligono() {
         }
     }
 }
+    private Pais StringtoPais(String nomeTerritorio) {
+        for (Pais pais : geraListaSorteioTerritorios()) {
+            if (pais.getNome().equals(nomeTerritorio)) {
+                return pais;
+            }
+        }
+        throw new RuntimeException("Nao encontramos o pais pedido");
+    }
 
     public void ataque() {
-
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja Atacar", "Trocar Cartas", JOptionPane.YES_NO_OPTION);
-
-        if (resposta != JOptionPane.YES_OPTION) {
-            return;
+        ApiAttack api = ApiAttack.getInstancia();
+        for(Jogador jogador: jogadores){
+            api.setJogadorAtual(jogador);
+            api.iniciarAtaque();
         }
 
-        // ... Restante do código para a troca de cartas
+
     }
 
     private void comparaPremios(Jogador jogador) {
