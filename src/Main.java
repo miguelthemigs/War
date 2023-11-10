@@ -43,7 +43,7 @@ public class Main {
         // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
         api.sorteiaTerritorios();
         GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
-        api.trocaCartasPoligono();
+        //api.trocaCartasPoligono();
 
 
         System.out.println("------- Checando se os jogadores possuem algum continente --------");
