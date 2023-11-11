@@ -48,6 +48,7 @@ public class ApiAttack extends JFrame {
         this.territoriosJogador = jogadorAtual.getTerritoriosPossuidos();
     }
 
+    /*
     public void iniciarAtaque() {
         // Configurar frame
         setTitle("Ataque - Jogador " + jogadorAtual.getCor());
@@ -101,16 +102,100 @@ public class ApiAttack extends JFrame {
         // Exibir frame
         setVisible(true);
     }
+    */
+    public void iniciarAtaque() {
+        // Configurar frame
+        setTitle("Ataque - Jogador " + jogadorAtual.getCor());
+        setSize(400, 200);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-    private void atualizarAlvosComboBox() {
-        alvosComboBox.removeAllItems();
-        String territorioSelecionado = (String) territoriosComboBox.getSelectedItem();
-        if (territorioSelecionado != null) {
-            for (Pais vizinho : obterVizinhosNaoPossuidos(territorioSelecionado, jogadorAtual)) {
-                alvosComboBox.addItem(vizinho.getNome());
+        // Infinite loop until "Cancelar" is pressed
+        while (true) {
+            // Clear the contents of the frame for each iteration
+            getContentPane().removeAll();
+            repaint();
+
+            // Configurar layout
+            setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+
+            // Criar combo box para Meus Países
+            JComboBox<String> meusPaisesComboBox = new JComboBox<>();
+            for (Pais territorio : territoriosJogador) {
+                if (territorio.getTropas() > 1)
+                    meusPaisesComboBox.addItem(territorio.getNome());
+            }
+
+            // Criar combo box para Países Fronteiras
+            JComboBox<String> paisesFronteirasComboBox = new JComboBox<>();
+            paisesFronteirasComboBox.addItem("-");
+
+            // Criar botão de ataque
+            JButton atacarButton = new JButton("Atacar");
+            JButton cancelarButton = new JButton("Cancelar");
+            atacarButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    realizarAtaque();
+                }
+            });
+            cancelarButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose();  // Close the frame on "Cancelar"
+                }
+            });
+
+            // Adicionar componentes ao frame
+            add(new JLabel("Selecione o território de origem:"));
+            add(meusPaisesComboBox);
+            add(new JLabel("Selecione o território alvo:"));
+            add(paisesFronteirasComboBox);
+            add(atacarButton);
+            add(cancelarButton);
+
+            // Adiciona ActionListener para atualizar "alvo" combo box quando "origem" é selecionado
+            meusPaisesComboBox.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Obter o item selecionado em "origem"
+                    String selectedOrigem = (String) meusPaisesComboBox.getSelectedItem();
+                    // Atualizar "alvo" combo box com base na seleção em "origem"
+                    updateAlvoComboBox(selectedOrigem, paisesFronteirasComboBox, jogadorAtual);
+                }
+            });
+
+            // Exibir frame
+            setVisible(true);
+
+            // Wait for the frame to be disposed before breaking the loop
+            try {
+                while (isVisible()) {
+                    Thread.sleep(100);
+                }
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+
+            // Break the loop if the frame was disposed (Cancelar was pressed)
+            if (!isVisible()) {
+                break;
             }
         }
     }
+
+    // Método para atualizar o combo box "alvo" com base na seleção em "origem"
+    private void updateAlvoComboBox(String selectedOrigem, JComboBox<String> alvoComboBox, Jogador jogador) {
+        // Obter vizinhos não possuídos com base na seleção em "origem"
+        ArrayList<Pais> vizinhosNaoPossuidos = obterVizinhosNaoPossuidos(selectedOrigem, jogador);
+
+        // Limpar o combo box "alvo" e adicionar os vizinhos não possuídos
+        alvoComboBox.removeAllItems();
+        for (Pais pais : vizinhosNaoPossuidos) {
+            alvoComboBox.addItem(pais.getNome());
+        }
+    }
+
 
     private ArrayList<Pais> obterVizinhosNaoPossuidos(String territorio, Jogador jogador) {
         ApiAcess api = ApiAcess.getInstancia();
