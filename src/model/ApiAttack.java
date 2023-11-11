@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class ApiAttack extends JFrame {
 
+    private int jogadorAtualIndex;
+    private ArrayList<Jogador> jogadores;
     private JComboBox<String> territoriosComboBox;
     private JComboBox<String> alvosComboBox;
     private JButton atacarButton;
@@ -17,14 +19,28 @@ public class ApiAttack extends JFrame {
 
     private ApiAttack() {
         // O construtor é privado para evitar a criação externa de instâncias
+        this.jogadorAtualIndex = 0;
         this.territoriosJogador = new ArrayList<>();
     }
 
-    public static ApiAttack getInstancia() {
+    public static ApiAttack getInstancia(ArrayList<Jogador> jogadores) {
         if (instancia == null) {
             instancia = new ApiAttack();
+            instancia.jogadores = jogadores;
         }
         return instancia;
+    }
+
+    public boolean podeIniciarProximoAtaque() {
+        return jogadorAtualIndex < jogadores.size();
+    }
+
+    public void iniciarProximoAtaque() {
+        if (podeIniciarProximoAtaque()) {
+            setJogadorAtual(jogadores.get(jogadorAtualIndex));
+            jogadorAtualIndex++;
+            iniciarAtaque();
+        }
     }
 
     public void setJogadorAtual(Jogador jogadorAtual) {
@@ -90,16 +106,23 @@ public class ApiAttack extends JFrame {
         alvosComboBox.removeAllItems();
         String territorioSelecionado = (String) territoriosComboBox.getSelectedItem();
         if (territorioSelecionado != null) {
-            for (Pais vizinho : obterVizinhosNaoPossuidos(territorioSelecionado)) {
+            for (Pais vizinho : obterVizinhosNaoPossuidos(territorioSelecionado, jogadorAtual)) {
                 alvosComboBox.addItem(vizinho.getNome());
             }
         }
     }
 
-    private ArrayList<Pais> obterVizinhosNaoPossuidos(String territorio) {
-        // Lógica para obter vizinhos que não são possuídos pelo jogador
-        // Implemente conforme a estrutura do seu código
-        return new ArrayList<>();
+    private ArrayList<Pais> obterVizinhosNaoPossuidos(String territorio, Jogador jogador) {
+        ApiAcess api = ApiAcess.getInstancia();
+        ArrayList<Pais> naoPossuidos = new ArrayList<>();
+        Pais pais = api.StringtoPais(territorio);
+        String[] fronteiras = pais.getFronteiras();
+        for(String fronteira: fronteiras){
+            if(!jogadorAtual.getTerritoriosPossuidos().contains(api.StringtoPais(fronteira))){ // se o jogador nao tem o pais que faz fronteira
+                naoPossuidos.add(api.StringtoPais(fronteira));
+            }
+        }
+        return naoPossuidos;
     }
 
     private void realizarAtaque() {
@@ -118,5 +141,12 @@ public class ApiAttack extends JFrame {
             // e fazer as atualizações necessárias no jogo
             JOptionPane.showMessageDialog(null, "Atacando " + alvoSelecionado + " a partir de " + territorioSelecionado);
         }
+        jogadorAtualIndex++;
     }
 }
+
+
+
+
+
+

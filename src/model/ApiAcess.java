@@ -405,7 +405,7 @@ public void trocaCartasPoligono() {
         }
     }
 }
-    private Pais StringtoPais(String nomeTerritorio) {
+    public Pais StringtoPais(String nomeTerritorio) {
         for (Pais pais : geraListaSorteioTerritorios()) {
             if (pais.getNome().equals(nomeTerritorio)) {
                 return pais;
@@ -415,10 +415,11 @@ public void trocaCartasPoligono() {
     }
 
     public void ataque() {
-        ApiAttack api = ApiAttack.getInstancia();
-        for(Jogador jogador: jogadores){
-            api.setJogadorAtual(jogador);
-            api.iniciarAtaque();
+        ApiAttack api = ApiAttack.getInstancia(jogadores);
+
+        while (api.podeIniciarProximoAtaque()) {
+            api.iniciarProximoAtaque();
+
         }
 
 
