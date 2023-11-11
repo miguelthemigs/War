@@ -411,6 +411,7 @@ public void trocaCartasPoligono() {
                 return pais;
             }
         }
+        System.out.printf("\nnomeTerritorio: %s\n", nomeTerritorio);
         throw new RuntimeException("Nao encontramos o pais pedido");
     }
 

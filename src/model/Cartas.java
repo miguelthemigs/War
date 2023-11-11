@@ -56,7 +56,7 @@ class Cartas {
                 new Cartas.Territorio("Argélia", Cartas.Poligono.bola, new String[]{"Egito","Espanha","Itália","Nigéria"}),
                 new Cartas.Territorio("Egito", Cartas.Poligono.triangulo, new String[]{"Argélia","Jordânia","Nigéria","Romênia","Somália"}),
                 new Cartas.Territorio("Nigéria", Cartas.Poligono.bola, new String[]{"Angola","Argélia","Brasil","Egito","Somália"}),
-                new Cartas.Territorio("Somália", Cartas.Poligono.quadrado, new String[]{"ÁfricadoSul","Angola","Arábia Saudita","Egito","Nigéria"}),
+                new Cartas.Territorio("Somália", Cartas.Poligono.quadrado, new String[]{"ÁfricadoSul","Angola","ArábiaSaudita","Egito","Nigéria"}),
 
                 new Cartas.Territorio("Alasca", Cartas.Poligono.triangulo, new String[]{"Calgary","Sibéria","Vancouver"}),
                 new Cartas.Territorio("Calgary", Cartas.Poligono.bola, new String[]{"Alasca","Groenlândia","Vancouver"}),
@@ -72,7 +72,7 @@ class Cartas {
                 new Cartas.Territorio("Bangladesh", Cartas.Poligono.bola, new String[]{"CoréiadoSul","Índia","Indonésia","Tailândia"}),
                 new Cartas.Territorio("Cazaquistão", Cartas.Poligono.bola, new String[]{"China","Japão","Letônia","Mongólia","Sibéria","Turquia", "Rússia"}),
                 new Cartas.Territorio("China", Cartas.Poligono.quadrado, new String[]{"Cazaquistão","CoréiadoNorte","CoréiadoSul","Índia","Mongólia","Paquistão","Turquia"}),
-                new Cartas.Territorio("CoréiadoNorte", Cartas.Poligono.quadrado, new String[]{"China","Coréiadosul", "Japão"}),
+                new Cartas.Territorio("CoréiadoNorte", Cartas.Poligono.quadrado, new String[]{"China","CoréiadoSul", "Japão"}),
                 new Cartas.Territorio("CoréiadoSul", Cartas.Poligono.triangulo, new String[]{"Bangladesh","China","CoréiadoNorte","Índia","Tailândia"}),
                 new Cartas.Territorio("Estônia", Cartas.Poligono.bola, new String[]{"Letônia","Rússia","Suécia"}),
                 new Cartas.Territorio("Índia", Cartas.Poligono.triangulo, new String[]{"Bangladesh","China","CoréiadoSul","Paquistão", "Indonésia"}),

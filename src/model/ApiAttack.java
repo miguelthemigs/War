@@ -136,7 +136,9 @@ public class ApiAttack extends JFrame {
             atacarButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    realizarAtaque();
+                    String origem = (String) meusPaisesComboBox.getSelectedItem();
+                    String alvo = (String) paisesFronteirasComboBox.getSelectedItem();
+                    realizarAtaque(origem, alvo);
                 }
             });
             cancelarButton.addActionListener(new ActionListener() {
@@ -210,9 +212,9 @@ public class ApiAttack extends JFrame {
         return naoPossuidos;
     }
 
-    private void realizarAtaque() {
-        String territorioSelecionado = (String) territoriosComboBox.getSelectedItem();
-        String alvoSelecionado = (String) alvosComboBox.getSelectedItem();
+    private void realizarAtaque(String territorioSelecionado, String alvoSelecionado) {
+        System.out.printf("Origem do ataque: %s\nAlvo do ataque: %s", territorioSelecionado, alvoSelecionado);
+
         int resposta = JOptionPane.showConfirmDialog(
                 null,
                 "Você deseja atacar " + alvoSelecionado + "?",
@@ -226,7 +228,6 @@ public class ApiAttack extends JFrame {
             // e fazer as atualizações necessárias no jogo
             JOptionPane.showMessageDialog(null, "Atacando " + alvoSelecionado + " a partir de " + territorioSelecionado);
         }
-        jogadorAtualIndex++;
     }
 }
 
