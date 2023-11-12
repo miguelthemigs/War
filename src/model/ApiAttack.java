@@ -1,9 +1,13 @@
 package model;
 
+import controller.Observable;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class ApiAttack extends JFrame {
 
@@ -214,6 +218,7 @@ public class ApiAttack extends JFrame {
 
     private void realizarAtaque(String territorioSelecionado, String alvoSelecionado) {
         System.out.printf("Origem do ataque: %s\nAlvo do ataque: %s", territorioSelecionado, alvoSelecionado);
+        ApiAcess api = ApiAcess.getInstancia();
 
         int resposta = JOptionPane.showConfirmDialog(
                 null,
@@ -223,16 +228,72 @@ public class ApiAttack extends JFrame {
         );
 
         if (resposta == JOptionPane.YES_OPTION) {
-            // Implemente aqui a lógica de ataque
-            // Pode chamar outra função ou método para realizar o ataque
-            // e fazer as atualizações necessárias no jogo
+            // Lógica de ataque
+            // Lógica de ataque
+            int tropasAtaque = api.StringtoPais(territorioSelecionado).getTropas();
+            int tropasDefesa = api.StringtoPais(alvoSelecionado).getTropas();
+            int numeroDadosAtaque = 0, numeroDadosDefesa = 0;
+
+            int[] resultadosAtaque = new int[]{0, 0, 0};
+            int[] resultadosDefesa = new int[]{0, 0, 0};
+
+            if (tropasAtaque >= 4) {
+                numeroDadosAtaque = 3;
+            } else if (tropasAtaque == 3) {
+                numeroDadosAtaque = 2;
+            } else if (tropasAtaque == 2) {
+                numeroDadosAtaque = 1;
+            }
+
+            if (tropasDefesa >= 4) {
+                numeroDadosDefesa = 3;
+            } else if (tropasDefesa == 3) {
+                numeroDadosDefesa = 2;
+            } else if (tropasDefesa == 1) {
+                numeroDadosDefesa = 1;
+            }
+
+            for (int i = 0; i < numeroDadosAtaque; i++) {
+                resultadosAtaque[i] = Dados.jogarVermelho();
+            }
+
+            Arrays.sort(resultadosAtaque);
+            reverseArray(resultadosAtaque);
+
+            for (int i = 0; i < numeroDadosDefesa; i++) {
+                resultadosDefesa[i] = Dados.jogarAmarelo();
+            }
+
+            Arrays.sort(resultadosDefesa);
+            reverseArray(resultadosDefesa);
+
+/*/ Calculates the attack outcome.
+        while (i >= 0 && j >= 0) {
+                if (attackDices[i] > defenseDices[j]) {
+                defenseLoss++;
+                } else {
+                attackLoss++;
+                }
+
+                j--;
+                i--;
+                }
+
+*/
             JOptionPane.showMessageDialog(null, "Atacando " + alvoSelecionado + " a partir de " + territorioSelecionado);
+            //Observer.notify()
+        }
+    }
+    private void reverseArray(int[] array) {
+        for (int i = 0; i < array.length / 2; i++) {
+            int temp = array[i];
+            array[i] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = temp;
         }
     }
 }
 
 
-
-
+/
 
 
