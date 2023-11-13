@@ -24,6 +24,10 @@ public class ApiAttack extends JFrame {
     private static ApiAttack instancia = null;
     private Jogador jogadorAtual;
     private ArrayList<Pais> territoriosJogador;
+    // Criar combo box para Meus Países
+    private JComboBox<String> meusPaisesComboBox = new JComboBox<>();
+    // Criar combo box para Países Fronteiras
+    private JComboBox<String> paisesFronteirasComboBox = new JComboBox<>();
 
     private ApiAttack() {
         // O construtor é privado para evitar a criação externa de instâncias
@@ -101,14 +105,14 @@ public class ApiAttack extends JFrame {
             setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
             // Criar combo box para Meus Países
-            JComboBox<String> meusPaisesComboBox = new JComboBox<>();
+            //JComboBox<String> meusPaisesComboBox = new JComboBox<>();
             for (Pais territorio : territoriosJogador) {
                 if (territorio.getTropas() > 1)
                     meusPaisesComboBox.addItem(territorio.getNome());
             }
 
             // Criar combo box para Países Fronteiras
-            JComboBox<String> paisesFronteirasComboBox = new JComboBox<>();
+            //JComboBox<String> paisesFronteirasComboBox = new JComboBox<>();
             paisesFronteirasComboBox.addItem("-");
 
             // Criar botão de ataque
@@ -274,13 +278,15 @@ public class ApiAttack extends JFrame {
                 tropasDefesa -= defenseLoss;
                 System.out.println("removeu do defensor: "+ defenseLoss);
 
-                //notifyObservers();
+
+
 
                 if(tropasDefesa < 1) {
                     JOptionPane.showMessageDialog(null, "Territorio conquistado! " + alvoSelecionado);
                     removePaisDoDefensor(paisDefesa);
                     jogadorAtual.addTerritoriosPossuidos(paisDefesa);
                     int tropasTransferir = pedirQuantidadeTropasTransferir(tropasAtaque);
+
                     // Transferir tropas
                     paisDefesa.addTropas(tropasTransferir);
                     paisAtaque.removeTropas(tropasTransferir);
@@ -288,9 +294,57 @@ public class ApiAttack extends JFrame {
                     // atualizar a interface, atualizar combobox
                 }
 
+                System.out.println("ENTROU\n");
+
+                //teste
+                for (Pais pais : jogadorAtual.getTerritoriosPossuidos()){
+                    System.out.println("AQUI: "+pais.getNome()+"\n");
+                }
+                //teste
+
+                // Atualizar ComboBox de Meus Países após a conquista
+                updateMeusPaisesComboBox(meusPaisesComboBox);
+
+            }
+            notifyObservers();
+        }
+    }
+
+    private void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox) {
+        ArrayList<String> paisesAtuais = new ArrayList<>();
+
+        // Adiciona apenas os territórios com mais de 1 tropa
+        for (Pais territorio : jogadorAtual.getTerritoriosPossuidos()) {
+            if (territorio.getTropas() > 1) {
+                paisesAtuais.add(territorio.getNome());
+            }
+        }
+
+        // Remove os itens que não estão mais presentes
+        for (int i = 0; i < meusPaisesComboBox.getItemCount(); i++) {
+            String paisComboBox = meusPaisesComboBox.getItemAt(i);
+            if (!paisesAtuais.contains(paisComboBox)) {
+                meusPaisesComboBox.removeItem(paisComboBox);
+            }
+        }
+
+        // Adiciona os novos itens
+        for (String paisAtual : paisesAtuais) {
+            if (!containsItem(meusPaisesComboBox, paisAtual)) {
+                meusPaisesComboBox.addItem(paisAtual);
             }
         }
     }
+
+    private boolean containsItem(JComboBox<String> comboBox, String item) {
+        for (int i = 0; i < comboBox.getItemCount(); i++) {
+            if (comboBox.getItemAt(i).equals(item)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private int pedirQuantidadeTropasTransferir(int tropasAtaque) {
         // Criar um JSpinner para permitir que o jogador selecione o número de tropas a serem transferidas
         SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, Math.min(tropasAtaque-1, 3), 1);
@@ -310,12 +364,13 @@ public class ApiAttack extends JFrame {
         );
 
         // Se o jogador pressionar OK, retorna a quantidade selecionada, caso contrário, retorna 0
-        return (result == JOptionPane.OK_OPTION) ? (int) spinnerTropas.getValue() : 0;
+        return (result == JOptionPane.OK_OPTION) ? (int) spinnerTropas.getValue() : 1;
     }
     private void removePaisDoDefensor(Pais pais){
         for(Jogador jogador: jogadores){
-            if(jogador.getTerritoriosPossuidos().contains(pais))
+            if(jogador.getTerritoriosPossuidos().contains(pais)) {
                 jogador.removeTerritorio(pais);
+            }
         }
     }
 
@@ -340,13 +395,6 @@ public class ApiAttack extends JFrame {
             array[array.length - 1 - i] = temp;
         }
     }
-    /*private void reverseArray(int[] array) {
-        for (int i = 0; i < array.length / 2; i++) {
-            int temp = array[i];
-            array[i] = array[array.length - 1 - i];
-            array[array.length - 1 - i] = temp;
-        }
-    }*/
 }
 
 
