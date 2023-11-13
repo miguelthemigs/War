@@ -136,7 +136,7 @@ public class ApiAttack extends JFrame {
 
             // Criar botão de ataque
             JButton atacarButton = new JButton("Atacar");
-            JButton cancelarButton = new JButton("Cancelar");
+            JButton cancelarButton = new JButton("Finalizar");
             atacarButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -229,7 +229,6 @@ public class ApiAttack extends JFrame {
 
         if (resposta == JOptionPane.YES_OPTION) {
             // Lógica de ataque
-            // Lógica de ataque
             int tropasAtaque = api.StringtoPais(territorioSelecionado).getTropas();
             int tropasDefesa = api.StringtoPais(alvoSelecionado).getTropas();
             int numeroDadosAtaque = 0, numeroDadosDefesa = 0;
@@ -237,6 +236,7 @@ public class ApiAttack extends JFrame {
             int[] resultadosAtaque = new int[]{0, 0, 0};
             int[] resultadosDefesa = new int[]{0, 0, 0};
 
+            // Atacante usa um dado a menos do que suas tropas
             if (tropasAtaque >= 4) {
                 numeroDadosAtaque = 3;
             } else if (tropasAtaque == 3) {
@@ -245,45 +245,63 @@ public class ApiAttack extends JFrame {
                 numeroDadosAtaque = 1;
             }
 
-            if (tropasDefesa >= 4) {
+            // Defensor usa até três dados, se tiver pelo menos três tropas
+            if (tropasDefesa >= 3) {
                 numeroDadosDefesa = 3;
-            } else if (tropasDefesa == 3) {
+            } else if (tropasDefesa == 2) {
                 numeroDadosDefesa = 2;
             } else if (tropasDefesa == 1) {
                 numeroDadosDefesa = 1;
             }
 
-            for (int i = 0; i < numeroDadosAtaque; i++) {
-                resultadosAtaque[i] = Dados.jogarVermelho();
+            for (int i = 0; i < 3; i++) {
+                resultadosAtaque[i] = (i < numeroDadosAtaque) ? Dados.jogarVermelho() : 0;
+                resultadosDefesa[i] = (i < numeroDadosDefesa) ? Dados.jogarAmarelo() : 0;
             }
 
+            // Ordena os resultados em ordem decrescente
             Arrays.sort(resultadosAtaque);
             reverseArray(resultadosAtaque);
-
-            for (int i = 0; i < numeroDadosDefesa; i++) {
-                resultadosDefesa[i] = Dados.jogarAmarelo();
-            }
-
             Arrays.sort(resultadosDefesa);
             reverseArray(resultadosDefesa);
 
-/*/ Calculates the attack outcome.
-        while (i >= 0 && j >= 0) {
-                if (attackDices[i] > defenseDices[j]) {
-                defenseLoss++;
+            // Exibe o resultado do ataque
+            String mensagemResultado = "Ataque concluído!\n\n";
+            mensagemResultado += "Resultado dos dados de ataque: " + arrayToString(resultadosAtaque) + "\n";
+            mensagemResultado += "Resultado dos dados de defesa: " + arrayToString(resultadosDefesa) + "\n\n";
+
+            int attackLoss = 0;
+            int defenseLoss = 0;
+            for (int i = 0; i < Math.min(numeroDadosAtaque, numeroDadosDefesa); i++) {
+                if (resultadosAtaque[i] > resultadosDefesa[i]) {
+                    defenseLoss++;
                 } else {
-                attackLoss++;
+                    attackLoss++;
                 }
+            }
 
-                j--;
-                i--;
-                }
+            mensagemResultado += "Tropas perdidas pelo atacante: " + attackLoss + "\n";
+            mensagemResultado += "Tropas perdidas pelo defensor: " + defenseLoss + "\n";
 
-*/
-            JOptionPane.showMessageDialog(null, "Atacando " + alvoSelecionado + " a partir de " + territorioSelecionado);
-            //Observer.notify()
+            JOptionPane.showMessageDialog(null, mensagemResultado);
+            // Observer.notify()
         }
     }
+
+    // Função para transformar um array em uma string, substituindo 0 por "-"
+    private String arrayToString(int[] array) {
+        StringBuilder result = new StringBuilder("[");
+        for (int i = 0; i < array.length; i++) {
+            result.append((array[i] != 0) ? array[i] : "-");
+            if (i < array.length - 1) {
+                result.append(", ");
+            }
+        }
+        result.append("]");
+        return result.toString();
+    }
+
+    // Função para inverter a ordem de um array
     private void reverseArray(int[] array) {
         for (int i = 0; i < array.length / 2; i++) {
             int temp = array[i];
@@ -291,9 +309,16 @@ public class ApiAttack extends JFrame {
             array[array.length - 1 - i] = temp;
         }
     }
+    /*private void reverseArray(int[] array) {
+        for (int i = 0; i < array.length / 2; i++) {
+            int temp = array[i];
+            array[i] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = temp;
+        }
+    }*/
 }
 
 
-/
+
 
 
