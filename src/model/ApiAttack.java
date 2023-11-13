@@ -95,8 +95,24 @@ public class ApiAttack extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        System.out.println("\n\nOPAAAAAAAAA\n\n");
+
         // Infinite loop until "Cancelar" is pressed
         while (true) {
+
+            //teste
+            for (Pais pais : jogadorAtual.getTerritoriosPossuidos()){
+                System.out.println("AQUI: "+pais.getNome()+"\n");
+            }
+            //teste
+
+            //Teste
+            // Atualizar ComboBox de Meus Países após a conquista
+            updateMeusPaisesComboBox(meusPaisesComboBox);
+            // Reseta items da combo box
+            resetaComboBox(paisesFronteirasComboBox);
+            //Teste
+
             // Clear the contents of the frame for each iteration
             getContentPane().removeAll();
             repaint();
@@ -104,6 +120,7 @@ public class ApiAttack extends JFrame {
             // Configurar layout
             setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
+/*
             // Criar combo box para Meus Países
             //JComboBox<String> meusPaisesComboBox = new JComboBox<>();
             for (Pais territorio : territoriosJogador) {
@@ -114,6 +131,7 @@ public class ApiAttack extends JFrame {
             // Criar combo box para Países Fronteiras
             //JComboBox<String> paisesFronteirasComboBox = new JComboBox<>();
             paisesFronteirasComboBox.addItem("-");
+*/
 
             // Criar botão de ataque
             JButton atacarButton = new JButton("Atacar");
@@ -123,7 +141,15 @@ public class ApiAttack extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     String origem = (String) meusPaisesComboBox.getSelectedItem();
                     String alvo = (String) paisesFronteirasComboBox.getSelectedItem();
+
                     realizarAtaque(origem, alvo);
+
+                    System.out.println("\n\nVOLTOOOU\n\n");
+
+                    // Atualizar ComboBox de Meus Países após a conquista
+                    updateMeusPaisesComboBox(meusPaisesComboBox);
+                    // Reseta items da combo box
+                    resetaComboBox(paisesFronteirasComboBox);
                 }
             });
             cancelarButton.addActionListener(new ActionListener() {
@@ -147,8 +173,11 @@ public class ApiAttack extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     // Obter o item selecionado em "origem"
                     String selectedOrigem = (String) meusPaisesComboBox.getSelectedItem();
-                    // Atualizar "alvo" combo box com base na seleção em "origem"
-                    updateAlvoComboBox(selectedOrigem, paisesFronteirasComboBox, jogadorAtual);
+                    // Condicao para evitar bugs
+                    if (selectedOrigem != null){
+                        // Atualizar "alvo" combo box com base na seleção em "origem"
+                        updateAlvoComboBox(selectedOrigem, paisesFronteirasComboBox, jogadorAtual);
+                    }
                 }
             });
 
@@ -181,6 +210,11 @@ public class ApiAttack extends JFrame {
         for (Pais pais : vizinhosNaoPossuidos) {
             alvoComboBox.addItem(pais.getNome());
         }
+    }
+
+    private static void resetaComboBox(JComboBox<String> comboBox) {
+        comboBox.removeAllItems();
+        comboBox.addItem("-");
     }
 
 
@@ -280,7 +314,6 @@ public class ApiAttack extends JFrame {
 
 
 
-
                 if(tropasDefesa < 1) {
                     JOptionPane.showMessageDialog(null, "Territorio conquistado! " + alvoSelecionado);
                     removePaisDoDefensor(paisDefesa);
@@ -294,44 +327,19 @@ public class ApiAttack extends JFrame {
                     // atualizar a interface, atualizar combobox
                 }
 
-                System.out.println("ENTROU\n");
-
-                //teste
-                for (Pais pais : jogadorAtual.getTerritoriosPossuidos()){
-                    System.out.println("AQUI: "+pais.getNome()+"\n");
-                }
-                //teste
-
-                // Atualizar ComboBox de Meus Países após a conquista
-                updateMeusPaisesComboBox(meusPaisesComboBox);
-
             }
-            notifyObservers();
+            //notifyObservers();
         }
     }
 
     private void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox) {
-        ArrayList<String> paisesAtuais = new ArrayList<>();
+        // Zerar a JComboBox
+        meusPaisesComboBox.removeAllItems();
 
-        // Adiciona apenas os territórios com mais de 1 tropa
+        // Adicionar apenas os territórios com mais de 1 tropa
         for (Pais territorio : jogadorAtual.getTerritoriosPossuidos()) {
             if (territorio.getTropas() > 1) {
-                paisesAtuais.add(territorio.getNome());
-            }
-        }
-
-        // Remove os itens que não estão mais presentes
-        for (int i = 0; i < meusPaisesComboBox.getItemCount(); i++) {
-            String paisComboBox = meusPaisesComboBox.getItemAt(i);
-            if (!paisesAtuais.contains(paisComboBox)) {
-                meusPaisesComboBox.removeItem(paisComboBox);
-            }
-        }
-
-        // Adiciona os novos itens
-        for (String paisAtual : paisesAtuais) {
-            if (!containsItem(meusPaisesComboBox, paisAtual)) {
-                meusPaisesComboBox.addItem(paisAtual);
+                meusPaisesComboBox.addItem(territorio.getNome());
             }
         }
     }
