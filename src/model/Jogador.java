@@ -11,7 +11,6 @@ class Jogador {
     private Cor cor;
     private int premio;
     private int tropasParaAdicionar; // exercitos para o jogador adicionar
-    private int numContinentes;
     private ArrayList<Pais> territoriosPossuidos;
     private ArrayList<String> continentesPossuidos;
     private ArrayList<Territorio> poligonosPossuidos; // aqui so usarei os poligonos getPoligono()

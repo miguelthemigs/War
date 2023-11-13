@@ -13,7 +13,7 @@ import java.util.Observable;
 
 import static view.GameMap.atualizarElipses;
 
-public class ApiAttack extends JFrame {
+public class ApiAttack extends JFrame implements Observer {
 
     private int jogadorAtualIndex;
     private ArrayList<Jogador> jogadores;
@@ -67,25 +67,31 @@ public class ApiAttack extends JFrame {
 
 
     public void addObserver(Observer o) {
-        synchronized (ApiAttack.this) {
+        synchronized (this) {
             observers.add(o);
         }
     }
 
 
     public void removeObserver(Observer o) {
-        synchronized (ApiAttack.this) {
+        synchronized (this.getTreeLock()) {
             observers.remove(o);
         }
     }
 
     public void notifyObservers() {
-        synchronized (ApiAttack.this) {
+        synchronized (this.getTreeLock()) {
             for (Observer observer : observers) {
                 observer.onNotify();
             }
         }
     }
+    public void onNotify() {
+        synchronized (this.getTreeLock()){
+            atualizarElipses();  // Chame o método desejado para atualizar as elipses na interface
+        }
+    }
+
 
 
     public void iniciarAtaque() {
@@ -232,7 +238,7 @@ public class ApiAttack extends JFrame {
     }
 
     private void realizarAtaque(String territorioSelecionado, String alvoSelecionado) {
-        synchronized (ApiAttack.this) {
+
             System.out.printf("Origem do ataque: %s\nAlvo do ataque: %s", territorioSelecionado, alvoSelecionado);
             ApiAcess api = ApiAcess.getInstancia();
 
@@ -311,11 +317,19 @@ public class ApiAttack extends JFrame {
                 api.StringtoPais(alvoSelecionado).removeTropas(defenseLoss);
                 tropasDefesa -= defenseLoss;
                 System.out.println("removeu do defensor: "+ defenseLoss);
+                try {
+                    notifyObservers();
+                    System.out.println("OBSERVER");
+                } catch (IllegalMonitorStateException e) {
+                    System.out.println("ELIPSE");
+                    atualizarElipses();
+                }
 
 
 
                 if(tropasDefesa < 1) {
                     JOptionPane.showMessageDialog(null, "Territorio conquistado! " + alvoSelecionado);
+                    jogadorAtual.conquistouTerritorio = true; // indica que conquistou um territorio, e deve ganhar uma carta
                     removePaisDoDefensor(paisDefesa);
                     jogadorAtual.addTerritoriosPossuidos(paisDefesa);
                     int tropasTransferir = pedirQuantidadeTropasTransferir(tropasAtaque);
@@ -323,13 +337,17 @@ public class ApiAttack extends JFrame {
                     // Transferir tropas
                     paisDefesa.addTropas(tropasTransferir);
                     paisAtaque.removeTropas(tropasTransferir);
-
-                    // atualizar a interface, atualizar combobox
+                    //atualizarElipses();
+                    try {
+                        notifyObservers();
+                        System.out.println("OBSERVER");
+                    } catch (IllegalMonitorStateException e) {
+                        System.out.println("ELIPSE");
+                        atualizarElipses();
+                    }
                 }
 
             }
-            //notifyObservers();
-        }
     }
 
     private void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox) {
@@ -342,15 +360,6 @@ public class ApiAttack extends JFrame {
                 meusPaisesComboBox.addItem(territorio.getNome());
             }
         }
-    }
-
-    private boolean containsItem(JComboBox<String> comboBox, String item) {
-        for (int i = 0; i < comboBox.getItemCount(); i++) {
-            if (comboBox.getItemAt(i).equals(item)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private int pedirQuantidadeTropasTransferir(int tropasAtaque) {
