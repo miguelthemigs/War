@@ -1,3 +1,4 @@
+import controller.Observer;
 import model.ApiAcess;
 
 
@@ -70,10 +71,11 @@ public class Main {
 
         GameMap.atualizarElipses();
 
+
         // Configurar e exibir a interface de ataque
         AtaqueGUI ataque = AtaqueGUI.getInstancia();
         ataque.mostraAtaque();
-        // api.trocaCartasPoligono();
+        //api.trocaCartasPoligono();
 
 
 
