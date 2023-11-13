@@ -51,10 +51,8 @@ public class TextBoxes {
                     soma_tropas[0] += ApiToView.retornaTropas(jogador);
                     System.out.printf("Tropas a adicionar: %d\n", ApiToView.retornaTropas(jogador));
 
-                    List<String> territoriosList = new ArrayList<>(ApiToView.retornaTerritorios(jogador));
-                    Collections.sort(territoriosList); // Ordenar em ordem alfabética
 
-                    for (String territorio : territoriosList) {
+                    for (String territorio : ApiToView.retornaTerritorios(jogador)) {
                         SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, ApiToView.retornaTropas(jogador), 1);
                         JSpinner spinnerTropas = new JSpinner(spinnerModel);
 
