@@ -207,8 +207,11 @@ public class ApiAttack extends JFrame {
 
             if (resposta == JOptionPane.YES_OPTION) {
                 // Lógica de ataque
-                int tropasAtaque = api.StringtoPais(territorioSelecionado).getTropas();
-                int tropasDefesa = api.StringtoPais(alvoSelecionado).getTropas();
+                Pais paisAtaque = api.StringtoPais(territorioSelecionado);
+                int tropasAtaque = paisAtaque.getTropas();
+
+                Pais paisDefesa = api.StringtoPais(alvoSelecionado);
+                int tropasDefesa = paisDefesa.getTropas();
                 int numeroDadosAtaque = 0, numeroDadosDefesa = 0;
 
                 int[] resultadosAtaque = new int[]{0, 0, 0};
@@ -264,9 +267,55 @@ public class ApiAttack extends JFrame {
                 JOptionPane.showMessageDialog(null, mensagemResultado);
 
                 api.StringtoPais(territorioSelecionado).removeTropas(attackLoss); // ja remove as tropas
-                api.StringtoPais(alvoSelecionado).removeTropas(attackLoss);
-               // notifyObservers();
+                tropasAtaque -= attackLoss;
+                System.out.println("removeu do atacante: "+ attackLoss);
+
+                api.StringtoPais(alvoSelecionado).removeTropas(defenseLoss);
+                tropasDefesa -= defenseLoss;
+                System.out.println("removeu do defensor: "+ defenseLoss);
+
+                //notifyObservers();
+
+                if(tropasDefesa < 1) {
+                    JOptionPane.showMessageDialog(null, "Territorio conquistado! " + alvoSelecionado);
+                    removePaisDoDefensor(paisDefesa);
+                    jogadorAtual.addTerritoriosPossuidos(paisDefesa);
+                    int tropasTransferir = pedirQuantidadeTropasTransferir(tropasAtaque);
+                    // Transferir tropas
+                    paisDefesa.addTropas(tropasTransferir);
+                    paisAtaque.removeTropas(tropasTransferir);
+
+                    // atualizar a interface, atualizar combobox
+                }
+
             }
+        }
+    }
+    private int pedirQuantidadeTropasTransferir(int tropasAtaque) {
+        // Criar um JSpinner para permitir que o jogador selecione o número de tropas a serem transferidas
+        SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, Math.min(tropasAtaque-1, 3), 1);
+        JSpinner spinnerTropas = new JSpinner(spinnerModel);
+
+        // Criar um painel para agrupar o rótulo e o spinner
+        JPanel spinnerPanel = new JPanel();
+        spinnerPanel.add(new JLabel("Selecione o número de tropas a serem transferidas (1-" + Math.min(tropasAtaque-1, 3) +"): "));
+        spinnerPanel.add(spinnerTropas);
+
+        // Exibir um diálogo para o jogador inserir a quantidade de tropas a serem transferidas
+        int result = JOptionPane.showConfirmDialog(
+                null,
+                spinnerPanel,
+                "Transferir Tropas",
+                JOptionPane.OK_CANCEL_OPTION
+        );
+
+        // Se o jogador pressionar OK, retorna a quantidade selecionada, caso contrário, retorna 0
+        return (result == JOptionPane.OK_OPTION) ? (int) spinnerTropas.getValue() : 0;
+    }
+    private void removePaisDoDefensor(Pais pais){
+        for(Jogador jogador: jogadores){
+            if(jogador.getTerritoriosPossuidos().contains(pais))
+                jogador.removeTerritorio(pais);
         }
     }
 

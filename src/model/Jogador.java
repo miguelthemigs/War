@@ -99,6 +99,9 @@ class Jogador {
     public void addTerritoriosPossuidos(Pais territorios) {
         territoriosPossuidos.add(territorios);
     }
+    public void removeTerritorio(Pais pais){
+        territoriosPossuidos.remove(pais);
+    }
     public int getNumTerritorios() {
         return territoriosPossuidos.size();
     }
