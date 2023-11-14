@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.awt.FlowLayout;
 import java.util.Collections;
 import java.util.Observable;
 
@@ -100,6 +101,7 @@ public class ApiAttack extends JFrame implements Observer {
         setSize(400, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        setLocation(1025,0);
 
         System.out.println("\n\nOPAAAAAAAAA\n\n");
 
@@ -125,19 +127,6 @@ public class ApiAttack extends JFrame implements Observer {
 
             // Configurar layout
             setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-
-/*
-            // Criar combo box para Meus Países
-            //JComboBox<String> meusPaisesComboBox = new JComboBox<>();
-            for (Pais territorio : territoriosJogador) {
-                if (territorio.getTropas() > 1)
-                    meusPaisesComboBox.addItem(territorio.getNome());
-            }
-
-            // Criar combo box para Países Fronteiras
-            //JComboBox<String> paisesFronteirasComboBox = new JComboBox<>();
-            paisesFronteirasComboBox.addItem("-");
-*/
 
             // Criar botão de ataque
             JButton atacarButton = new JButton("Atacar");
@@ -165,13 +154,22 @@ public class ApiAttack extends JFrame implements Observer {
                 }
             });
 
+            // Criar contêiner para os botões "Atacar" e "Finalizar"
+            JPanel botoesPanel = new JPanel();
+
+            // Configurando layout para o contêiner dos botões
+            botoesPanel.setLayout(new FlowLayout());
+
+            // Adicionar botões ao contêiner
+            botoesPanel.add(atacarButton);
+            botoesPanel.add(cancelarButton);
+
             // Adicionar componentes ao frame
             add(new JLabel("Selecione o território de origem:"));
             add(meusPaisesComboBox);
             add(new JLabel("Selecione o território alvo:"));
             add(paisesFronteirasComboBox);
-            add(atacarButton);
-            add(cancelarButton);
+            add(botoesPanel); // Adicionar o contêiner dos botões
 
             // Adiciona ActionListener para atualizar "alvo" combo box quando "origem" é selecionado
             meusPaisesComboBox.addActionListener(new ActionListener() {

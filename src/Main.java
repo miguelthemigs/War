@@ -48,35 +48,39 @@ public class Main {
         GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
         //api.trocaCartasPoligono();
 
+        int limitador = 3;
+        while (limitador > 0) {
+            System.out.println("------- Checando se os jogadores possuem algum continente --------");
+            // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente
+            api.checaContinentesJogador();
 
-        System.out.println("------- Checando se os jogadores possuem algum continente --------");
-        // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente
-        api.checaContinentesJogador();
+            // Vamos chegar as tropas a receber, de cada jogador
+            api.checarTropasGanhar();
+            api.imprimeTropasARecber();
 
-        // Vamos chegar as tropas a receber, de cada jogador
-        api.checarTropasGanhar();
-        api.imprimeTropasARecber();
+            box.criarInterface(() -> {
+                System.out.println("estou aqui");
 
-        box.criarInterface(() -> {
-            System.out.println("estou aqui");
-
-        });
-        try {
-            synchronized (box.getLock()) {
-                box.getLock().wait(); // Espere pela notificação do onde finalizamos onde queremos colocar o territorio
+            });
+            try {
+                synchronized (box.getLock()) {
+                    box.getLock().wait(); // Espere pela notificação do onde finalizamos onde queremos colocar o territorio
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+            GameMap.atualizarElipses();
+
+
+            // Configurar e exibir a interface de ataque
+            AtaqueGUI ataque = AtaqueGUI.getInstancia();
+            ataque.mostraAtaque(); // efetua ataque dos jogadores
+            api.distribuiCartas(); // ao fim do ataque, distribuimos uma carta para os jogadores que conquistaram um territorio
+            //api.trocaCartasPoligono();
+
+            limitador--;
         }
-
-        GameMap.atualizarElipses();
-
-
-        // Configurar e exibir a interface de ataque
-        AtaqueGUI ataque = AtaqueGUI.getInstancia();
-        ataque.mostraAtaque(); // efetua ataque dos jogadores
-        api.distribuiCartas(); // ao fim do ataque, distribuimos uma carta para os jogadores que conquistaram um territorio
-        //api.trocaCartasPoligono();
 
 
 
