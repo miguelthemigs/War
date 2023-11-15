@@ -36,6 +36,11 @@ public class ApiAttack extends JFrame implements Observer {
         this.territoriosJogador = new ArrayList<>();
     }
 
+    // Método para reiniciar a instância
+    public static void resetInstancia() {
+        instancia = null;
+    }
+
     public static ApiAttack getInstancia(ArrayList<Jogador> jogadores) {
         if (instancia == null) {
             instancia = new ApiAttack();
@@ -107,6 +112,7 @@ public class ApiAttack extends JFrame implements Observer {
 
         // Infinite loop until "Cancelar" is pressed
         while (true) {
+            System.out.println("\n\n\nENTROU NO LOOP ATAQUE\n\n\n");
 
             //teste
             for (Pais pais : jogadorAtual.getTerritoriosPossuidos()){
@@ -202,6 +208,7 @@ public class ApiAttack extends JFrame implements Observer {
                 break;
             }
         }
+        System.out.println("\n\n\nSAIU NO LOOP ATAQUE\n\n\n");
     }
 
     // Método para atualizar o combo box "alvo" com base na seleção em "origem"

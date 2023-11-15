@@ -74,10 +74,13 @@ public class Main {
 
 
             // Configurar e exibir a interface de ataque
+            ApiAttack.resetInstancia();
             AtaqueGUI ataque = AtaqueGUI.getInstancia();
             ataque.mostraAtaque(); // efetua ataque dos jogadores
+
+
             api.distribuiCartas(); // ao fim do ataque, distribuimos uma carta para os jogadores que conquistaram um territorio
-            //api.trocaCartasPoligono();
+            api.trocaCartasPoligono();
 
             limitador--;
         }
