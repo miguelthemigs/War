@@ -313,38 +313,44 @@ private boolean temCor(Jogador.Cor cor){
 
         // Iterar sobre os jogadores
         for (Jogador jogador : jogadores) {
-            // Criar um painel para checkboxes
-            JPanel checkboxPanel = new JPanel();
-            checkboxPanel.setLayout(new BoxLayout(checkboxPanel, BoxLayout.Y_AXIS));
+            if (!jogador.getPoligonosPossuidos().isEmpty()) {
+                // Criar um painel para checkboxes
+                JPanel checkboxPanel = new JPanel();
+                checkboxPanel.setLayout(new BoxLayout(checkboxPanel, BoxLayout.Y_AXIS));
 
-            ArrayList<String> cartas = new ArrayList<>();
+                // Adicionar rótulo indicando o jogador
+                JLabel label = new JLabel("Cartas do jogador " + jogador.getCor() + ":");
+                checkboxPanel.add(label);
 
-            for (Cartas.Territorio carta : jogador.getPoligonosPossuidos()) {
-                cartas.add("Forma: " + carta.getPoligono() + "\nPais: " + carta.getPais() + "\n");
-            }
+                ArrayList<String> cartas = new ArrayList<>();
 
-            // Adicionar checkboxes ao painel
-            JCheckBox[] checkboxes = new JCheckBox[cartas.size()];
-            for (int j = 0; j < cartas.size(); j++) {
-                checkboxes[j] = new JCheckBox(cartas.get(j));
-                checkboxPanel.add(checkboxes[j]);
-            }
+                for (Cartas.Territorio carta : jogador.getPoligonosPossuidos()) {
+                    cartas.add("Forma: " + carta.getPoligono() + " (" + carta.getPais() + ")");
+                }
 
-            // Exibir o painel de checkboxes
-            int result = JOptionPane.showConfirmDialog(null, checkboxPanel, "Selecione as cartas", JOptionPane.OK_CANCEL_OPTION);
+                // Adicionar checkboxes ao painel
+                JCheckBox[] checkboxes = new JCheckBox[cartas.size()];
+                for (int j = 0; j < cartas.size(); j++) {
+                    checkboxes[j] = new JCheckBox(cartas.get(j));
+                    checkboxPanel.add(checkboxes[j]);
+                }
 
-            // Se o usuário clicar em OK, processar as cartas selecionadas
-            if (result == JOptionPane.OK_OPTION) {
-                for (int j = 0; j < checkboxes.length; j++) {
-                    if (checkboxes[j].isSelected()) {
-                        // Adicione lógica para processar a carta selecionada
-                        // Você pode acessar a carta correspondente usando jogadores.get(i).getPoligonosPossuidos().get(j)
+                // Exibir o painel de checkboxes
+                int result = JOptionPane.showConfirmDialog(null, checkboxPanel, "Selecione as cartas", JOptionPane.OK_CANCEL_OPTION);
+
+                // Se o usuário clicar em OK, processar as cartas selecionadas
+                if (result == JOptionPane.OK_OPTION) {
+                    for (int j = 0; j < checkboxes.length; j++) {
+                        if (checkboxes[j].isSelected()) {
+                            // Adicione lógica para processar a carta selecionada
+                            // Você pode acessar a carta correspondente usando jogadores.get(i).getPoligonosPossuidos().get(j)
+                        }
                     }
                 }
-            }
 
-            // Limpar o painel
-            checkboxPanel.removeAll();
+                // Limpar o painel
+                checkboxPanel.removeAll();
+            }
         }
     }
     public Pais StringtoPais(String nomeTerritorio) {
