@@ -301,6 +301,7 @@ private boolean temCor(Jogador.Cor cor){
     }
 
     public void trocaCartasPoligono() {
+        /*
         jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[0]);
         jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[1]);
         jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[2]);
@@ -310,7 +311,7 @@ private boolean temCor(Jogador.Cor cor){
         jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[22]);
         jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[17]);
         jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[52]);
-
+*/
         // Iterar sobre os jogadores
         for (Jogador jogador : jogadores) {
             if (!jogador.getPoligonosPossuidos().isEmpty()) {
@@ -368,13 +369,24 @@ private boolean temCor(Jogador.Cor cor){
 
                             // Verifica se as cartas são todas iguais ou todas diferentes (carta coringa já se aplica na logica de diferente)
                             if (
-                                    cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(1).getPoligono()) &&
+                                    (cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(1).getPoligono()) &&
                                     cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(2).getPoligono()) &&
-                                    cartasSelecionadas.get(1).getPoligono().equals(cartasSelecionadas.get(2).getPoligono())
-                            ) {
+                                    cartasSelecionadas.get(1).getPoligono().equals(cartasSelecionadas.get(2).getPoligono())) ||
+                                            ((cartasSelecionadas.get(0).getPoligono().equals(Cartas.Poligono.coringa) && cartasSelecionadas.get(1).getPoligono().equals(cartasSelecionadas.get(2).getPoligono())) ||
+                                                    ((cartasSelecionadas.get(1).getPoligono().equals(Cartas.Poligono.coringa) && cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(2).getPoligono()))) ||
+                                                            (cartasSelecionadas.get(2).getPoligono().equals(Cartas.Poligono.coringa) && cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(1).getPoligono()))
+                            )) {
                                 System.out.println("IGUAIS");
                                 // Adicione a lógica para realizar a troca quando as cartas são iguais
                                 cartasSelecionadasCorretamente = true;
+                                cartasEmJogo.add(cartasSelecionadas.get(0)); // devolvo a carta troca para lista de cartas
+                                cartasEmJogo.add(cartasSelecionadas.get(1));
+                                cartasEmJogo.add(cartasSelecionadas.get(2));
+                                jogador.removePoligonosPossuidos(cartasSelecionadas.get(0));
+                                jogador.removePoligonosPossuidos(cartasSelecionadas.get(1));
+                                jogador.removePoligonosPossuidos(cartasSelecionadas.get(2));
+                                comparaPremios(jogador);
+
                             } else if (
                                     !cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(1).getPoligono()) &&
                                     !cartasSelecionadas.get(1).getPoligono().equals(cartasSelecionadas.get(2).getPoligono()) &&
@@ -384,6 +396,14 @@ private boolean temCor(Jogador.Cor cor){
                                 System.out.println("DIFF");
                                 // Adicione a lógica para realizar a troca quando as cartas são diferentes
                                 cartasSelecionadasCorretamente = true;
+                                cartasEmJogo.add(cartasSelecionadas.get(0));
+                                cartasEmJogo.add(cartasSelecionadas.get(1));
+                                cartasEmJogo.add(cartasSelecionadas.get(2));
+                                jogador.removePoligonosPossuidos(cartasSelecionadas.get(0));
+                                jogador.removePoligonosPossuidos(cartasSelecionadas.get(1));
+                                jogador.removePoligonosPossuidos(cartasSelecionadas.get(2));
+                                comparaPremios(jogador);
+
                             } else {
                                 // Se não são todas iguais nem todas diferentes, exibe uma mensagem de erro
                                 JOptionPane.showMessageDialog(null, "Por favor, selecione cartas que são todas iguais ou todas diferentes.", "Erro", JOptionPane.ERROR_MESSAGE);
