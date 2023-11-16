@@ -301,7 +301,6 @@ private boolean temCor(Jogador.Cor cor){
     }
 
     public void trocaCartasPoligono() {
-
         jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[0]);
         jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[1]);
         jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[2]);
@@ -310,49 +309,98 @@ private boolean temCor(Jogador.Cor cor){
         jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[13]);
         jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[22]);
         jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[17]);
+        jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[52]);
 
         // Iterar sobre os jogadores
         for (Jogador jogador : jogadores) {
             if (!jogador.getPoligonosPossuidos().isEmpty()) {
-                // Criar um painel para checkboxes
-                JPanel checkboxPanel = new JPanel();
-                checkboxPanel.setLayout(new BoxLayout(checkboxPanel, BoxLayout.Y_AXIS));
+                boolean cartasSelecionadasCorretamente = false;
 
-                // Adicionar rótulo indicando o jogador
-                JLabel label = new JLabel("Cartas do jogador " + jogador.getCor() + ":");
-                checkboxPanel.add(label);
+                while (!cartasSelecionadasCorretamente) {
+                    // Criar um painel para checkboxes
+                    JPanel checkboxPanel = new JPanel();
+                    checkboxPanel.setLayout(new BoxLayout(checkboxPanel, BoxLayout.Y_AXIS));
 
-                ArrayList<String> cartas = new ArrayList<>();
+                    // Adicionar rótulo indicando o jogador
+                    JLabel label = new JLabel("Cartas do jogador " + jogador.getCor() + ":");
+                    checkboxPanel.add(label);
 
-                for (Cartas.Territorio carta : jogador.getPoligonosPossuidos()) {
-                    cartas.add("Forma: " + carta.getPoligono() + " (" + carta.getPais() + ")");
-                }
+                    ArrayList<String> cartas = new ArrayList<>();
 
-                // Adicionar checkboxes ao painel
-                JCheckBox[] checkboxes = new JCheckBox[cartas.size()];
-                for (int j = 0; j < cartas.size(); j++) {
-                    checkboxes[j] = new JCheckBox(cartas.get(j));
-                    checkboxPanel.add(checkboxes[j]);
-                }
+                    for (Cartas.Territorio carta : jogador.getPoligonosPossuidos()) {
+                        cartas.add("Forma: " + carta.getPoligono() + " (" + carta.getPais() + ")");
+                    }
 
-                // Exibir o painel de checkboxes
-                int result = JOptionPane.showConfirmDialog(null, checkboxPanel, "Selecione as cartas", JOptionPane.OK_CANCEL_OPTION);
+                    // Adicionar checkboxes ao painel
+                    JCheckBox[] checkboxes = new JCheckBox[cartas.size()];
+                    for (int j = 0; j < cartas.size(); j++) {
+                        checkboxes[j] = new JCheckBox(cartas.get(j));
+                        checkboxPanel.add(checkboxes[j]);
+                    }
 
-                // Se o usuário clicar em OK, processar as cartas selecionadas
-                if (result == JOptionPane.OK_OPTION) {
-                    for (int j = 0; j < checkboxes.length; j++) {
-                        if (checkboxes[j].isSelected()) {
-                            // Adicione lógica para processar a carta selecionada
-                            // Você pode acessar a carta correspondente usando jogadores.get(i).getPoligonosPossuidos().get(j)
+                    // Exibir o painel de checkboxes
+                    int result = JOptionPane.showConfirmDialog(null, checkboxPanel, "Selecione as cartas", JOptionPane.OK_CANCEL_OPTION);
+
+                    // Se o usuário clicar em OK, processar as cartas selecionadas
+                    if (result == JOptionPane.OK_OPTION) {
+                        // Lista para armazenar as cartas selecionadas
+                        ArrayList<Cartas.Territorio> cartasSelecionadas = new ArrayList<>();
+                        for (int j = 0; j < checkboxes.length; j++) {
+                            if (checkboxes[j].isSelected()) {
+                                // Adicione lógica para processar a carta selecionada
+                                // Você pode acessar a carta correspondente usando jogadores.get(i).getPoligonosPossuidos().get(j)
+
+                                // Obtém a carta selecionada
+                                Cartas.Territorio cartaSelecionada = jogador.getPoligonosPossuidos().get(j);
+
+                                // Adiciona a carta à lista de cartas selecionadas
+                                cartasSelecionadas.add(cartaSelecionada);
+                            }
                         }
+
+                        // Verifica se o jogador selecionou exatamente 3 cartas
+                        if (cartasSelecionadas.size() == 3) {
+                            // Imprime os detalhes das 3 cartas
+                            System.out.println("Forma da carta selecionada 1: '" + cartasSelecionadas.get(0).getPoligono() + "'(" + cartasSelecionadas.get(0).getPais() + ")");
+                            System.out.println("Forma da carta selecionada 2: '" + cartasSelecionadas.get(1).getPoligono() + "'(" + cartasSelecionadas.get(1).getPais() + ")");
+                            System.out.println("Forma da carta selecionada 3: '" + cartasSelecionadas.get(2).getPoligono() + "'(" + cartasSelecionadas.get(2).getPais() + ")");
+
+
+                            // Verifica se as cartas são todas iguais ou todas diferentes (carta coringa já se aplica na logica de diferente)
+                            if (
+                                    cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(1).getPoligono()) &&
+                                    cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(2).getPoligono()) &&
+                                    cartasSelecionadas.get(1).getPoligono().equals(cartasSelecionadas.get(2).getPoligono())
+                            ) {
+                                System.out.println("IGUAIS");
+                                // Adicione a lógica para realizar a troca quando as cartas são iguais
+                                cartasSelecionadasCorretamente = true;
+                            } else if (
+                                    !cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(1).getPoligono()) &&
+                                    !cartasSelecionadas.get(1).getPoligono().equals(cartasSelecionadas.get(2).getPoligono()) &&
+                                    !cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(2).getPoligono())
+                            ) {
+
+                                System.out.println("DIFF");
+                                // Adicione a lógica para realizar a troca quando as cartas são diferentes
+                                cartasSelecionadasCorretamente = true;
+                            } else {
+                                // Se não são todas iguais nem todas diferentes, exibe uma mensagem de erro
+                                JOptionPane.showMessageDialog(null, "Por favor, selecione cartas que são todas iguais ou todas diferentes.", "Erro", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            // Se o jogador não selecionou exatamente 3 cartas, exibe uma mensagem de erro
+                            JOptionPane.showMessageDialog(null, "Por favor, selecione exatamente 3 cartas.", "Erro", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        // Se o usuário clicar em Cancelar, sair do loop
+                        break;
                     }
                 }
-
-                // Limpar o painel
-                checkboxPanel.removeAll();
             }
         }
     }
+
     public Pais StringtoPais(String nomeTerritorio) {
         for (Pais pais : geraListaSorteioTerritorios()) {
             if (pais.getNome().equals(nomeTerritorio)) {
