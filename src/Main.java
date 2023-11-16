@@ -48,7 +48,7 @@ public class Main {
         GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
         //api.trocaCartasPoligono();
 
-        int limitador = 3;
+        int limitador = 100;
         while (limitador > 0) {
             System.out.println("------- Checando se os jogadores possuem algum continente --------");
             // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente

@@ -210,7 +210,7 @@ private boolean temCor(Jogador.Cor cor){
             tropasGanhar += checarTropasAMais(jogador);
             if (tropasGanhar < 3)
                 tropasGanhar = 3;
-            jogador.setTropasParaAdicionar(tropasGanhar);
+            jogador.adicionaTropasParaAdicionar(tropasGanhar);
         }
     }
 
@@ -386,6 +386,7 @@ private boolean temCor(Jogador.Cor cor){
                                 jogador.removePoligonosPossuidos(cartasSelecionadas.get(1));
                                 jogador.removePoligonosPossuidos(cartasSelecionadas.get(2));
                                 comparaPremios(jogador);
+                                break;
 
                             } else if (
                                     !cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(1).getPoligono()) &&
@@ -403,6 +404,7 @@ private boolean temCor(Jogador.Cor cor){
                                 jogador.removePoligonosPossuidos(cartasSelecionadas.get(1));
                                 jogador.removePoligonosPossuidos(cartasSelecionadas.get(2));
                                 comparaPremios(jogador);
+                                break;
 
                             } else {
                                 // Se não são todas iguais nem todas diferentes, exibe uma mensagem de erro
