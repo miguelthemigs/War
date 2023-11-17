@@ -73,32 +73,23 @@ public class ApiAttack extends JFrame implements Observer {
 
 
     public void addObserver(Observer o) {
-        synchronized (this) {
             observers.add(o);
-        }
     }
 
 
     public void removeObserver(Observer o) {
-        synchronized (this.getTreeLock()) {
             observers.remove(o);
-        }
+
     }
 
     public void notifyObservers() {
-        synchronized (this.getTreeLock()) {
             for (Observer observer : observers) {
                 observer.onNotify();
-            }
         }
     }
     public void onNotify() {
-        synchronized (this.getTreeLock()){
             atualizarElipses();  // Chame o método desejado para atualizar as elipses na interface
-        }
     }
-
-
 
     public void iniciarAtaque() {
         // Configurar frame
@@ -322,15 +313,7 @@ public class ApiAttack extends JFrame implements Observer {
                 api.StringtoPais(alvoSelecionado).removeTropas(defenseLoss);
                 tropasDefesa -= defenseLoss;
                 System.out.println("removeu do defensor: "+ defenseLoss);
-                try {
-                    notifyObservers();
-                    System.out.println("OBSERVER");
-                } catch (IllegalMonitorStateException e) {
-                    System.out.println("ELIPSE");
-                    atualizarElipses();
-                }
-
-
+                notifyObservers();
 
                 if(tropasDefesa < 1) {
                     JOptionPane.showMessageDialog(null, "Territorio conquistado! " + alvoSelecionado);
@@ -342,14 +325,8 @@ public class ApiAttack extends JFrame implements Observer {
                     // Transferir tropas
                     paisDefesa.addTropas(tropasTransferir);
                     paisAtaque.removeTropas(tropasTransferir);
-                    //atualizarElipses();
-                    try {
-                        notifyObservers();
-                        System.out.println("OBSERVER");
-                    } catch (IllegalMonitorStateException e) {
-                        System.out.println("ELIPSE");
-                        atualizarElipses();
-                    }
+                    notifyObservers();
+
                 }
 
             }
