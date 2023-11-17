@@ -48,7 +48,7 @@ public class ApiAttack extends JFrame implements Observer {
 
             // Criar uma instância de SuaClasse e registrar como observador
             Observer observador = GameMap::atualizarElipses;
-            instancia.addObserver(observador::notify);
+            instancia.addObserver(observador);
         }
         return instancia;
     }
