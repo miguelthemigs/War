@@ -46,10 +46,9 @@ public class Main {
         // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
         api.sorteiaTerritorios();
         GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
-        //api.trocaCartasPoligono();
 
-        int limitador = 100;
-        while (limitador > 0) {
+
+        while (!api.checaSeGanhou()) {
             System.out.println("------- Checando se os jogadores possuem algum continente --------");
             // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente
             api.checaContinentesJogador();
@@ -82,7 +81,6 @@ public class Main {
             api.distribuiCartas(); // ao fim do ataque, distribuimos uma carta para os jogadores que conquistaram um territorio
             api.trocaCartasPoligono();
 
-            limitador--;
         }
 
 
