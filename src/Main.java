@@ -48,6 +48,7 @@ public class Main {
         GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
 
 
+    // Roda infinitamente. Quem para o jogo é a funcao "checaSeGanhou", chamda depois de cada ataque
         while (!api.checaSeGanhou()) {
             System.out.println("------- Checando se os jogadores possuem algum continente --------");
             // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente

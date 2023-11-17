@@ -58,13 +58,13 @@ private boolean temCor(Jogador.Cor cor){
 
                 if (atendeCriterioVitoriaCores(jogador, objetivo, corAlvo)) { // se o jogador tiver algum objetivo de cores, ele entra aqui
                     jogador.ganhouJogo = true;
-                    System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                    JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
                 for (Jogador oponente : jogadores) { // checa se nao eiste o jogador que deveria destruir
                     if (oponente.getCor().equals(corAlvo) && oponente.getTerritoriosPossuidos().isEmpty()) {
                         jogador.ganhouJogo = true;
-                        System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                        JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                         return true;
                     }
 
@@ -75,47 +75,47 @@ private boolean temCor(Jogador.Cor cor){
             ArrayList<String> continentesDoJogador = jogador.checaContinentes();
             if (continentesDoJogador.contains("AmericaNorte") && continentesDoJogador.contains("Africa")) {
                 jogador.ganhouJogo = true;
-                System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             }
         } else if ((jogador.getObjetivo().equals(objetivos[7]))) {
             ArrayList<String> continentesDoJogador = jogador.checaContinentes();
             if (continentesDoJogador.contains("Asia") && continentesDoJogador.contains("Africa")) {
                 jogador.ganhouJogo = true;
-                System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             }
         } else if ((jogador.getObjetivo().equals(objetivos[8]))) {
             ArrayList<String> continentesDoJogador = jogador.checaContinentes();
             if (continentesDoJogador.contains("Oceania") && continentesDoJogador.contains("AmericaNorte")) {
                 jogador.ganhouJogo = true;
-                System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             }
         } else if ((jogador.getObjetivo().equals(objetivos[9]))) {
             ArrayList<String> continentesDoJogador = jogador.checaContinentes();
             if (continentesDoJogador.contains("Asia") && continentesDoJogador.contains("AmericaSul")) {
                 jogador.ganhouJogo = true;
-                System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             }
         } else if ((jogador.getObjetivo().equals(objetivos[10]))) {
             ArrayList<String> continentesDoJogador = jogador.checaContinentes();
             if (continentesDoJogador.contains("Europa") && continentesDoJogador.contains("AmericaSul") && continentesDoJogador.size() >= 3) {
                 jogador.ganhouJogo = true;
-                System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             }
         } else if ((jogador.getObjetivo().equals(objetivos[11]))) {
             ArrayList<String> continentesDoJogador = jogador.checaContinentes();
             if (continentesDoJogador.contains("Europa") && continentesDoJogador.contains("Oceania") && continentesDoJogador.size() >= 3) {
                 jogador.ganhouJogo = true;
-                System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             }
         } else if ((jogador.getObjetivo().equals(objetivos[12])) && jogador.getTerritoriosPossuidos().size() >= 24) {
             jogador.ganhouJogo = true;
-            System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+            JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } else if ((jogador.getObjetivo().equals(objetivos[13]))) {
             ArrayList<Pais> territorios = jogador.getTerritoriosPossuidos();
@@ -127,7 +127,7 @@ private boolean temCor(Jogador.Cor cor){
                 }
                 if (contagem >= 18) { // significa que tenho mais de 18 territorios com 2 ou mais tropas
                     jogador.ganhouJogo = true;
-                    System.out.println("Jogador " + jogador.getCor() + " ganhou!");
+                    JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
             }
