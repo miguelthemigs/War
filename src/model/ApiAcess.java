@@ -303,17 +303,7 @@ private boolean temCor(Jogador.Cor cor){
     }
 
     public void trocaCartasPoligono() {
-        /*
-        jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[0]);
-        jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[1]);
-        jogadores.get(0).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[2]);
-        jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[6]);
-        jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[8]);
-        jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[13]);
-        jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[22]);
-        jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[17]);
-        jogadores.get(1).addPoligonosPossuidos(Cartas.Territorio.allTerritorios[52]);
-*/
+
         // Iterar sobre os jogadores
         for (Jogador jogador : jogadores) {
             if (!jogador.getPoligonosPossuidos().isEmpty()) {
@@ -437,10 +427,14 @@ private boolean temCor(Jogador.Cor cor){
 
     public void ataque() {
         ApiAttack api = ApiAttack.getInstancia(jogadores);
+        ApiAcess api2 = ApiAcess.getInstancia();
+        boolean ganhou = false;
 
         while (api.podeIniciarProximoAtaque()) {
-            api.iniciarProximoAtaque();
-
+            ganhou = api2.checaSeGanhou();
+            if(!ganhou)
+                api.iniciarProximoAtaque();
+            else break;
         }
 
 
