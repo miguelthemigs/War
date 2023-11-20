@@ -187,12 +187,7 @@ private boolean temCor(Jogador.Cor cor){
             jogadores.add(new Jogador(Jogador.Cor.valueOf(cor)));
         }
 
-        // Agora você tem uma lista de jogadores com as cores escolhidas
-        for (Jogador jogador : jogadores) {
-            System.out.println("Jogador " + jogador.getCor() + " escolheu a cor: " + jogador.getCor());
-        }
         System.out.println("Cores escolhidas: " + coresEscolhidas);
-        System.out.println("--------------------------------------------------------");
     }
 
     public void checaContinentesJogador() {
@@ -213,6 +208,7 @@ private boolean temCor(Jogador.Cor cor){
             if (tropasGanhar < 3)
                 tropasGanhar = 3;
             jogador.adicionaTropasParaAdicionar(tropasGanhar);
+            System.out.println("Jogador " + jogador.getCor() + " ganhou: " + tropasGanhar);
         }
     }
 

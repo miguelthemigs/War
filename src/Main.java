@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("\n********** JOGO INICIADO **********\n");
         InitGame view = new InitGame();
         JFrame frame;
         TextBoxes box = new TextBoxes();
@@ -39,24 +40,32 @@ public class Main {
 
         ArrayList<String> coresEscolhidas = customPanel.getCoresSelecionadas();
         api.gerarJogadores(coresEscolhidas);
+        System.out.println("\n********** JOGADORES GERADOS **********\n");
 
         // Aqui realizamos e colocamos cada jogador para ter seu objetivo
         api.sorteiaObjetivo();
+        System.out.println("\n********** OBJETIVOS SORTEADOS **********\n");
 
         // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
         api.sorteiaTerritorios();
+        System.out.println("\n********** TERRITORIOS ATUALIZADOS **********\n");
         GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
+        System.out.println("\n********** MAPA INICIALIZADO **********\n");
 
+        System.out.println("\n|||||||||||| FIM DO PRÉ JOGO ||||||||||||");
 
-    // Roda infinitamente. Quem para o jogo é a funcao "checaSeGanhou", chamda depois de cada ataque
+        // Roda infinitamente. Quem para o jogo é a funcao "checaSeGanhou", chamda depois de cada ataque
         while (!api.checaSeGanhou()) {
-            System.out.println("------- Checando se os jogadores possuem algum continente --------");
+            System.out.println("\n|||||||||||| INICIO DO LOOP ||||||||||||\n\n");
+
             // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente
             api.checaContinentesJogador();
+            System.out.println("\n********** CONTINENTES CHECADOS **********\n");
 
             // Vamos chegar as tropas a receber, de cada jogador
             api.checarTropasGanhar();
-            api.imprimeTropasARecber();
+            System.out.println("\n********** TROPAS GANHAR CHECADOS **********\n");
+            //api.imprimeTropasARecber();
 
             box.criarInterface(() -> {
                 System.out.println("estou aqui");
@@ -71,16 +80,42 @@ public class Main {
             }
 
             GameMap.atualizarElipses();
+            System.out.println("\n********** ELIPSES ATUALIZADAS **********\n");
 
-
+            System.out.println("--------------------------------------");
+            System.out.println("---------- INICIANDO ATAQUE ----------\n\n");
             // Configurar e exibir a interface de ataque
             ApiAttack.resetInstancia();
             AtaqueGUI ataque = AtaqueGUI.getInstancia();
             ataque.mostraAtaque(); // efetua ataque dos jogadores
+            System.out.println("\n\n---------- FINALIZANDO ATAQUE --------\n");
+            System.out.println("\n----------------------------------------\n\n");
 
-
+            System.out.println("\n\n----------------------------------------------\n");
+            System.out.println("\n---------- INICIANDO PROCESSOS CARTAS ----------\n");
             api.distribuiCartas(); // ao fim do ataque, distribuimos uma carta para os jogadores que conquistaram um territorio
             api.trocaCartasPoligono();
+            System.out.println("\n------------------------------------------------");
+            System.out.println("\n---------- FINALIZANDO PROCESSOS CARTAS ----------\n");
+
+            /*
+            Cor:
+            TropasAdd:
+            Territórios:[ ]
+            Cartas:[ ]
+            Prêmio:
+
+            for (jogador jogador : jogadores){
+                System.out.println(jogador.getCor());
+                System.out.println(jogador.getTropasParaAdicionar());
+                System.out.println(jogador.getTerritoriosPossuidos());
+                System.out.println(jogador.getPoligonosPossuidos());
+                System.out.println(jogador.getPremio());
+            }
+            
+            */
+
+            System.out.println("\n|||||||||||| FIM DO LOOP ||||||||||||\n\n");
 
         }
 

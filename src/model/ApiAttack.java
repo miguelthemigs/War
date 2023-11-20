@@ -99,24 +99,14 @@ public class ApiAttack extends JFrame implements Observer {
         setLocationRelativeTo(null);
         setLocation(1025,0);
 
-        System.out.println("\n\nOPAAAAAAAAA\n\n");
-
         // Infinite loop until "Cancelar" is pressed
         while (true) {
-            System.out.println("\n\n\nENTROU NO LOOP ATAQUE\n\n\n");
+            System.out.println("\nENTROU NO LOOP ATAQUE\n\n");
 
-            //teste
-            for (Pais pais : jogadorAtual.getTerritoriosPossuidos()){
-                System.out.println("AQUI: "+pais.getNome()+"\n");
-            }
-            //teste
-
-            //Teste
-            // Atualizar ComboBox de Meus Países após a conquista
+            // Atualizar ComboBox de Meus Países
             updateMeusPaisesComboBox(meusPaisesComboBox);
-            // Reseta items da combo box
+            // Reseta items da combo box alvo
             resetaComboBox(paisesFronteirasComboBox);
-            //Teste
 
             // Clear the contents of the frame for each iteration
             getContentPane().removeAll();
@@ -135,8 +125,6 @@ public class ApiAttack extends JFrame implements Observer {
                     String alvo = (String) paisesFronteirasComboBox.getSelectedItem();
 
                     realizarAtaque(origem, alvo);
-
-                    System.out.println("\n\nVOLTOOOU\n\n");
 
                     // Atualizar ComboBox de Meus Países após a conquista
                     updateMeusPaisesComboBox(meusPaisesComboBox);
@@ -199,7 +187,7 @@ public class ApiAttack extends JFrame implements Observer {
                 break;
             }
         }
-        System.out.println("\n\n\nSAIU NO LOOP ATAQUE\n\n\n");
+        System.out.println("\nSAIU NO LOOP ATAQUE\n\n");
     }
 
     // Método para atualizar o combo box "alvo" com base na seleção em "origem"
@@ -235,7 +223,7 @@ public class ApiAttack extends JFrame implements Observer {
 
     private void realizarAtaque(String territorioSelecionado, String alvoSelecionado) {
 
-            System.out.printf("Origem do ataque: %s\nAlvo do ataque: %s", territorioSelecionado, alvoSelecionado);
+            System.out.printf("Origem do ataque: %s\nAlvo do ataque: %s\n\n", territorioSelecionado, alvoSelecionado);
             ApiAcess api = ApiAcess.getInstancia();
 
             int resposta = JOptionPane.showConfirmDialog(
@@ -308,7 +296,7 @@ public class ApiAttack extends JFrame implements Observer {
 
                 api.StringtoPais(territorioSelecionado).removeTropas(attackLoss); // ja remove as tropas
                 tropasAtaque -= attackLoss;
-                System.out.println("removeu do atacante: "+ attackLoss);
+                System.out.println("\nremoveu do atacante: "+ attackLoss);
 
                 api.StringtoPais(alvoSelecionado).removeTropas(defenseLoss);
                 tropasDefesa -= defenseLoss;
@@ -325,6 +313,7 @@ public class ApiAttack extends JFrame implements Observer {
                     // Transferir tropas
                     paisDefesa.addTropas(tropasTransferir);
                     paisAtaque.removeTropas(tropasTransferir);
+                    System.out.println("\nTerritorio conquistado (" + alvoSelecionado + ")\n");
                     notifyObservers();
 
                 }

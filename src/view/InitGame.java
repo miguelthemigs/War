@@ -42,20 +42,20 @@ public class InitGame {
             String[] options = {"vermelho", "azul", "verde", "preto", "branco", "amarelo" };
             for (String cor : options) {
                 JCheckBox checkBox = new JCheckBox(cor);
-                checkBox.setBounds(335, 200 + checkBoxes.size() * 50, 200, 70);
+                checkBox.setBounds(335, 162 + checkBoxes.size() * 50, 200, 70);
                 checkBox.setVisible(false);
                 checkBoxes.add(checkBox);
                 add(checkBox);
             }
 
             enviarButton = new JButton("Iniciar");
-            enviarButton.setBounds(335, 220 + options.length * 50, 200, 70);
+            enviarButton.setBounds(335, 182 + options.length * 50, 200, 50);
             enviarButton.setVisible(false);
             add(enviarButton);
 
             enviarButton.addActionListener(e -> {
                 ArrayList<String> coresSelecionadas = getCoresSelecionadas();
-                System.out.println("Cores selecionadas: " + coresSelecionadas);
+                //System.out.println("Cores selecionadas: " + coresSelecionadas);
 
 
                 synchronized (lock) {
@@ -74,7 +74,6 @@ public class InitGame {
                     int y = e.getY();
 
                     if (clickableRect.contains(x, y)) {
-                        System.out.println("O retângulo foi clicado!");
                         for (JCheckBox checkBox : checkBoxes) {
                             checkBox.setVisible(true);
                         }
