@@ -5,6 +5,7 @@ import view.TextBoxes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 import java.util.*;
 import java.util.List;
 
@@ -470,6 +471,146 @@ private boolean temCor(Jogador.Cor cor){
         }
 
     }
+
+    public void salvamento() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("log.txt"))) {
+            for (Jogador jogador : jogadores) {
+                writer.write("Cor: " + jogador.getCor() + "\n");
+                writer.write("TropasAdd: " + jogador.getTropasParaAdicionar() + "\n");
+                writer.write("Territórios:[\n");
+                for (Pais territorio : jogador.getTerritoriosPossuidos()) {
+                    writer.write(String.format("%s, %d,\n", territorio.getNome(), territorio.getTropas()));
+                }
+                writer.write("]\n");
+
+                writer.write("Cartas:[\n");
+                for (Cartas.Territorio carta : jogador.getPoligonosPossuidos()) {
+                    writer.write(String.format("%s, %s,\n", carta.getPais(), carta.getPoligono()));
+                }
+                writer.write("]\n");
+
+                writer.write("Premio: " + jogador.getPremio() + "\n");
+
+                writer.write("Objetivo: " + jogador.getObjetivo() + "\n");
+
+                writer.write("\n----\n\n");
+            }
+            System.out.println("Logs salvos com sucesso no arquivo 'log.txt'");
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar logs: " + e.getMessage());
+        }
+    }
+
+    public void carregamento() {
+        try (BufferedReader br = new BufferedReader(new FileReader("log.txt"))) {
+            String linha;
+            String cor = null;
+            int tropasAdd = 0;
+            String territorio = null;
+            String carta = null;
+            int premio = 0;
+            String objetivo = null;
+
+            while ((linha = br.readLine()) != null) {
+                if (linha.startsWith("Cor: ")) {
+                    cor = linha.substring("Cor: ".length());
+                    System.out.println("Cor: " + cor);
+
+                    jogadores.add(new Jogador(Jogador.Cor.valueOf(cor)));
+                }
+                else if (linha.startsWith("TropasAdd: ")) {
+                    tropasAdd = Integer.parseInt(linha.substring("TropasAdd: ".length()));
+                    System.out.println("TropasAdd: " + tropasAdd);
+
+                    jogadores.getLast().setTropasParaAdicionar(tropasAdd);
+                }
+                else if (linha.startsWith("Territórios:[")) {
+                    while ((linha = br.readLine()) != null && !linha.equals("]")) {
+                        // Dividir a linha por vírgula
+                        String[] partes = linha.split(",");
+
+                        // Extrair valores
+                        String nomeTerritorio = partes[0].trim();
+                        int valorTerritorio = Integer.parseInt(partes[1].trim());
+
+                        // Imprimir valores
+                        System.out.println("Nome do Território: " + nomeTerritorio);
+                        System.out.println("Valor do Território: " + valorTerritorio);
+
+                        Pais pais = StringtoPais(nomeTerritorio);
+                        jogadores.getLast().addTerritoriosPossuidos(pais);
+                        pais.setTropas(valorTerritorio);
+                    }
+                }
+                else if (linha.startsWith("Cartas:[")) {
+                    while ((linha = br.readLine()) != null && !linha.equals("]")) {
+                        // Dividir a linha por vírgula
+                        String[] partes = linha.split(",");
+
+                        // Extrair valores
+                        String cartaTerritorio = partes[0].trim();
+                        String cartaPoligono = partes[1].trim();
+
+                        // Imprimir valores
+                        System.out.println("Território da Carta: " + cartaTerritorio);
+                        System.out.println("Poligono da Carta: " + cartaPoligono);
+
+                        // Encontrar a carta correspondente
+                        Cartas.Territorio Carta = null;
+                        for (Cartas.Territorio cartaPais : Cartas.Territorio.allTerritorios) {
+                            if (cartaPais.getPais().equals(cartaTerritorio) && cartaPais.getPoligono().toString().equals(cartaPoligono)) {
+                                Carta = cartaPais;
+                                break;
+                            }
+                        }
+
+                        if (Carta != null){
+                            jogadores.getLast().addPoligonosPossuidos(Carta);
+                        }
+                        else {
+                            //ERRO NO CARREGAMENTO
+                        }
+                    }
+                }
+                else if (linha.startsWith("Premio: ")) {
+                    premio = Integer.parseInt(linha.substring("Premio: ".length()));
+                    System.out.println("Premio: " + premio);
+
+                    jogadores.getLast().setPremio(premio);
+                }
+                else if (linha.startsWith("Objetivo: ")) {
+                    objetivo = linha.substring("Objetivo: ".length());
+                    System.out.println("Objetivo: " + objetivo);
+
+                    jogadores.getLast().setObjetivo(objetivo);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*public void carregamento() {
+        for (bloco : log.txt){
+            jogadores.add ( cor );
+
+            jogadores.get(i).addTropasAAdicionar(TropasAdd);
+
+            for (linhas : bloco_territorios){
+                Pais pais = StringtoPais(nome);
+                jogador.get(i).addTerritoriosPossuidos(nome);
+                pais.setTropas(tropas);
+            }
+
+            for (linhas : bloco_cartas){
+                // ... (ainda vou pensar)
+            }
+
+            jogadores.get(i).setPremio(premio);
+        }
+    }*/
+
+
 }
 
 

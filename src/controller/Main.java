@@ -18,44 +18,58 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         System.out.println("\n********** JOGO INICIADO **********\n");
-        InitGame view = new InitGame();
-        JFrame frame;
         TextBoxes box = new TextBoxes();
-        InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
-        frame = view.generateBeginning();
-
-
-        try {
-            synchronized (view.getLock()) {
-                view.getLock().wait(); // Espere pela notificação do clique do botão
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Continuando a execução...");
-        frame.setVisible(false);
-
-
-        // Pergunte o número de jogadores
-
         ApiAcess api = ApiAcess.getInstancia();
 
-        ArrayList<String> coresEscolhidas = customPanel.getCoresSelecionadas();
-        api.gerarJogadores(coresEscolhidas);
-        System.out.println("\n********** JOGADORES GERADOS **********\n");
 
-        // Aqui realizamos e colocamos cada jogador para ter seu objetivo
-        api.sorteiaObjetivo();
-        System.out.println("\n********** OBJETIVOS SORTEADOS **********\n");
+        if (false) {
+            System.out.println("\n********** JOGO INICIADO **********\n");
+            InitGame view = new InitGame();
+            JFrame frame;
+            InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
+            frame = view.generateBeginning();
 
-        // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
-        api.sorteiaTerritorios();
-        System.out.println("\n********** TERRITORIOS ATUALIZADOS **********\n");
+            try {
+                synchronized (view.getLock()) {
+                    view.getLock().wait(); // Espere pela notificação do clique do botão
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("Continuando a execução...");
+            frame.setVisible(false);
+
+
+            // Pergunte o número de jogadores
+
+            ArrayList<String> coresEscolhidas = customPanel.getCoresSelecionadas();
+            api.gerarJogadores(coresEscolhidas);
+            System.out.println("\n********** JOGADORES GERADOS **********\n");
+
+            // Aqui realizamos e colocamos cada jogador para ter seu objetivo
+            api.sorteiaObjetivo();
+            System.out.println("\n********** OBJETIVOS SORTEADOS **********\n");
+
+            // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
+            api.sorteiaTerritorios();
+            System.out.println("\n********** TERRITORIOS ATUALIZADOS **********\n");
+
+            System.out.println("\n|||||||||||| FIM DO PRÉ JOGO ||||||||||||");
+
+        }
+        else{
+
+            System.out.println("\n\nchegou\n\n");
+
+            api.carregamento();
+
+            System.out.println("\n********** JOGO RECARREGADO **********\n");
+
+        }
+
         GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
         System.out.println("\n********** MAPA INICIALIZADO **********\n");
-
-        System.out.println("\n|||||||||||| FIM DO PRÉ JOGO ||||||||||||");
 
         // Roda infinitamente. Quem para o jogo é a funcao "checaSeGanhou", chamda depois de cada ataque
         while (!api.checaSeGanhou()) {
@@ -77,6 +91,7 @@ public class Main {
             try {
                 synchronized (box.getLock()) {
                     box.getLock().wait(); // Espere pela notificação do onde finalizamos onde queremos colocar o territorio
+                    System.out.println("\n********** NOVAS TROPAS ALOCADAS **********\n");
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -101,6 +116,9 @@ public class Main {
             System.out.println("\n------------------------------------------------");
             System.out.println("\n---------- FINALIZANDO PROCESSOS CARTAS ----------\n");
 
+            api.salvamento();
+            System.out.println("\n********** RODADA SALVA **********\n");
+
             /*
             Cor:
             TropasAdd:
@@ -115,7 +133,7 @@ public class Main {
                 System.out.println(jogador.getPoligonosPossuidos());
                 System.out.println(jogador.getPremio());
             }
-            
+
             */
 
             System.out.println("\n|||||||||||| FIM DO LOOP ||||||||||||\n\n");

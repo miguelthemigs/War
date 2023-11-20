@@ -29,6 +29,11 @@ class Jogador {
         return premio;
     }
 
+    public int setPremio(int premio) {
+        this.premio = premio;
+        return premio;
+    }
+
     public void addPremio() {
         this.premio++;
     }
