@@ -48,7 +48,7 @@ private boolean temCor(Jogador.Cor cor){
     private boolean atendeCriterioVitoriaCores(Jogador jogador, String objetivo, Jogador.Cor corAlvo){
         return jogador.getObjetivo().equals(objetivo) &&
                 (jogador.getCor().equals(corAlvo) || !temCor(corAlvo)) &&
-                jogador.getTerritoriosPossuidos().size() == 24;
+                jogador.getNumTerritoriosConquistados() == 24;
     }
     public boolean checaSeGanhou() { // deve ser chamada ao fim de cada ataque
         for (Jogador jogador : jogadores) { // checa os objetivos de cores

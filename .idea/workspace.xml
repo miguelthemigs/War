@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26fffd74-6cca-4fef-9bdd-fcb43b92b8d2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/ApiAcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ApiAcess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/ApiAttack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ApiAttack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Dados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Dados.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Jogador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/InitGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/InitGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/TextBoxes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/TextBoxes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +83,7 @@
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="controller.Main" />
       <module name="War" />
       <method v="2">
         <option name="Make" enabled="true" />

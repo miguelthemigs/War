@@ -15,6 +15,8 @@ class Jogador {
     private ArrayList<String> continentesPossuidos;
     private ArrayList<Territorio> poligonosPossuidos; // aqui so usarei os poligonos getPoligono()
     private String objetivo;
+    private int numTerritoriosConquistados = 0;
+
 
     public boolean conquistouTerritorio = false;
 
@@ -55,6 +57,17 @@ class Jogador {
     }
 
 
+    public int getNumTerritoriosConquistados() {
+        return numTerritoriosConquistados;
+    }
+
+    public void addNumTerritoriosConquistados() {
+        this.numTerritoriosConquistados++;
+    }
+
+    public void removeNumTerritoriosConquistados() {
+        this.numTerritoriosConquistados--;
+    }
 
     public Cor getCor() {
         return this.cor;

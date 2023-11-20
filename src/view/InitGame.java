@@ -59,7 +59,7 @@ public class InitGame {
 
 
                 synchronized (lock) {
-                    lock.notify(); // Notifique a Main para continuar
+                    lock.notify(); // Notifique a controller.Main para continuar
                     enviarButton.setVisible(false);
                     for (JCheckBox checkBox : checkBoxes) {
                         checkBox.setVisible(false);

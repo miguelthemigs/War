@@ -128,7 +128,7 @@ public class TextBoxes {
                         System.out.println("Território " + territorios.get(i) + " tropas: " + tropasLista.get(i));
                     }
 
-                    // Esconde a janela e notifica a Main para continuar
+                    // Esconde a janela e notifica a controller.Main para continuar
                     frame.setVisible(false);
                     panel.removeAll();
                     synchronized (lock) {

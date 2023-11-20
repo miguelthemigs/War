@@ -308,6 +308,7 @@ public class ApiAttack extends JFrame implements Observer {
                     jogadorAtual.conquistouTerritorio = true; // indica que conquistou um territorio, e deve ganhar uma carta
                     removePaisDoDefensor(paisDefesa);
                     jogadorAtual.addTerritoriosPossuidos(paisDefesa);
+                    jogadorAtual.addNumTerritoriosConquistados(); // add no numero de territorios conquistados, para ver se ele foi vitorioso
                     int tropasTransferir = pedirQuantidadeTropasTransferir(tropasAtaque);
 
                     // Transferir tropas
@@ -358,6 +359,7 @@ public class ApiAttack extends JFrame implements Observer {
         for(Jogador jogador: jogadores){
             if(jogador.getTerritoriosPossuidos().contains(pais)) {
                 jogador.removeTerritorio(pais);
+                jogador.removeNumTerritoriosConquistados();
             }
         }
     }
