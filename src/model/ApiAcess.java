@@ -303,7 +303,7 @@ private boolean temCor(Jogador.Cor cor){
 
         // Iterar sobre os jogadores
         for (Jogador jogador : jogadores) {
-            if (!jogador.getPoligonosPossuidos().isEmpty()) {
+            if (jogador.getPoligonosPossuidos().size() > 3) {
                 boolean cartasSelecionadasCorretamente = false;
 
                 while (!cartasSelecionadasCorretamente) {
@@ -408,6 +408,9 @@ private boolean temCor(Jogador.Cor cor){
                         break;
                     }
                 }
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "O jogador " + jogador.getCor() + " possui menos de 3 cartas.", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
