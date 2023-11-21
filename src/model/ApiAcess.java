@@ -12,6 +12,7 @@ import java.util.List;
 public class ApiAcess {
     String[] objetivos = Cartas.objetivo; // devo tirar um onjetivo da lista a cada sorteio
     private static ApiAcess instancia = null;
+    private static final Object lockRecarga = new Object(); // Adicionado aqui
     public static ArrayList<Jogador> jogadores = new ArrayList<>();
     ArrayList<Cartas.Territorio> cartasEmJogo = new ArrayList<>(List.of(Cartas.Territorio.allTerritorios));
 
@@ -525,7 +526,7 @@ private boolean temCor(Jogador.Cor cor){
                     tropasAdd = Integer.parseInt(linha.substring("TropasAdd: ".length()));
                     System.out.println("TropasAdd: " + tropasAdd);
 
-                    jogadores.getLast().setTropasParaAdicionar(tropasAdd);
+                    jogadores.get(jogadores.size()-1).setTropasParaAdicionar(tropasAdd);
                 }
                 else if (linha.startsWith("Territórios:[")) {
                     while ((linha = br.readLine()) != null && !linha.equals("]")) {
@@ -541,7 +542,7 @@ private boolean temCor(Jogador.Cor cor){
                         System.out.println("Valor do Território: " + valorTerritorio);
 
                         Pais pais = StringtoPais(nomeTerritorio);
-                        jogadores.getLast().addTerritoriosPossuidos(pais);
+                        jogadores.get(jogadores.size()-1).addTerritoriosPossuidos(pais);
                         pais.setTropas(valorTerritorio);
                     }
                 }
@@ -568,7 +569,7 @@ private boolean temCor(Jogador.Cor cor){
                         }
 
                         if (Carta != null){
-                            jogadores.getLast().addPoligonosPossuidos(Carta);
+                            jogadores.get(jogadores.size()-1).addPoligonosPossuidos(Carta);
                         }
                         else {
                             //ERRO NO CARREGAMENTO
@@ -579,18 +580,22 @@ private boolean temCor(Jogador.Cor cor){
                     premio = Integer.parseInt(linha.substring("Premio: ".length()));
                     System.out.println("Premio: " + premio);
 
-                    jogadores.getLast().setPremio(premio);
+                    jogadores.get(jogadores.size()-1).setPremio(premio);
                 }
                 else if (linha.startsWith("Objetivo: ")) {
                     objetivo = linha.substring("Objetivo: ".length());
                     System.out.println("Objetivo: " + objetivo);
 
-                    jogadores.getLast().setObjetivo(objetivo);
+                    jogadores.get(jogadores.size()-1).setObjetivo(objetivo);
                 }
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public Object getLockRecarga() {
+        return lockRecarga;
     }
 
     /*public void carregamento() {

@@ -1,5 +1,7 @@
 package view;
 
+import model.ApiAcess;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 public class InitGame {
     private static InitGame.CustomPanel customPanel;
     private static final Object lock = new Object(); // Adicionado aqui
+    private static final Object lockRecarga = new Object(); // Adicionado aqui
 
     public static InitGame.CustomPanel getCustomPanel() { // singleton
         if (customPanel == null) {
@@ -24,6 +27,7 @@ public class InitGame {
     public static class CustomPanel extends JPanel {
         private BufferedImage image;
         private final Rectangle clickableRect;
+        private final Rectangle recarregarJogoRect;
         public static ArrayList<JCheckBox> checkBoxes; // Lista de checkboxes
         private final JButton enviarButton; // Botão de enviar
 
@@ -37,6 +41,7 @@ public class InitGame {
             }
 
             clickableRect = new Rectangle(335, 100, 220, 70);
+            recarregarJogoRect = new Rectangle(555, 100, 220, 70); // para recarregar jogo
 
             checkBoxes = new ArrayList<>();
             String[] options = {"vermelho", "azul", "verde", "preto", "branco", "amarelo" };
@@ -53,19 +58,20 @@ public class InitGame {
             enviarButton.setVisible(false);
             add(enviarButton);
 
+
             enviarButton.addActionListener(e -> {
                 ArrayList<String> coresSelecionadas = getCoresSelecionadas();
                 //System.out.println("Cores selecionadas: " + coresSelecionadas);
 
-
                 synchronized (lock) {
-                    lock.notify(); // Notifique a controller.Main para continuar
+                    lock.notify(); // Notifique a Main para continuar
                     enviarButton.setVisible(false);
                     for (JCheckBox checkBox : checkBoxes) {
                         checkBox.setVisible(false);
                     }
                 }
             });
+
 
             addMouseListener(new MouseAdapter() {
                 @Override
@@ -79,10 +85,26 @@ public class InitGame {
                         }
                         enviarButton.setVisible(true);
                     }
+                    if (recarregarJogoRect.contains(x, y)) {
+                        // Lógica para recarregar o jogo quando o retângulo de recarregar jogo for clicado
+                        System.out.println("Clicou");
+                        recarregarJogo();
+
+
+                    }
                 }
             });
         }
+        private void recarregarJogo() {
+            System.out.println("Jogo recarregado!");
+            ApiAcess api = ApiAcess.getInstancia();
+            // Notifique a Main para continuar
+            synchronized (lockRecarga) {
+                api.carregamento();
+                lockRecarga.notify();
+            }
 
+        }
         public ArrayList<String> getCoresSelecionadas() {
             ArrayList<String> coresSelecionadas = new ArrayList<>();
             for (JCheckBox checkBox : checkBoxes) {
@@ -120,5 +142,8 @@ public class InitGame {
 
     public Object getLock() {
         return lock;
+    }
+    public Object getLockRecarga() {
+        return lockRecarga;
     }
 }

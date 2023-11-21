@@ -22,55 +22,51 @@ public class Main {
         ApiAcess api = ApiAcess.getInstancia();
 
 
-        if (true) {
-            System.out.println("\n********** JOGO INICIADO **********\n");
-            InitGame view = new InitGame();
-            JFrame frame;
-            InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
-            frame = view.generateBeginning();
+        System.out.println("\n********** JOGO INICIADO **********\n");
+        InitGame view = new InitGame();
+        JFrame frame;
+        InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
+        frame = view.generateBeginning();
 
-            try {
-                synchronized (view.getLock()) {
-                    view.getLock().wait(); // Espere pela notificação do clique do botão
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        try {
+            synchronized (view.getLock()) {
+                view.getLock().wait(); // Espere pela notificação do clique do botão
             }
-
-            System.out.println("Continuando a execução...");
-            frame.setVisible(false);
-
-
-            // Pergunte o número de jogadores
-
-            ArrayList<String> coresEscolhidas = customPanel.getCoresSelecionadas();
-            api.gerarJogadores(coresEscolhidas);
-            System.out.println("\n********** JOGADORES GERADOS **********\n");
-
-            // Aqui realizamos e colocamos cada jogador para ter seu objetivo
-            api.sorteiaObjetivo();
-            System.out.println("\n********** OBJETIVOS SORTEADOS **********\n");
-
-            // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
-            api.sorteiaTerritorios();
-            System.out.println("\n********** TERRITORIOS ATUALIZADOS **********\n");
-
-            System.out.println("\n|||||||||||| FIM DO PRÉ JOGO ||||||||||||");
-
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        else{
 
-            System.out.println("\n\nchegou\n\n");
+        System.out.println("Continuando a execução...");
+        frame.setVisible(false);
 
-            api.carregamento();
+        // Pergunte o número de jogadores
 
-            System.out.println("\n********** JOGO RECARREGADO **********\n");
+        ArrayList<String> coresEscolhidas = customPanel.getCoresSelecionadas();
+        api.gerarJogadores(coresEscolhidas);
+        System.out.println("\n********** JOGADORES GERADOS **********\n");
 
-        }
+        // Aqui realizamos e colocamos cada jogador para ter seu objetivo
+        api.sorteiaObjetivo();
+        System.out.println("\n********** OBJETIVOS SORTEADOS **********\n");
+
+        // Agora, iremos gerar a lista com todos os territorios, e sortear os territorios e colocar 1 exercito em cada do seu respectivo jogador
+        api.sorteiaTerritorios();
+        System.out.println("\n********** TERRITORIOS ATUALIZADOS **********\n");
+
+        System.out.println("\n|||||||||||| FIM DO PRÉ JOGO ||||||||||||");
 
         GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
         System.out.println("\n********** MAPA INICIALIZADO **********\n");
+/*
+        try {
+            synchronized (api.getLockRecarga()) {
+                api.getLockRecarga().wait(); // Espere pela notificação do clique do botão
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+      }
 
+ */
         // Roda infinitamente. Quem para o jogo é a funcao "checaSeGanhou", chamda depois de cada ataque
         while (!api.checaSeGanhou()) {
             System.out.println("\n|||||||||||| INICIO DO LOOP ||||||||||||\n\n");
