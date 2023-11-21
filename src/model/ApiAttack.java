@@ -124,6 +124,13 @@ public class ApiAttack extends JFrame implements Observer {
                     String origem = (String) meusPaisesComboBox.getSelectedItem();
                     String alvo = (String) paisesFronteirasComboBox.getSelectedItem();
 
+                    // Verificar se o país de origem selecionado é válido
+                    System.out.println(alvo);
+                    if (alvo == null || alvo.equals("-")) {
+                        JOptionPane.showMessageDialog(null, "Selecione um país de origem válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+                        return; // Sai do método se o país não for válido
+                    }
+
                     realizarAtaque(origem, alvo);
 
                     // Atualizar ComboBox de Meus Países após a conquista
@@ -328,7 +335,7 @@ public class ApiAttack extends JFrame implements Observer {
 
         // Adicionar apenas os territórios com mais de 1 tropa
         for (Pais territorio : jogadorAtual.getTerritoriosPossuidos()) {
-            if (territorio.getTropas() > 1) {
+            if (territorio.getTropas() > 1 && territorio.getFronteiras().length > 1) {
                 meusPaisesComboBox.addItem(territorio.getNome());
             }
         }

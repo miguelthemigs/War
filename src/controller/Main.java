@@ -22,7 +22,7 @@ public class Main {
         ApiAcess api = ApiAcess.getInstancia();
 
 
-        if (false) {
+        if (true) {
             System.out.println("\n********** JOGO INICIADO **********\n");
             InitGame view = new InitGame();
             JFrame frame;
