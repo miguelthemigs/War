@@ -620,30 +620,13 @@ private boolean temCor(Jogador.Cor cor){
         }
     }
 
+    public void opcoesSairRecomeco() {
+
+    }
+
     public Object getLockRecarga() {
         return lockRecarga;
     }
-
-    /*public void carregamento() {
-        for (bloco : log.txt){
-            jogadores.add ( cor );
-
-            jogadores.get(i).addTropasAAdicionar(TropasAdd);
-
-            for (linhas : bloco_territorios){
-                Pais pais = StringtoPais(nome);
-                jogador.get(i).addTerritoriosPossuidos(nome);
-                pais.setTropas(tropas);
-            }
-
-            for (linhas : bloco_cartas){
-                // ... (ainda vou pensar)
-            }
-
-            jogadores.get(i).setPremio(premio);
-        }
-    }*/
-
 
 }
 

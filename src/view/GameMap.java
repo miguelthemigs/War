@@ -2,6 +2,7 @@ package view;
 
 
 import controller.FunctionReturns;
+import model.ApiAcess;
 import model.ApiToView;
 
 import javax.swing.*;
@@ -110,13 +111,12 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
     }
 
     public static void iniciarPainelDesenho() {
-       JFrame frame = new JFrame("War PUC-Rio");
+        JFrame frame = new JFrame("War PUC-Rio");
 
         frame.add(painel);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
 
         // Get the objectives from the Goal class and format them as a single string
         FunctionReturns functionReturns = new FunctionReturns();
@@ -125,9 +125,9 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
         for (String objetivo : objetivos) {
             objectivesText.append(objetivo).append("<br><br><br>");
         }
-        objectivesText.append("</html");
+        objectivesText.append("</html>");
 
-        // Create a JPanel to hold the text with a black background
+        // Create a JPanel to hold the text with a background
         JPanel objectivesPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -138,7 +138,7 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
             }
         };
         objectivesPanel.setLayout(null);
-        objectivesPanel.setBounds(10, 10 + 10 + 30 , 1005, 640); // Adjust the text window position and size as needed
+        objectivesPanel.setBounds(10, 10 + 10 + 30, 1005, 640); // Adjust the text window position and size as needed
 
         // Create a JLabel to display the formatted objectives
         JLabel objectivesTextLabel = new JLabel(objectivesText.toString());
@@ -166,8 +166,40 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
             }
         });
 
-        painel.repaint();
+        // Create a JButton for the "Opções" menu
+        JButton opcoesButton = new JButton("Opções");
+        opcoesButton.setBounds(110, 10, 95, 30); // Adjust the button position and size as needed
+        painel.add(opcoesButton);
 
+        // Add an ActionListener to the button to call the "opcoesSairRecomeço" function
+        opcoesButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                exibirOpcoesMenu();
+            }
+        });
+
+        painel.repaint();
+    }
+
+    // Method to display the options menu
+    private static void exibirOpcoesMenu() {
+        ApiAcess api = ApiAcess.getInstancia();
+        Object[] opcoes = {"Salvar e Sair", "Recomeçar"};
+        int escolha = JOptionPane.showOptionDialog(null, "Escolha uma opção:", "Opções",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcoes, opcoes[0]);
+
+        // Handle the user's choice
+        switch (escolha) {
+            case 0: // Salvar e Sair
+                api.salvamento();
+                System.exit(0);
+                break;
+            case 1: // Recomeçar
+                JOptionPane.showMessageDialog(null, "Aviso: Recomeçar ainda não implementado.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
