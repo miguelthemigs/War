@@ -1,10 +1,7 @@
 package model;
 
-import view.GameMap;
-import view.TextBoxes;
-
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.util.*;
 import java.util.List;
@@ -15,6 +12,10 @@ public class ApiAcess {
     private static final Object lockRecarga = new Object(); // Adicionado aqui
     public static ArrayList<Jogador> jogadores = new ArrayList<>();
     ArrayList<Cartas.Territorio> cartasEmJogo = new ArrayList<>(List.of(Cartas.Territorio.allTerritorios));
+    public boolean perguntaSalvamentoFeita = false;
+
+    public  String salvamentoPath;
+
 
     // Método para obter a instância única
     public static ApiAcess getInstancia() {
@@ -477,7 +478,17 @@ private boolean temCor(Jogador.Cor cor){
     }
 
     public void salvamento() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("log.txt"))) {
+        // Pergunta sobre onde salvar só será feita se perguntaSalvamentoFeita for false
+        if (!perguntaSalvamentoFeita) {
+            salvamentoPath = escolheFile();
+        }
+
+        // Verifica se o arquivo a ser salvo é do tipo texto
+        if (salvamentoPath != null && !salvamentoPath.toLowerCase().endsWith(".txt")) {
+            salvamentoPath += ".txt";
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(salvamentoPath))) {
             for (Jogador jogador : jogadores) {
                 writer.write("Cor: " + jogador.getCor() + "\n");
                 writer.write("TropasAdd: " + jogador.getTropasParaAdicionar() + "\n");
@@ -500,18 +511,20 @@ private boolean temCor(Jogador.Cor cor){
                 writer.write("\n----\n\n");
             }
             System.out.println("Logs salvos com sucesso no arquivo 'log.txt'");
+
+            // Define perguntaSalvamentoFeita como true
+            perguntaSalvamentoFeita = true;
         } catch (IOException e) {
             System.err.println("Erro ao salvar logs: " + e.getMessage());
         }
     }
 
     public void carregamento() {
-        try (BufferedReader br = new BufferedReader(new FileReader("log.txt"))) {
+        String path = escolheFile();
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String linha;
             String cor = null;
             int tropasAdd = 0;
-            String territorio = null;
-            String carta = null;
             int premio = 0;
             String objetivo = null;
 
@@ -571,9 +584,6 @@ private boolean temCor(Jogador.Cor cor){
                         if (Carta != null){
                             jogadores.get(jogadores.size()-1).addPoligonosPossuidos(Carta);
                         }
-                        else {
-                            //ERRO NO CARREGAMENTO
-                        }
                     }
                 }
                 else if (linha.startsWith("Premio: ")) {
@@ -594,6 +604,22 @@ private boolean temCor(Jogador.Cor cor){
             e.printStackTrace();
         }
     }
+
+    public String escolheFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Selecionar arquivo");
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Arquivos de Texto (.txt)", "txt"));
+
+        int userSelection = fileChooser.showOpenDialog(null);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            return selectedFile.getAbsolutePath();
+        } else {
+            return null;
+        }
+    }
+
     public Object getLockRecarga() {
         return lockRecarga;
     }
