@@ -27,7 +27,7 @@ public class TextBoxes {
         JPanel panel = new JPanel();
         frame.add(panel);
 
-        JButton startButton = new JButton("Iniciar Jogo");
+        JButton startButton = new JButton("Inserir Tropas");
 
         // Array para armazenar o índice do jogador atual
         int[] jogadorAtual = {0};
