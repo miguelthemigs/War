@@ -6,10 +6,10 @@ Egito, 1,
 Indonésia, 1,
 Somália, 10,
 NovaZelândia, 1,
-CoréiadoSul, 27,
+CoréiadoSul, 26,
 Japão, 1,
 Espanha, 1,
-Nigéria, 9,
+Nigéria, 8,
 Rússia, 1,
 Romênia, 1,
 Austrália, 3,
@@ -25,12 +25,15 @@ Paquistão, 1,
 Angola, 1,
 Perth, 1,
 Argélia, 1,
+Brasil, 1,
+Índia, 1,
 ]
 Cartas:[
 Brasil, bola,
 CoréiadoNorte, quadrado,
 Japão, bola,
 Calgary, bola,
+Síria, quadrado,
 ]
 Premio: 0
 Objetivo: Conquistar na totalidade a Asia e a Africa
@@ -40,11 +43,9 @@ Objetivo: Conquistar na totalidade a Asia e a Africa
 Cor: verde
 TropasAdd: 0
 Territórios:[
-Índia, 1,
 ArábiaSaudita, 1,
 Venezuela, 5,
 Jordânia, 1,
-Brasil, 1,
 Sibéria, 1,
 Bangladesh, 1,
 Calgary, 1,

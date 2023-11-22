@@ -4,13 +4,11 @@ import controller.Observer;
 import view.GameMap;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.awt.FlowLayout;
-import java.util.Collections;
-import java.util.Observable;
 
 import static view.GameMap.atualizarElipses;
 
@@ -270,9 +268,29 @@ public class ApiAttack extends JFrame implements Observer {
                     numeroDadosDefesa = 1;
                 }
 
-                for (int i = 0; i < 3; i++) {
-                    resultadosAtaque[i] = (i < numeroDadosAtaque) ? Dados.jogarVermelho() : 0;
-                    resultadosDefesa[i] = (i < numeroDadosDefesa) ? Dados.jogarAmarelo() : 0;
+
+                int manipular = JOptionPane.showOptionDialog(
+                        null,
+                        "Deseja manipular o resultado dos dados?",
+                        "Dados",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        new Object[]{"Manipular", "Jogar"},
+                        "Manipular"
+                );
+
+                if (manipular == JOptionPane.YES_OPTION) {
+                    int[][] resultados = mostrarJanelaDados(numeroDadosAtaque, numeroDadosDefesa);
+                    resultadosAtaque = resultados[0];
+                    resultadosDefesa = resultados[1];
+                }
+
+                else {
+                    for (int i = 0; i < 3; i++) {
+                        resultadosAtaque[i] = (i < numeroDadosAtaque) ? Dados.jogarVermelho() : 0;
+                        resultadosDefesa[i] = (i < numeroDadosDefesa) ? Dados.jogarAmarelo() : 0;
+                    }
                 }
 
                 // Ordena os resultados em ordem decrescente
@@ -327,6 +345,54 @@ public class ApiAttack extends JFrame implements Observer {
                 }
 
             }
+    }
+
+    private static int[][] mostrarJanelaDados(int ataqueDados, int defesaDados) {
+
+        int[] resultadosAtaque = new int[ataqueDados];
+        int[] resultadosDefesa = new int[defesaDados];
+
+        // Janela para o Ataque
+        String[] opcoesAtaque = {"1", "2", "3", "4", "5", "6"};
+        JComboBox<String>[] ataqueComboBoxes = new JComboBox[ataqueDados];
+        for (int i = 0; i < ataqueDados; i++) {
+            ataqueComboBoxes[i] = new JComboBox<>(opcoesAtaque);
+        }
+        JPanel ataquePanel = new JPanel();
+        ataquePanel.setLayout(new GridLayout(ataqueDados + 1, 2));
+        ataquePanel.add(new JLabel("Escolha os valores de dados de ataque:"));
+        for (int i = 0; i < ataqueDados; i++) {
+            ataquePanel.add(ataqueComboBoxes[i]);
+        }
+        int resultAtaque = JOptionPane.showConfirmDialog(null, ataquePanel, "Dados de Ataque", JOptionPane.OK_CANCEL_OPTION);
+
+        if (resultAtaque == JOptionPane.OK_OPTION) {
+            for (int i = 0; i < ataqueDados; i++) {
+                resultadosAtaque[i] = Integer.parseInt((String) ataqueComboBoxes[i].getSelectedItem());
+            }
+        }
+
+        // Janela para a Defesa
+        String[] opcoesDefesa = {"1", "2", "3", "4", "5", "6"};
+        JComboBox<String>[] defesaComboBoxes = new JComboBox[defesaDados];
+        for (int i = 0; i < defesaDados; i++) {
+            defesaComboBoxes[i] = new JComboBox<>(opcoesDefesa);
+        }
+        JPanel defesaPanel = new JPanel();
+        defesaPanel.setLayout(new GridLayout(defesaDados + 1, 2));
+        defesaPanel.add(new JLabel("Escolha os valores de dados de defesa:"));
+        for (int i = 0; i < defesaDados; i++) {
+            defesaPanel.add(defesaComboBoxes[i]);
+        }
+        int resultDefesa = JOptionPane.showConfirmDialog(null, defesaPanel, "Dados de Defesa", JOptionPane.OK_CANCEL_OPTION);
+
+        if (resultDefesa == JOptionPane.OK_OPTION) {
+            for (int i = 0; i < defesaDados; i++) {
+                resultadosDefesa[i] = Integer.parseInt((String) defesaComboBoxes[i].getSelectedItem());
+            }
+        }
+
+        return new int[][] {resultadosAtaque, resultadosDefesa};
     }
 
     private void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox) {
