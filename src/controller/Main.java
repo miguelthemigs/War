@@ -19,27 +19,27 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("\n********** JOGO INICIADO **********\n");
         TextBoxes box = new TextBoxes();
+
         ApiAcess api = ApiAcess.getInstancia();
+        InitGame view = new InitGame();
+        JFrame frame;
+        InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
+        frame = view.generateBeginning();
 
-        if (false) {
+        try {
+            synchronized (view.getLock()) {
+                view.getLock().wait(); // Espere pela notificação do clique do botão
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        System.out.println("Continuando a execução...");
+        frame.setVisible(false);
+
+        if (!InitGame.recarregou) {
 
             System.out.println("\n********** JOGO INICIADO **********\n");
-            InitGame view = new InitGame();
-            JFrame frame;
-            InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
-            frame = view.generateBeginning();
-
-            try {
-                synchronized (view.getLock()) {
-                    view.getLock().wait(); // Espere pela notificação do clique do botão
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            System.out.println("Continuando a execução...");
-            frame.setVisible(false);
 
             // Pergunte o número de jogadores
 
@@ -65,16 +65,7 @@ public class Main {
 
         GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
         System.out.println("\n********** MAPA INICIALIZADO **********\n");
-/*
-        try {
-            synchronized (api.getLockRecarga()) {
-                api.getLockRecarga().wait(); // Espere pela notificação do clique do botão
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-      }
 
- */
         // Roda infinitamente. Quem para o jogo é a funcao "checaSeGanhou", chamda depois de cada ataque
         while (!api.checaSeGanhou()) {
             System.out.println("\n|||||||||||| INICIO DO LOOP ||||||||||||\n\n");

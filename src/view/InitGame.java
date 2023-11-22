@@ -16,6 +16,7 @@ public class InitGame {
     private static InitGame.CustomPanel customPanel;
     private static final Object lock = new Object(); // Adicionado aqui
     private static final Object lockRecarga = new Object(); // Adicionado aqui
+    public static boolean recarregou = false;
 
     public static InitGame.CustomPanel getCustomPanel() { // singleton
         if (customPanel == null) {
@@ -89,6 +90,9 @@ public class InitGame {
                         // Lógica para recarregar o jogo quando o retângulo de recarregar jogo for clicado
                         System.out.println("Clicou");
                         recarregarJogo();
+                        synchronized (lock){
+                            lock.notify();
+                        }
 
 
                     }
@@ -99,10 +103,8 @@ public class InitGame {
             System.out.println("Jogo recarregado!");
             ApiAcess api = ApiAcess.getInstancia();
             // Notifique a Main para continuar
-            synchronized (lockRecarga) {
-                api.carregamento();
-                lockRecarga.notify();
-            }
+            recarregou = true;
+
 
         }
         public ArrayList<String> getCoresSelecionadas() {
