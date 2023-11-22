@@ -12,6 +12,7 @@ import view.InitGame;
 import view.TextBoxes;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -114,30 +115,33 @@ public class Main {
             api.salvamento();
             System.out.println("\n********** RODADA SALVA **********\n");
 
-            /*
-            Cor:
-            TropasAdd:
-            Territórios:[ ]
-            Cartas:[ ]
-            Prêmio:
-
-            for (jogador jogador : jogadores){
-                System.out.println(jogador.getCor());
-                System.out.println(jogador.getTropasParaAdicionar());
-                System.out.println(jogador.getTerritoriosPossuidos());
-                System.out.println(jogador.getPoligonosPossuidos());
-                System.out.println(jogador.getPremio());
-            }
-
-            */
-
             System.out.println("\n|||||||||||| FIM DO LOOP ||||||||||||\n\n");
 
         }
 
+        // Ask the player if they want to restart or end the game
+        int option = JOptionPane.showOptionDialog(
+                null,
+                "Deseja recomeçar a partida ou acabar o jogo?",
+                "Fim do Jogo",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                new Object[]{"Recomeçar", "Acabar"},
+                "Recomeçar"
+        );
 
-
-
+        if (option == JOptionPane.YES_OPTION) {
+            // Close all frames
+            for (Window window : Window.getWindows()) {
+                window.dispose();
+            }
+            // Restart the game by continuing to the beginning of the main method
+            main(args);
+        } else {
+            // End the game
+            System.exit(0);
+        }
 
     }
 

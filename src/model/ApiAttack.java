@@ -105,6 +105,7 @@ public class ApiAttack extends JFrame implements Observer {
 
             // Atualizar ComboBox de Meus Países
             updateMeusPaisesComboBox(meusPaisesComboBox);
+
             // Reseta items da combo box alvo
             resetaComboBox(paisesFronteirasComboBox);
 
@@ -125,7 +126,7 @@ public class ApiAttack extends JFrame implements Observer {
                     String alvo = (String) paisesFronteirasComboBox.getSelectedItem();
 
                     // Verificar se o país de origem selecionado é válido
-                    if (alvo == null || alvo.equals("Selecione o pais de origem")) {
+                    if (alvo == null || origem.equals("Selecione o pais de origem")) {
                         JOptionPane.showMessageDialog(null, "Selecione um país de origem válido.", "Erro", JOptionPane.ERROR_MESSAGE);
                         return; // Sai do método se o país não for válido
                     }
@@ -169,7 +170,7 @@ public class ApiAttack extends JFrame implements Observer {
                     // Obter o item selecionado em "origem"
                     String selectedOrigem = (String) meusPaisesComboBox.getSelectedItem();
                     // Condicao para evitar bugs
-                    if (selectedOrigem != null){
+                    if (selectedOrigem != null && !selectedOrigem.equals("Selecione o pais de origem")){
                         // Atualizar "alvo" combo box com base na seleção em "origem"
                         updateAlvoComboBox(selectedOrigem, paisesFronteirasComboBox, jogadorAtual);
                     }
@@ -210,7 +211,7 @@ public class ApiAttack extends JFrame implements Observer {
 
     private static void resetaComboBox(JComboBox<String> comboBox) {
         comboBox.removeAllItems();
-        comboBox.addItem("Selecione o pais de origem");
+        comboBox.addItem("Selecione o pais alvo");
     }
 
 
@@ -331,6 +332,8 @@ public class ApiAttack extends JFrame implements Observer {
     private void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox) {
         // Zerar a JComboBox
         meusPaisesComboBox.removeAllItems();
+
+        meusPaisesComboBox.addItem("Selecione o pais de origem");
 
         // Adicionar apenas os territórios com mais de 1 tropa
         for (Pais territorio : jogadorAtual.getTerritoriosPossuidos()) {
