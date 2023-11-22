@@ -304,7 +304,7 @@ private boolean temCor(Jogador.Cor cor){
 
         // Iterar sobre os jogadores
         for (Jogador jogador : jogadores) {
-            if (jogador.getPoligonosPossuidos().size() > 3) {
+            if (jogador.getPoligonosPossuidos().size() >= 3) {
                 boolean cartasSelecionadasCorretamente = false;
 
                 while (!cartasSelecionadasCorretamente) {

@@ -125,7 +125,7 @@ public class ApiAttack extends JFrame implements Observer {
                     String alvo = (String) paisesFronteirasComboBox.getSelectedItem();
 
                     // Verificar se o país de origem selecionado é válido
-                    if (alvo == null || alvo.equals("-")) {
+                    if (alvo == null || alvo.equals("Selecione o pais de origem")) {
                         JOptionPane.showMessageDialog(null, "Selecione um país de origem válido.", "Erro", JOptionPane.ERROR_MESSAGE);
                         return; // Sai do método se o país não for válido
                     }
@@ -210,7 +210,7 @@ public class ApiAttack extends JFrame implements Observer {
 
     private static void resetaComboBox(JComboBox<String> comboBox) {
         comboBox.removeAllItems();
-        comboBox.addItem("-");
+        comboBox.addItem("Selecione o pais de origem");
     }
 
 
