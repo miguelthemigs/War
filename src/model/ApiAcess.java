@@ -12,9 +12,9 @@ public class ApiAcess {
     private static final Object lockRecarga = new Object(); // Adicionado aqui
     public static ArrayList<Jogador> jogadores = new ArrayList<>();
     ArrayList<Cartas.Territorio> cartasEmJogo = new ArrayList<>(List.of(Cartas.Territorio.allTerritorios));
-    public boolean perguntaSalvamentoFeita = false;
+    private boolean perguntaSalvamentoFeita = false;
 
-    public  String salvamentoPath;
+    private  String salvamentoPath;
 
 
     // Método para obter a instância única
