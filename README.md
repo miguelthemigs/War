@@ -8,6 +8,7 @@ This project implements a War Game using the Model-View-Controller (MVC) archite
 - MVC architecture for structured design.
 - Graphic Interface using Java2D and Swing.
 - Card-based War Game implementation.
+- You can save the game state mid-play in your machine
 - JUnit tests for thorough code testing.
 
 
