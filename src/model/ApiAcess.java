@@ -427,6 +427,10 @@ private boolean temCor(Jogador.Cor cor){
         throw new RuntimeException("Nao encontramos o pais pedido");
     }
 
+    public void confirmaJogadores(){
+        jogadores.removeIf(jogador -> jogador.getTerritoriosPossuidos().isEmpty());
+    }
+
     public void ataque() {
         ApiAttack api = ApiAttack.getInstancia(jogadores);
         ApiAcess api2 = ApiAcess.getInstancia();
@@ -434,8 +438,10 @@ private boolean temCor(Jogador.Cor cor){
 
         while (api.podeIniciarProximoAtaque()) {
             ganhou = api2.checaSeGanhou();
-            if(!ganhou)
+            if(!ganhou){
                 api.iniciarProximoAtaque();
+                confirmaJogadores();
+            }
             else break;
         }
 
