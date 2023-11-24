@@ -40,22 +40,13 @@ no Game Map ter public GameMap() {
 public class GameMap extends JPanel implements Observer {
     private BufferedImage imagem;
     private BufferedImage imagemFundo;
-    private List observers;
-    private static TextBoxes textBoxes;
-
 
     public static GameMap painel = new GameMap();
-private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHITE,Color.GREEN,Color.YELLOW};
+    private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHITE,Color.GREEN,Color.YELLOW};
     private static ArrayList<Integer> tropas = new ArrayList<>();
     private static final Integer[] coordX = {560, 540, 450, 550, 515, 605, 85, 170, 110, 310, 190, 140, 278, 178, 195, 655, 840, 890, 785, 850, 840, 675, 790, 705, 670, 942, 615, 615, 810, 735, 775, 880, 645, 880, 715, 260, 270, 220, 182, 438, 471, 530, 560, 450, 570, 510, 590, 860, 885, 925, 800};
     private static final Integer[] coordY = {570, 500, 345, 380, 430, 495, 125, 140, 260, 100, 260, 350, 170, 218, 180, 418, 390, 205, 280, 297, 322, 130, 370, 328, 330, 258, 345, 185, 245, 305, 150, 130, 278, 355, 245, 560, 440, 450, 435, 272, 235, 224, 200, 150, 253, 135, 225, 590, 490, 615, 580};
 
-    public static void setTextBoxes(TextBoxes textBoxes) {
-        GameMap.textBoxes = textBoxes;
-    }
-    public TextBoxes getTextBoxes() {
-        return textBoxes;
-    }
     public GameMap(){
         try {
             imagem = ImageIO.read(Objects.requireNonNull(getClass().getResource("images/war_tabuleiro_mapa_NOMES.png")));
@@ -102,9 +93,6 @@ private static final Color[] cores = {Color.RED,Color.BLUE,Color.BLACK,Color.WHI
 
 
         }
-
-       // g.setColor(Color.BLACK); // Supondo que o jogador tem um método 'getCor()' que retorna a cor associada a ele
-
     }
     public static void atualizarElipses() {
         painel.repaint(); // Isso vai forçar o componente a ser redesenhado

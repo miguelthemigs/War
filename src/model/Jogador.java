@@ -49,9 +49,6 @@ class Jogador {
         return poligonosPossuidos;
     }
 
-    public void setPoligonosPossuidos(ArrayList<Cartas.Territorio> poligonosPossuidos) {
-        this.poligonosPossuidos = poligonosPossuidos;
-    }
 
     public void addPoligonosPossuidos(Cartas.Territorio poligonosPossuidos) {
         this.poligonosPossuidos.add(poligonosPossuidos);
@@ -59,11 +56,6 @@ class Jogador {
 
     public void removePoligonosPossuidos(Cartas.Territorio poligonosPossuidos) {
         this.poligonosPossuidos.remove(poligonosPossuidos);
-    }
-
-
-    public int getNumTerritoriosConquistados() {
-        return numTerritoriosConquistados;
     }
 
     public void addNumTerritoriosConquistados() {
@@ -123,7 +115,6 @@ class Jogador {
         return territoriosPossuidos.size();
     }
 
-
     public ArrayList<String> checaContinentes(){
         Pais[][] Continentes = {Tabuleiro.Africa, Tabuleiro.AmericaSul, Tabuleiro.AmericaNorte, Tabuleiro.Asia, Tabuleiro.Oceania, Tabuleiro.Europa};
         String[] contNome = {"Africa", "AmericaSul", "AmericaNorte", "Asia", "Oceania", "Europa"};
@@ -147,14 +138,5 @@ class Jogador {
         return continentesPossuidos;
     }
 
-    // de uma jogador, retorna quantas tropas ele tem em um determinado pais
-    public int quantasTropasNoTerritorio(Jogador jogador, String territorio){
-        for(Pais pais: jogador.getTerritoriosPossuidos()){
-            if(territorio.equals(pais.getNome())){
-                return pais.getTropas();
-            }
-        }
-        throw new RuntimeException("O jogador nao possui esse pais");
-    }
 }
 

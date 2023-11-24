@@ -1,8 +1,5 @@
 package model;
 
-
-import java.util.ArrayList;
-
 class Tabuleiro {
 
     // Inicializando instancias dos paises

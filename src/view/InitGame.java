@@ -1,7 +1,5 @@
 package view;
 
-import model.ApiAcess;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +13,6 @@ import java.util.ArrayList;
 public class InitGame {
     private static InitGame.CustomPanel customPanel;
     private static final Object lock = new Object(); // Adicionado aqui
-    private static final Object lockRecarga = new Object(); // Adicionado aqui
     public static boolean recarregou = false;
 
     public static InitGame.CustomPanel getCustomPanel() { // singleton
@@ -61,8 +58,6 @@ public class InitGame {
 
 
             enviarButton.addActionListener(e -> {
-                ArrayList<String> coresSelecionadas = getCoresSelecionadas();
-                //System.out.println("Cores selecionadas: " + coresSelecionadas);
 
                 synchronized (lock) {
                     lock.notify(); // Notifique a Main para continuar
@@ -101,7 +96,7 @@ public class InitGame {
         }
         private void recarregarJogo() {
             System.out.println("Jogo recarregado!");
-            ApiAcess api = ApiAcess.getInstancia();
+            //ApiAcess api = ApiAcess.getInstancia();
             // Notifique a Main para continuar
             recarregou = true;
 
@@ -145,7 +140,5 @@ public class InitGame {
     public Object getLock() {
         return lock;
     }
-    public Object getLockRecarga() {
-        return lockRecarga;
-    }
+
 }

@@ -240,12 +240,6 @@ private boolean temCor(Jogador.Cor cor){
         return tropas;
     }
 
-    public void imprimeTropasARecber() {
-        for (Jogador jogador : jogadores) {
-            System.out.println("Tropas a receber jogador " + (jogador.getCor()) + ": " + jogador.getTropasParaAdicionar());
-        }
-    }
-
     // Método para imprimir informações sobre os territórios e tropas
     private void imprimirTerritoriosETropas(Jogador jogador) {
         System.out.println("Territórios e Tropas:\n");
@@ -624,14 +618,6 @@ private boolean temCor(Jogador.Cor cor){
         } else {
             return null;
         }
-    }
-
-    public void opcoesSairRecomeco() {
-
-    }
-
-    public Object getLockRecarga() {
-        return lockRecarga;
     }
 
 }

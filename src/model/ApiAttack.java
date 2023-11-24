@@ -16,10 +16,7 @@ public class ApiAttack extends JFrame implements Observer {
 
     private int jogadorAtualIndex;
     private ArrayList<Jogador> jogadores;
-    private JComboBox<String> territoriosComboBox;
-    private JComboBox<String> alvosComboBox;
-    private JButton atacarButton;
-    private JButton cancelarButton;
+
     private static ApiAttack instancia = null;
     private Jogador jogadorAtual;
     private ArrayList<Pais> territoriosJogador;
@@ -72,12 +69,6 @@ public class ApiAttack extends JFrame implements Observer {
 
     public void addObserver(Observer o) {
             observers.add(o);
-    }
-
-
-    public void removeObserver(Observer o) {
-            observers.remove(o);
-
     }
 
     public void notifyObservers() {
