@@ -1,10 +1,15 @@
 package model;
 
+import controller.Observer;
+import view.GameMap;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ApiTest extends JFrame {
 
@@ -24,15 +29,13 @@ public class ApiTest extends JFrame {
 
     private JComboBox<String> meusPaisesComboBox = new JComboBox<>();
     private JComboBox<String> paisesFronteirasComboBox = new JComboBox<>();
+
     public static ApiTest getInstancia() {
         if (instancia == null) {
             instancia = new ApiTest();
         }
         return instancia;
     }
-
-
-
 
 
     public void remanejarTropas() {
@@ -47,7 +50,8 @@ public class ApiTest extends JFrame {
 
             SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, 99, 1);
             JSpinner spinnerTropas = new JSpinner(spinnerModel);
-
+            int remanjemaentos = 0;
+            Map<Pais, Integer> lista = new HashMap<>();
             // Infinite loop until "Cancelar" is pressed
             while (true) {
                 // Atualizar ComboBox de Meus Países
@@ -81,7 +85,8 @@ public class ApiTest extends JFrame {
                         }
 
                         // Realizar o remanejamento de tropas
-                        realizarRemanejamento(origem, destino, quantidadeTropas);
+                        realizarRemanejamento(origem, destino, quantidadeTropas, lista);
+                        GameMap.atualizarElipses();
 
                         // Atualizar ComboBox de Meus Países após o remanejamento
                         updateMeusPaisesComboBox(meusPaisesComboBox, jogador);
@@ -146,15 +151,27 @@ public class ApiTest extends JFrame {
                     break;
                 }
             }
+            adicionarTropasAposRemanejar(lista); // aqui espera o fim do remanejamento
+            lista.clear();
+            GameMap.atualizarElipses();
         }
     }
 
-    private void realizarRemanejamento(String origem, String destino, int quantidadeTropas) {
-        // Lógica de remanejamento
-        System.out.printf("Remanejamento de tropas: %d tropas de %s para %s\n", quantidadeTropas, origem, destino);
+    private void realizarRemanejamento(String origem, String destino, int quantidadeTropas, Map<Pais, Integer> list) {
 
-        // Implemente aqui a lógica específica de remanejamento entre os territórios selecionados
-        // Certifique-se de manipular adequadamente a quantidade de tropas nos territórios envolvidos.
+        System.out.printf("Remanejamento de tropas: %d tropas de %s para %s\n", quantidadeTropas, origem, destino);
+        ApiAcess api = ApiAcess.getInstancia();
+        api.StringtoPais(origem).removeTropas(quantidadeTropas);
+        list.put(api.StringtoPais(destino), quantidadeTropas);
+
+    }
+    public void adicionarTropasAposRemanejar(Map<Pais, Integer> lista) {
+        for (Map.Entry<Pais, Integer> entry : lista.entrySet()) {
+            Pais pais = entry.getKey();
+            int valorAdicional = entry.getValue();
+            pais.addTropas(valorAdicional);
+        }
+
     }
     private void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox, Jogador jogador) {
         // Zerar a JComboBox
