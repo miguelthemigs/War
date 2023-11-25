@@ -450,18 +450,14 @@ private boolean temCor(Jogador.Cor cor){
     public void ataque() {
         ApiAttack api = ApiAttack.getInstancia(jogadores);
         ApiAcess api2 = ApiAcess.getInstancia();
-        boolean ganhou = false;
 
         while (api.podeIniciarProximoAtaque()) {
-            ganhou = api2.checaSeGanhou();
-            if(!ganhou){
-                api.iniciarProximoAtaque();
-                confirmaJogadores();
+            api.iniciarProximoAtaque();
+            confirmaJogadores();
+            if(api2.checaSeGanhou()){
+                break;
             }
-            else break;
         }
-
-
     }
 
     private void comparaPremios(Jogador jogador) {
