@@ -16,6 +16,17 @@ public class ApiAcess {
 
     private  String salvamentoPath;
 
+    public void reset() {
+        for (Jogador jogador : jogadores){
+            jogador.reset();
+        }
+        jogadores.clear();
+
+        cartasEmJogo.clear();
+        perguntaSalvamentoFeita = false;
+        salvamentoPath = null;
+    }
+
 
     // Método para obter a instância única
     public static ApiAcess getInstancia() {
@@ -24,6 +35,12 @@ public class ApiAcess {
         }
         return instancia;
     }
+
+    // Método para reiniciar a instância
+    public void resetInstancia() {
+        instancia = null;
+    }
+
     public void sorteiaObjetivo() {
         Random rand = new Random();
         ArrayList<Integer> indicesAntigos = new ArrayList<>();
@@ -39,7 +56,13 @@ public class ApiAcess {
         for (Jogador jogador : jogadores) {
             System.out.println("\nObjetivo jogador " + jogador.getCor() + ": " + jogador.getObjetivo());
         }
-
+    }
+    public static ArrayList<String> textoObjetivos(){
+        ArrayList<String> objetivos = new ArrayList<>();
+        for(Jogador jogador: jogadores){
+            objetivos.add("Objetivo jogador ''"+ ApiToView.retornaCor(jogador) + "'':\n- " +  ApiToView.retornaObjetivo(jogador));
+        }
+        return objetivos;
     }
 private boolean temCor(Jogador.Cor cor){
         for(Jogador jogador: jogadores){
@@ -51,7 +74,7 @@ private boolean temCor(Jogador.Cor cor){
     private boolean atendeCriterioVitoriaCores(Jogador jogador, String objetivo, Jogador.Cor corAlvo){
         return jogador.getObjetivo().equals(objetivo) &&
                 (jogador.getCor().equals(corAlvo) || !temCor(corAlvo)) &&
-                jogador.getTerritoriosPossuidos().size() == 24;
+                jogador.getTerritoriosPossuidos().size() >= 24;
     }
     public boolean checaSeGanhou() { // deve ser chamada ao fim de cada ataque
         for (Jogador jogador : jogadores) { // checa os objetivos de cores
@@ -70,72 +93,71 @@ private boolean temCor(Jogador.Cor cor){
                         JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                         return true;
                     }
-
                 }
             }
 
-        if (jogador.getObjetivo().equals(objetivos[6])) {
-            ArrayList<String> continentesDoJogador = jogador.checaContinentes();
-            if (continentesDoJogador.contains("AmericaNorte") && continentesDoJogador.contains("Africa")) {
-                jogador.ganhouJogo = true;
-                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
-                return true;
-            }
-        } else if ((jogador.getObjetivo().equals(objetivos[7]))) {
-            ArrayList<String> continentesDoJogador = jogador.checaContinentes();
-            if (continentesDoJogador.contains("Asia") && continentesDoJogador.contains("Africa")) {
-                jogador.ganhouJogo = true;
-                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
-                return true;
-            }
-        } else if ((jogador.getObjetivo().equals(objetivos[8]))) {
-            ArrayList<String> continentesDoJogador = jogador.checaContinentes();
-            if (continentesDoJogador.contains("Oceania") && continentesDoJogador.contains("AmericaNorte")) {
-                jogador.ganhouJogo = true;
-                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
-                return true;
-            }
-        } else if ((jogador.getObjetivo().equals(objetivos[9]))) {
-            ArrayList<String> continentesDoJogador = jogador.checaContinentes();
-            if (continentesDoJogador.contains("Asia") && continentesDoJogador.contains("AmericaSul")) {
-                jogador.ganhouJogo = true;
-                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
-                return true;
-            }
-        } else if ((jogador.getObjetivo().equals(objetivos[10]))) {
-            ArrayList<String> continentesDoJogador = jogador.checaContinentes();
-            if (continentesDoJogador.contains("Europa") && continentesDoJogador.contains("AmericaSul") && continentesDoJogador.size() >= 3) {
-                jogador.ganhouJogo = true;
-                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
-                return true;
-            }
-        } else if ((jogador.getObjetivo().equals(objetivos[11]))) {
-            ArrayList<String> continentesDoJogador = jogador.checaContinentes();
-            if (continentesDoJogador.contains("Europa") && continentesDoJogador.contains("Oceania") && continentesDoJogador.size() >= 3) {
-                jogador.ganhouJogo = true;
-                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
-                return true;
-            }
-        } else if ((jogador.getObjetivo().equals(objetivos[12])) && jogador.getTerritoriosPossuidos().size() >= 24) {
-            jogador.ganhouJogo = true;
-            JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
-            return true;
-        } else if ((jogador.getObjetivo().equals(objetivos[13]))) {
-            ArrayList<Pais> territorios = jogador.getTerritoriosPossuidos();
-            int contagem = 0;
-            if (territorios.size() >= 18) {
-                for (Pais pais : territorios) {
-                    if (pais.getTropas() >= 2)
-                        contagem++; // significa que esse pais tem 2 ou mais tropas. deve ser 18 vezes
-                }
-                if (contagem >= 18) { // significa que tenho mais de 18 territorios com 2 ou mais tropas
+            if (jogador.getObjetivo().equals(objetivos[6])) {
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("AmericaNorte") && continentesDoJogador.contains("Africa")) {
                     jogador.ganhouJogo = true;
                     JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
-            }
+            } else if ((jogador.getObjetivo().equals(objetivos[7]))) {
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("Asia") && continentesDoJogador.contains("Africa")) {
+                    jogador.ganhouJogo = true;
+                    JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                }
+            } else if ((jogador.getObjetivo().equals(objetivos[8]))) {
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("Oceania") && continentesDoJogador.contains("AmericaNorte")) {
+                    jogador.ganhouJogo = true;
+                    JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                }
+            } else if ((jogador.getObjetivo().equals(objetivos[9]))) {
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("Asia") && continentesDoJogador.contains("AmericaSul")) {
+                    jogador.ganhouJogo = true;
+                    JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                }
+            } else if ((jogador.getObjetivo().equals(objetivos[10]))) {
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("Europa") && continentesDoJogador.contains("AmericaSul") && continentesDoJogador.size() >= 3) {
+                    jogador.ganhouJogo = true;
+                    JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                }
+            } else if ((jogador.getObjetivo().equals(objetivos[11]))) {
+                ArrayList<String> continentesDoJogador = jogador.checaContinentes();
+                if (continentesDoJogador.contains("Europa") && continentesDoJogador.contains("Oceania") && continentesDoJogador.size() >= 3) {
+                    jogador.ganhouJogo = true;
+                    JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
+                    return true;
+                }
+            } else if ((jogador.getObjetivo().equals(objetivos[12])) && jogador.getTerritoriosPossuidos().size() >= 24) {
+                jogador.ganhouJogo = true;
+                JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            } else if ((jogador.getObjetivo().equals(objetivos[13]))) {
+                ArrayList<Pais> territorios = jogador.getTerritoriosPossuidos();
+                int contagem = 0;
+                if (territorios.size() >= 18) {
+                    for (Pais pais : territorios) {
+                        if (pais.getTropas() >= 2)
+                            contagem++; // significa que esse pais tem 2 ou mais tropas. deve ser 18 vezes
+                    }
+                    if (contagem >= 18) { // significa que tenho mais de 18 territorios com 2 ou mais tropas
+                        jogador.ganhouJogo = true;
+                        JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
+                        return true;
+                    }
+                }
 
-        }
+            }
     }
         return false;
         }
@@ -163,7 +185,7 @@ private boolean temCor(Jogador.Cor cor){
             for (Jogador jogador : jogadores) {
                 if (!listaTodosPaises.isEmpty()) {
                     jogador.addTerritoriosPossuidos(listaTodosPaises.get(0));
-                    listaTodosPaises.get(0).addTropas(1); // eu add 1 exercito nesse pais
+                    listaTodosPaises.get(0).setTropas(1); // eu add 1 exercito nesse pais
                     listaTodosPaises.get(0).setDono(jogador);
                     listaTodosPaises.remove(listaTodosPaises.get(0));
 

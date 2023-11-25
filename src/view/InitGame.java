@@ -15,6 +15,11 @@ public class InitGame {
     private static final Object lock = new Object(); // Adicionado aqui
     public static boolean recarregou = false;
 
+    public static void reset() {
+        recarregou = false;
+        customPanel = null;   // Definindo customPanel como null
+    }
+
     public static InitGame.CustomPanel getCustomPanel() { // singleton
         if (customPanel == null) {
             customPanel = new InitGame.CustomPanel();

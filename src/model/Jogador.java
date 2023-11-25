@@ -22,7 +22,16 @@ class Jogador {
 
     public boolean ganhouJogo = false;
 
-    public Jogador() {
+    public void reset() {
+        this.premio = 0;
+        this.tropasParaAdicionar = 0;
+        this.territoriosPossuidos.clear();
+        this.continentesPossuidos.clear();
+        this.poligonosPossuidos.clear();
+        this.objetivo = null;
+        this.numTerritoriosConquistados = 0;
+        this.conquistouTerritorio = false;
+        this.ganhouJogo = false;
     }
 
     public int getPremio() {

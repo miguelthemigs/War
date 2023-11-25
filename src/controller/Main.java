@@ -21,7 +21,11 @@ public class Main {
         TextBoxes box = new TextBoxes();
 
         ApiAcess api = ApiAcess.getInstancia();
+        api.reset();
+
         InitGame view = new InitGame();
+        InitGame.reset();
+
         JFrame frame;
         InitGame.CustomPanel customPanel = InitGame.getCustomPanel();
         frame = view.generateBeginning();
@@ -39,7 +43,7 @@ public class Main {
 
         if (!InitGame.recarregou) {
 
-            System.out.println("\n********** JOGO INICIADO **********\n");
+            System.out.println("\n********** JOGO COMECOU **********\n");
 
             // Pergunte o número de jogadores
 
@@ -63,6 +67,7 @@ public class Main {
             System.out.println("\n********** JOGO RECARREGADO **********\n");
         }
 
+        GameMap.reset();
         GameMap.iniciarPainelDesenho(); // cria um novo frame com o mapa
         System.out.println("\n********** MAPA INICIALIZADO **********\n");
 
