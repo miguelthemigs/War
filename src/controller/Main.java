@@ -5,6 +5,7 @@ import model.ApiAcess;
 
 
 import model.ApiAttack;
+import model.ApiTest;
 import view.AtaqueGUI;
 import view.GameMap;
 import view.InitGame;
@@ -22,6 +23,9 @@ public class Main {
 
         ApiAcess api = ApiAcess.getInstancia();
         api.reset();
+
+        ApiTest apit = ApiTest.getInstancia();
+
 
         InitGame view = new InitGame();
         InitGame.reset();
@@ -74,6 +78,8 @@ public class Main {
         // Roda infinitamente. Quem para o jogo é a funcao "checaSeGanhou", chamda depois de cada ataque
         while (!api.checaSeGanhou()) {
             System.out.println("\n|||||||||||| INICIO DO LOOP ||||||||||||\n\n");
+
+            apit.remanejarTropas();
 
             // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente
             api.checaContinentesJogador();
