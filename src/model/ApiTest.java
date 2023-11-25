@@ -168,7 +168,9 @@ public class ApiTest extends JFrame {
         else{
             JOptionPane.showMessageDialog(null, "Por favor, selecione um numero de tropas que voce tenha.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
+
     }
+
     public void adicionarTropasAposRemanejar(Map<Pais, Integer> lista) {
         for (Map.Entry<Pais, Integer> entry : lista.entrySet()) {
             Pais pais = entry.getKey();
