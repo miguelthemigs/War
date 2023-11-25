@@ -22,7 +22,7 @@ public class ApiAcess {
         }
         jogadores.clear();
 
-        cartasEmJogo.clear();
+        cartasEmJogo = new ArrayList<>(List.of(Cartas.Territorio.allTerritorios));
         perguntaSalvamentoFeita = false;
         salvamentoPath = null;
     }
