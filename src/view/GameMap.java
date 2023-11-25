@@ -68,6 +68,7 @@ public class GameMap extends JPanel implements Observer {
         criaElipse(g);
 
     }
+    // Método para criar as elipses que represntam as tropas e dono de um território no tabuleiro
     public static void criaElipse(Graphics g){
         int x, y;
         ApiToView api = new ApiToView(); // teremos de ter essa instancia aqui
@@ -100,6 +101,7 @@ public class GameMap extends JPanel implements Observer {
         painel.repaint(); // Isso vai forçar o componente a ser redesenhado
     }
 
+    // Método para carregar os botões do painel
     public static void iniciarPainelDesenho() {
         JFrame frame = new JFrame("War PUC-Rio");
 
@@ -145,14 +147,14 @@ public class GameMap extends JPanel implements Observer {
         painel.repaint();
     }
 
-    // Method to display the options menu
+    // Método para exibir o menu de opcões
     private static void exibirOpcoesMenu() {
         ApiAcess api = ApiAcess.getInstancia();
         Object[] opcoes = {"Salvar e Sair", "Recomeçar"};
         int escolha = JOptionPane.showOptionDialog(null, "Escolha uma opção:", "Opções",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcoes, opcoes[0]);
 
-        // Handle the user's choice
+        // Tratar a escolha do usuário
         switch (escolha) {
             case 0: // Salvar e Sair
                 api.salvamento();

@@ -124,6 +124,7 @@ class Jogador {
         return territoriosPossuidos.size();
     }
 
+    // Método para saber quantos continentes um jogador possui
     public ArrayList<String> checaContinentes(){
         Pais[][] Continentes = {Tabuleiro.Africa, Tabuleiro.AmericaSul, Tabuleiro.AmericaNorte, Tabuleiro.Asia, Tabuleiro.Oceania, Tabuleiro.Europa};
         String[] contNome = {"Africa", "AmericaSul", "AmericaNorte", "Asia", "Oceania", "Europa"};

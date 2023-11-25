@@ -111,13 +111,13 @@ public class Main {
             // Configurar e exibir a interface de ataque
             ApiAttack.resetInstancia();
             AtaqueGUI ataque = AtaqueGUI.getInstancia();
-            ataque.mostraAtaque(); // efetua ataque dos jogadores
+            ataque.mostraAtaque(); // Efetua ataque dos jogadores
             System.out.println("\n\n---------- FINALIZANDO ATAQUE --------\n");
             System.out.println("\n----------------------------------------\n\n");
 
             System.out.println("\n\n----------------------------------------------\n");
             System.out.println("\n---------- INICIANDO PROCESSOS CARTAS ----------\n");
-            api.distribuiCartas(); // ao fim do ataque, distribuimos uma carta para os jogadores que conquistaram um territorio
+            api.distribuiCartas(); // Ao fim do ataque, distribuimos uma carta para os jogadores que conquistaram um territorio
             api.trocaCartasPoligono();
             System.out.println("\n------------------------------------------------");
             System.out.println("\n---------- FINALIZANDO PROCESSOS CARTAS ----------\n");
@@ -129,8 +129,8 @@ public class Main {
 
         }
 
-        // Ask the player if they want to restart or end the game
-        int option = JOptionPane.showOptionDialog(
+        // Pergunta ao jogador se quer parar de jogar ou inicar outra partida
+        int escolha = JOptionPane.showOptionDialog(
                 null,
                 "Deseja recomeçar a partida ou acabar o jogo?",
                 "Fim do Jogo",
@@ -141,27 +141,18 @@ public class Main {
                 "Recomeçar"
         );
 
-        if (option == JOptionPane.YES_OPTION) {
-            // Close all frames
-            for (Window window : Window.getWindows()) {
-                window.dispose();
+        if (escolha == JOptionPane.YES_OPTION) {
+            // Fecha todos os frames
+            for (Window janela : Window.getWindows()) {
+                janela.dispose();
             }
-            // Restart the game by continuing to the beginning of the main method
+            // Recomeça o jogo indo para o inicio da main
             main(args);
         } else {
-            // End the game
+            // Finaliza o jogo
             System.exit(0);
         }
 
     }
 
 }
-
-
-
-
-
-
-
-
-

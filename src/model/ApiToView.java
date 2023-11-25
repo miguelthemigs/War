@@ -15,6 +15,7 @@ public class ApiToView {
         }
         return instancia;
     }
+    // Método para saber a quem pertence e tropas de um territorio
     public ArrayList<Integer> iterarPaises(){
         for (Pais pais: listaPaises){
             cor = -1;

@@ -80,6 +80,7 @@ public class ApiAttack extends JFrame implements Observer {
             atualizarElipses();  // Chame o método desejado para atualizar as elipses na interface
     }
 
+    // Método para obter todas as informações sobre um ataque
     public void iniciarAtaque() {
         // Configurar frame
         setTitle("Ataque - Jogador " + jogadorAtual.getCor());
@@ -88,7 +89,7 @@ public class ApiAttack extends JFrame implements Observer {
         setLocationRelativeTo(null);
         setLocation(1025,0);
 
-        // Infinite loop until "Cancelar" is pressed
+        // Loop infinito enquanto 'cancelar' não é pressionado
         while (true) {
             System.out.println("\nENTROU NO LOOP ATAQUE\n\n");
 
@@ -98,7 +99,7 @@ public class ApiAttack extends JFrame implements Observer {
             // Reseta items da combo box alvo
             resetaComboBox(paisesFronteirasComboBox);
 
-            // Clear the contents of the frame for each iteration
+            // Limpa o conteudo do frame a cada iteração
             getContentPane().removeAll();
             repaint();
 
@@ -169,7 +170,7 @@ public class ApiAttack extends JFrame implements Observer {
             // Exibir frame
             setVisible(true);
 
-            // Wait for the frame to be disposed before breaking the loop
+            // Espera o frame ser descartado para poder sair do loop
             try {
                 while (isVisible()) {
                     Thread.sleep(100);
@@ -178,7 +179,7 @@ public class ApiAttack extends JFrame implements Observer {
                 ex.printStackTrace();
             }
 
-            // Break the loop if the frame was disposed (Cancelar was pressed)
+            // Quebra o frame se 'cancelar' for pressionado
             if (!isVisible()) {
                 break;
             }
@@ -203,7 +204,7 @@ public class ApiAttack extends JFrame implements Observer {
         comboBox.addItem("Selecione o pais alvo");
     }
 
-
+    // Método para saber quais vizinhos de um território possuem outros donos
     private ArrayList<Pais> obterVizinhosNaoPossuidos(String territorio, Jogador jogador) {
         ApiAcess api = ApiAcess.getInstancia();
         ArrayList<Pais> naoPossuidos = new ArrayList<>();
@@ -217,127 +218,129 @@ public class ApiAttack extends JFrame implements Observer {
         return naoPossuidos;
     }
 
+    // Método para manipular e realizar todas as informações sobre um ataque
     private void realizarAtaque(String territorioSelecionado, String alvoSelecionado) {
 
-            System.out.printf("Origem do ataque: %s\nAlvo do ataque: %s\n\n", territorioSelecionado, alvoSelecionado);
-            ApiAcess api = ApiAcess.getInstancia();
+        System.out.printf("Origem do ataque: %s\nAlvo do ataque: %s\n\n", territorioSelecionado, alvoSelecionado);
+        ApiAcess api = ApiAcess.getInstancia();
 
-            int resposta = JOptionPane.showConfirmDialog(
+        int resposta = JOptionPane.showConfirmDialog(
+                null,
+                "Você deseja atacar " + alvoSelecionado + "?",
+                "Atacar Território",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            // Lógica de ataque
+            Pais paisAtaque = api.StringtoPais(territorioSelecionado);
+            int tropasAtaque = paisAtaque.getTropas();
+
+            Pais paisDefesa = api.StringtoPais(alvoSelecionado);
+            int tropasDefesa = paisDefesa.getTropas();
+            int numeroDadosAtaque = 0, numeroDadosDefesa = 0;
+
+            int[] resultadosAtaque = new int[]{0, 0, 0};
+            int[] resultadosDefesa = new int[]{0, 0, 0};
+
+            // Atacante usa um dado a menos do que suas tropas
+            if (tropasAtaque >= 4) {
+                numeroDadosAtaque = 3;
+            } else if (tropasAtaque == 3) {
+                numeroDadosAtaque = 2;
+            } else if (tropasAtaque == 2) {
+                numeroDadosAtaque = 1;
+            }
+
+            // Defensor usa até três dados, se tiver pelo menos três tropas
+            if (tropasDefesa >= 3) {
+                numeroDadosDefesa = 3;
+            } else if (tropasDefesa == 2) {
+                numeroDadosDefesa = 2;
+            } else if (tropasDefesa == 1) {
+                numeroDadosDefesa = 1;
+            }
+
+
+            int manipular = JOptionPane.showOptionDialog(
                     null,
-                    "Você deseja atacar " + alvoSelecionado + "?",
-                    "Atacar Território",
-                    JOptionPane.YES_NO_OPTION
+                    "Deseja manipular o resultado dos dados?",
+                    "Dados",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    new Object[]{"Manipular", "Jogar"},
+                    "Manipular"
             );
 
-            if (resposta == JOptionPane.YES_OPTION) {
-                // Lógica de ataque
-                Pais paisAtaque = api.StringtoPais(territorioSelecionado);
-                int tropasAtaque = paisAtaque.getTropas();
+            if (manipular == JOptionPane.YES_OPTION) {
+                int[][] resultados = mostrarJanelaDados(numeroDadosAtaque, numeroDadosDefesa);
+                resultadosAtaque = resultados[0];
+                resultadosDefesa = resultados[1];
+            }
 
-                Pais paisDefesa = api.StringtoPais(alvoSelecionado);
-                int tropasDefesa = paisDefesa.getTropas();
-                int numeroDadosAtaque = 0, numeroDadosDefesa = 0;
-
-                int[] resultadosAtaque = new int[]{0, 0, 0};
-                int[] resultadosDefesa = new int[]{0, 0, 0};
-
-                // Atacante usa um dado a menos do que suas tropas
-                if (tropasAtaque >= 4) {
-                    numeroDadosAtaque = 3;
-                } else if (tropasAtaque == 3) {
-                    numeroDadosAtaque = 2;
-                } else if (tropasAtaque == 2) {
-                    numeroDadosAtaque = 1;
+            else {
+                for (int i = 0; i < 3; i++) {
+                    resultadosAtaque[i] = (i < numeroDadosAtaque) ? Dados.jogarVermelho() : 0;
+                    resultadosDefesa[i] = (i < numeroDadosDefesa) ? Dados.jogarAmarelo() : 0;
                 }
+            }
 
-                // Defensor usa até três dados, se tiver pelo menos três tropas
-                if (tropasDefesa >= 3) {
-                    numeroDadosDefesa = 3;
-                } else if (tropasDefesa == 2) {
-                    numeroDadosDefesa = 2;
-                } else if (tropasDefesa == 1) {
-                    numeroDadosDefesa = 1;
+            // Ordena os resultados em ordem decrescente
+            Arrays.sort(resultadosAtaque);
+            reverseArray(resultadosAtaque);
+            Arrays.sort(resultadosDefesa);
+            reverseArray(resultadosDefesa);
+
+            // Exibe o resultado do ataque
+            String mensagemResultado = "Ataque concluído!\n\n";
+            mensagemResultado += "Resultado dos dados de ataque: " + arrayToString(resultadosAtaque) + "\n";
+            mensagemResultado += "Resultado dos dados de defesa: " + arrayToString(resultadosDefesa) + "\n\n";
+
+            int attackLoss = 0;
+            int defenseLoss = 0;
+            for (int i = 0; i < Math.min(numeroDadosAtaque, numeroDadosDefesa); i++) {
+                if (resultadosAtaque[i] > resultadosDefesa[i]) {
+                    defenseLoss++;
+                } else {
+                    attackLoss++;
                 }
+            }
 
+            mensagemResultado += "Tropas perdidas pelo atacante: " + attackLoss + "\n";
+            mensagemResultado += "Tropas perdidas pelo defensor: " + defenseLoss + "\n";
 
-                int manipular = JOptionPane.showOptionDialog(
-                        null,
-                        "Deseja manipular o resultado dos dados?",
-                        "Dados",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        new Object[]{"Manipular", "Jogar"},
-                        "Manipular"
-                );
+            JOptionPane.showMessageDialog(null, mensagemResultado);
 
-                if (manipular == JOptionPane.YES_OPTION) {
-                    int[][] resultados = mostrarJanelaDados(numeroDadosAtaque, numeroDadosDefesa);
-                    resultadosAtaque = resultados[0];
-                    resultadosDefesa = resultados[1];
-                }
+            api.StringtoPais(territorioSelecionado).removeTropas(attackLoss); // Já remove as tropas
+            tropasAtaque -= attackLoss;
+            System.out.println("\nremoveu do atacante: "+ attackLoss);
 
-                else {
-                    for (int i = 0; i < 3; i++) {
-                        resultadosAtaque[i] = (i < numeroDadosAtaque) ? Dados.jogarVermelho() : 0;
-                        resultadosDefesa[i] = (i < numeroDadosDefesa) ? Dados.jogarAmarelo() : 0;
-                    }
-                }
+            api.StringtoPais(alvoSelecionado).removeTropas(defenseLoss);
+            tropasDefesa -= defenseLoss;
+            System.out.println("removeu do defensor: "+ defenseLoss);
+            notifyObservers();
 
-                // Ordena os resultados em ordem decrescente
-                Arrays.sort(resultadosAtaque);
-                reverseArray(resultadosAtaque);
-                Arrays.sort(resultadosDefesa);
-                reverseArray(resultadosDefesa);
+            if(tropasDefesa < 1) {
+                JOptionPane.showMessageDialog(null, "Territorio conquistado! " + alvoSelecionado);
+                jogadorAtual.conquistouTerritorio = true; // Indica que conquistou um territorio, e deve ganhar uma carta
+                removePaisDoDefensor(paisDefesa);
+                jogadorAtual.addTerritoriosPossuidos(paisDefesa);
+                jogadorAtual.addNumTerritoriosConquistados(); // Adiciona no numero de territorios conquistados, para ver se ele foi vitorioso
+                int tropasTransferir = pedirQuantidadeTropasTransferir(tropasAtaque);
 
-                // Exibe o resultado do ataque
-                String mensagemResultado = "Ataque concluído!\n\n";
-                mensagemResultado += "Resultado dos dados de ataque: " + arrayToString(resultadosAtaque) + "\n";
-                mensagemResultado += "Resultado dos dados de defesa: " + arrayToString(resultadosDefesa) + "\n\n";
-
-                int attackLoss = 0;
-                int defenseLoss = 0;
-                for (int i = 0; i < Math.min(numeroDadosAtaque, numeroDadosDefesa); i++) {
-                    if (resultadosAtaque[i] > resultadosDefesa[i]) {
-                        defenseLoss++;
-                    } else {
-                        attackLoss++;
-                    }
-                }
-
-                mensagemResultado += "Tropas perdidas pelo atacante: " + attackLoss + "\n";
-                mensagemResultado += "Tropas perdidas pelo defensor: " + defenseLoss + "\n";
-
-                JOptionPane.showMessageDialog(null, mensagemResultado);
-
-                api.StringtoPais(territorioSelecionado).removeTropas(attackLoss); // ja remove as tropas
-                tropasAtaque -= attackLoss;
-                System.out.println("\nremoveu do atacante: "+ attackLoss);
-
-                api.StringtoPais(alvoSelecionado).removeTropas(defenseLoss);
-                tropasDefesa -= defenseLoss;
-                System.out.println("removeu do defensor: "+ defenseLoss);
+                // Transferir tropas
+                paisDefesa.addTropas(tropasTransferir);
+                paisAtaque.removeTropas(tropasTransferir);
+                System.out.println("\nTerritorio conquistado (" + alvoSelecionado + ")\n");
                 notifyObservers();
 
-                if(tropasDefesa < 1) {
-                    JOptionPane.showMessageDialog(null, "Territorio conquistado! " + alvoSelecionado);
-                    jogadorAtual.conquistouTerritorio = true; // indica que conquistou um territorio, e deve ganhar uma carta
-                    removePaisDoDefensor(paisDefesa);
-                    jogadorAtual.addTerritoriosPossuidos(paisDefesa);
-                    jogadorAtual.addNumTerritoriosConquistados(); // add no numero de territorios conquistados, para ver se ele foi vitorioso
-                    int tropasTransferir = pedirQuantidadeTropasTransferir(tropasAtaque);
-
-                    // Transferir tropas
-                    paisDefesa.addTropas(tropasTransferir);
-                    paisAtaque.removeTropas(tropasTransferir);
-                    System.out.println("\nTerritorio conquistado (" + alvoSelecionado + ")\n");
-                    notifyObservers();
-
-                }
-
             }
+
+        }
     }
 
+    // Método para exibir e operar a manipulação dos dados
     private static int[][] mostrarJanelaDados(int ataqueDados, int defesaDados) {
 
         int[] resultadosAtaque = new int[ataqueDados];
@@ -386,6 +389,7 @@ public class ApiAttack extends JFrame implements Observer {
         return new int[][] {resultadosAtaque, resultadosDefesa};
     }
 
+    // Método para atualizar a ComboBox com base no território selecionado
     private void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox) {
         // Zerar a JComboBox
         meusPaisesComboBox.removeAllItems();
@@ -400,6 +404,7 @@ public class ApiAttack extends JFrame implements Observer {
         }
     }
 
+    // Método para obter tropas a serem transferidas após conquista
     private int pedirQuantidadeTropasTransferir(int tropasAtaque) {
         // Criar um JSpinner para permitir que o jogador selecione o número de tropas a serem transferidas
         SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, Math.min(tropasAtaque-1, 3), 1);
@@ -430,7 +435,7 @@ public class ApiAttack extends JFrame implements Observer {
         }
     }
 
-    // Função para transformar um array em uma string, substituindo 0 por "-"
+    // Método para transformar um array em uma string, substituindo 0 por "-"
     private String arrayToString(int[] array) {
         StringBuilder result = new StringBuilder("[");
         for (int i = 0; i < array.length; i++) {
@@ -443,7 +448,7 @@ public class ApiAttack extends JFrame implements Observer {
         return result.toString();
     }
 
-    // Função para inverter a ordem de um array
+    // Método para inverter a ordem de um array
     private void reverseArray(int[] array) {
         for (int i = 0; i < array.length / 2; i++) {
             int temp = array[i];

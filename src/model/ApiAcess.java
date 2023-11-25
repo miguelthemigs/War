@@ -9,19 +9,22 @@ import java.util.List;
 public class ApiAcess {
     String[] objetivos = Cartas.objetivo; // devo tirar um onjetivo da lista a cada sorteio
     private static ApiAcess instancia = null;
-    private static final Object lockRecarga = new Object(); // Adicionado aqui
+    //private static final Object lockRecarga = new Object(); // Adicionado aqui
     public static ArrayList<Jogador> jogadores = new ArrayList<>();
     ArrayList<Cartas.Territorio> cartasEmJogo = new ArrayList<>(List.of(Cartas.Territorio.allTerritorios));
     private boolean perguntaSalvamentoFeita = false;
 
     private  String salvamentoPath;
 
+    // Método para reiniciar o estado do jogo e dados específicos de partida
     public void reset() {
+        // Resetar cada jogador individualmente
         for (Jogador jogador : jogadores){
             jogador.reset();
         }
+        // Limpar lista de jogadores
         jogadores.clear();
-
+        // Limpar outros dados
         cartasEmJogo = new ArrayList<>(List.of(Cartas.Territorio.allTerritorios));
         perguntaSalvamentoFeita = false;
         salvamentoPath = null;
@@ -64,38 +67,38 @@ public class ApiAcess {
         }
         return objetivos;
     }
-private boolean temCor(Jogador.Cor cor){
+    private boolean temCor(Jogador.Cor cor){
         for(Jogador jogador: jogadores){
-            if(jogador.getCor().equals(cor)) // se essa cor existir na lista de jogadores, retorna true
+            if(jogador.getCor().equals(cor)) // Se essa cor existir na lista de jogadores, retorna true
                 return true;
         }
         return false;
-}
+    }
     private boolean atendeCriterioVitoriaCores(Jogador jogador, String objetivo, Jogador.Cor corAlvo){
         return jogador.getObjetivo().equals(objetivo) &&
                 (jogador.getCor().equals(corAlvo) || !temCor(corAlvo)) &&
                 jogador.getTerritoriosPossuidos().size() >= 24;
     }
-    public boolean checaSeGanhou() { // deve ser chamada ao fim de cada ataque
-        for (Jogador jogador : jogadores) { // checa os objetivos de cores
-            for (int i = 0; i <= 5; i++) { // itero pelos objetivos de cores
+    public boolean checaSeGanhou() { // Deve ser chamada ao fim de cada ataque
+        for (Jogador jogador : jogadores) {
+            // Checa os objetivos de cores
+            for (int i = 0; i <= 5; i++) { // Itero pelos objetivos de cores
                 String objetivo = objetivos[i];
                 Jogador.Cor corAlvo = Jogador.Cor.values()[i];
 
-                if (atendeCriterioVitoriaCores(jogador, objetivo, corAlvo)) { // se o jogador tiver algum objetivo de cores, ele entra aqui
+                if (atendeCriterioVitoriaCores(jogador, objetivo, corAlvo)) { // Se o jogador tiver algum objetivo de cores, ele entra aqui
                     jogador.ganhouJogo = true;
                     JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
-                for (Jogador oponente : jogadores) { // checa se nao eiste o jogador que deveria destruir
+                for (Jogador oponente : jogadores) { // Checa se nao existe o jogador que deveria destruir
                     if (oponente.getCor().equals(corAlvo) && oponente.getTerritoriosPossuidos().isEmpty()) {
                         jogador.ganhouJogo = true;
                         JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                         return true;
                     }
                 }
-            }
-
+            }// Checa os objetivos de possuir continentes
             if (jogador.getObjetivo().equals(objetivos[6])) {
                 ArrayList<String> continentesDoJogador = jogador.checaContinentes();
                 if (continentesDoJogador.contains("AmericaNorte") && continentesDoJogador.contains("Africa")) {
@@ -138,7 +141,8 @@ private boolean temCor(Jogador.Cor cor){
                     JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
-            } else if ((jogador.getObjetivo().equals(objetivos[12])) && jogador.getTerritoriosPossuidos().size() >= 24) {
+            } // Checa os objetivos de possuir territórios
+            else if ((jogador.getObjetivo().equals(objetivos[12])) && jogador.getTerritoriosPossuidos().size() >= 24) {
                 jogador.ganhouJogo = true;
                 JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                 return true;
@@ -148,9 +152,9 @@ private boolean temCor(Jogador.Cor cor){
                 if (territorios.size() >= 18) {
                     for (Pais pais : territorios) {
                         if (pais.getTropas() >= 2)
-                            contagem++; // significa que esse pais tem 2 ou mais tropas. deve ser 18 vezes
+                            contagem++; // Significa que esse pais tem 2 ou mais tropas. deve ser 18 vezes
                     }
-                    if (contagem >= 18) { // significa que tenho mais de 18 territorios com 2 ou mais tropas
+                    if (contagem >= 18) { // Significa que tenho mais de 18 territorios com 2 ou mais tropas
                         jogador.ganhouJogo = true;
                         JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                         return true;
@@ -158,9 +162,9 @@ private boolean temCor(Jogador.Cor cor){
                 }
 
             }
-    }
-        return false;
         }
+        return false;
+    }
 
 
 
@@ -173,22 +177,20 @@ private boolean temCor(Jogador.Cor cor){
         listaTodosPaises.addAll(Arrays.asList(Tabuleiro.Europa));
         listaTodosPaises.addAll(Arrays.asList(Tabuleiro.Oceania));
         return listaTodosPaises;
-
-
     }
-
+    // Método para sortear territórios entre os jogadores no inicio da partida
     public void sorteiaTerritorios() {
         ArrayList<Pais> listaTodosPaises;
         listaTodosPaises = geraListaSorteioTerritorios();
+        // Embaralha os países para a distribuição
         Collections.shuffle(listaTodosPaises);
         while (!listaTodosPaises.isEmpty()) {
             for (Jogador jogador : jogadores) {
                 if (!listaTodosPaises.isEmpty()) {
                     jogador.addTerritoriosPossuidos(listaTodosPaises.get(0));
-                    listaTodosPaises.get(0).setTropas(1); // eu add 1 exercito nesse pais
+                    listaTodosPaises.get(0).setTropas(1); // Eu adiciono 1 exército nesse pais
                     listaTodosPaises.get(0).setDono(jogador);
                     listaTodosPaises.remove(listaTodosPaises.get(0));
-
                 }
             }
         }
@@ -224,7 +226,7 @@ private boolean temCor(Jogador.Cor cor){
             //System.out.println("Fim\n");
         }
     }
-
+    // Método para descobrir quantas tropas cada jogador ganha com base em territórios possuídos
     public void checarTropasGanhar() {
         for (Jogador jogador : jogadores) {
             int tropasGanhar;
@@ -379,14 +381,14 @@ private boolean temCor(Jogador.Cor cor){
                                     (cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(1).getPoligono()) &&
                                     cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(2).getPoligono()) &&
                                     cartasSelecionadas.get(1).getPoligono().equals(cartasSelecionadas.get(2).getPoligono())) ||
-                                            ((cartasSelecionadas.get(0).getPoligono().equals(Cartas.Poligono.coringa) && cartasSelecionadas.get(1).getPoligono().equals(cartasSelecionadas.get(2).getPoligono())) ||
-                                                    ((cartasSelecionadas.get(1).getPoligono().equals(Cartas.Poligono.coringa) && cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(2).getPoligono()))) ||
-                                                            (cartasSelecionadas.get(2).getPoligono().equals(Cartas.Poligono.coringa) && cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(1).getPoligono()))
-                            )) {
+                                    ((cartasSelecionadas.get(0).getPoligono().equals(Cartas.Poligono.coringa) && cartasSelecionadas.get(1).getPoligono().equals(cartasSelecionadas.get(2).getPoligono())) ||
+                                    ((cartasSelecionadas.get(1).getPoligono().equals(Cartas.Poligono.coringa) && cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(2).getPoligono()))) ||
+                                    (cartasSelecionadas.get(2).getPoligono().equals(Cartas.Poligono.coringa) && cartasSelecionadas.get(0).getPoligono().equals(cartasSelecionadas.get(1).getPoligono())))
+                            ) {
                                 System.out.println("IGUAIS");
                                 // Adicione a lógica para realizar a troca quando as cartas são iguais
                                 cartasSelecionadasCorretamente = true;
-                                cartasEmJogo.add(cartasSelecionadas.get(0)); // devolvo a carta troca para lista de cartas
+                                cartasEmJogo.add(cartasSelecionadas.get(0)); // Devolvo a carta troca para lista de cartas
                                 cartasEmJogo.add(cartasSelecionadas.get(1));
                                 cartasEmJogo.add(cartasSelecionadas.get(2));
                                 jogador.removePoligonosPossuidos(cartasSelecionadas.get(0));
@@ -481,8 +483,8 @@ private boolean temCor(Jogador.Cor cor){
         jogador.addPremio();
     }
 
-
-    public void distribuiCartas() { // distribui cartas para cada jogador que conquistou um territorio
+    // Método para distribuir cartas para cada jogador que conquistou um territorio
+    public void distribuiCartas() {
         Collections.shuffle(cartasEmJogo);
 
         for (Jogador jogador : jogadores) {
@@ -639,6 +641,3 @@ private boolean temCor(Jogador.Cor cor){
     }
 
 }
-
-
-

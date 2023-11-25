@@ -37,7 +37,7 @@ public class ApiTest extends JFrame {
         return instancia;
     }
 
-
+    // Método para deslocar tropas após o jogador finalizar uma rodada de ataques
     public void remanejarTropas() {
         for (Jogador jogador : jogadores) {
 
@@ -137,7 +137,7 @@ public class ApiTest extends JFrame {
                 // Exibir frame
                 setVisible(true);
 
-                // Wait for the frame to be disposed before breaking the loop
+                // Espera o frame ser descartado para poder sair do loopp
                 try {
                     while (isVisible()) {
                         Thread.sleep(100);
@@ -146,7 +146,7 @@ public class ApiTest extends JFrame {
                     ex.printStackTrace();
                 }
 
-                // Break the loop if the frame was disposed (Cancelar was pressed)
+                // Quebra o frame se 'cancelar' for pressionado
                 if (!isVisible()) {
                     break;
                 }
@@ -160,10 +160,14 @@ public class ApiTest extends JFrame {
     private void realizarRemanejamento(String origem, String destino, int quantidadeTropas, Map<Pais, Integer> list) {
 
         System.out.printf("Remanejamento de tropas: %d tropas de %s para %s\n", quantidadeTropas, origem, destino);
-        ApiAcess api = ApiAcess.getInstancia();
-        api.StringtoPais(origem).removeTropas(quantidadeTropas);
-        list.put(api.StringtoPais(destino), quantidadeTropas);
-
+        if(quantidadeTropas == (api.StringtoPais(origem).getTropas())){
+            ApiAcess api = ApiAcess.getInstancia();
+            api.StringtoPais(origem).removeTropas(quantidadeTropas);
+            list.put(api.StringtoPais(destino), quantidadeTropas);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Por favor, selecione um numero de tropas que voce tenha.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
     public void adicionarTropasAposRemanejar(Map<Pais, Integer> lista) {
         for (Map.Entry<Pais, Integer> entry : lista.entrySet()) {
@@ -202,7 +206,7 @@ public class ApiTest extends JFrame {
             alvoComboBox.addItem(pais.getNome());
         }
     }
-
+    // Método para descobrir quais vizinhos possuem o mesmo dono
     private ArrayList<Pais> obterVizinhosPossuidos(String territorio, Jogador jogador) {
         System.out.println("\n\n'"+jogador.getCor()+"'\n\n");
         ArrayList<Pais> possuidos = new ArrayList<>();

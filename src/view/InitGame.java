@@ -27,6 +27,7 @@ public class InitGame {
         return customPanel;
     }
 
+    // Método para criar o painel
     public static class CustomPanel extends JPanel {
         private BufferedImage image;
         private final Rectangle clickableRect;
