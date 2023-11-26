@@ -11,14 +11,28 @@ public class ApiAcessTeste {
     public void inicializa() {
         // Configuração comum antes de todos os testes
         api = new ApiAcess();
+
         ArrayList<String> coresEscolhidas = new ArrayList<>();
         coresEscolhidas.add("verde");
         coresEscolhidas.add("branco");
         coresEscolhidas.add("vermelho");
         api.gerarJogadores(coresEscolhidas);
+
+        for(Jogador jog: api.jogadores){
+            System.out.println(jog.getCor());
+        }
+
     }
     @Test
     public void testeGerarJogadores() {
+        api.reset();
+        api.resetInstancia();
+
+        ArrayList<String> coresEscolhidas = new ArrayList<>();
+        coresEscolhidas.add("verde");
+        coresEscolhidas.add("branco");
+        coresEscolhidas.add("vermelho");
+        api.gerarJogadores(coresEscolhidas);
         // Verifica se a lista de jogadores foi criada corretamente
         assertEquals("Quantidade de jogadores criadas errado",3, api.jogadores.size());
 
@@ -26,6 +40,8 @@ public class ApiAcessTeste {
         for (Jogador jogador : api.jogadores) {
             assertNotNull("Jogador com cor inválida",jogador.getCor());
         }
+        api.reset();
+        api.resetInstancia();
     }
     @Test
     public void testeSorteiaObjetivo() {
@@ -43,6 +59,8 @@ public class ApiAcessTeste {
                 assertNotEquals("Objetivos iguais entre jogadores",api.jogadores.get(i).getObjetivo(), api.jogadores.get(j).getObjetivo());
             }
         }
+        api.reset();
+        api.resetInstancia();
     }
     
     @Test
@@ -63,9 +81,13 @@ public class ApiAcessTeste {
         }
         assertEquals("Mais territórios que o devido",51,totalTerritoriosAntes);
         assertEquals("Número de territórios diferentes antes e depois de atribuição",totalTerritoriosAntes, totalTerritoriosApos);
+        api.reset();
+        api.resetInstancia();
     }
     @Test
     public void testeChecaContinentesJogador() {
+        api.reset();
+        api.resetInstancia();
     	int expected= 6;
     	int actual;
         ApiAcess api = new ApiAcess();
@@ -84,6 +106,9 @@ public class ApiAcessTeste {
         	actual = jogador.getNumContinentesPossuidos();
             assertEquals("Jogador sem continente atribuído",expected,actual);
         }
+        api.reset();
+        api.resetInstancia();
+
     }
     @Test
     public void testeChecarTropasGanhar() {
@@ -99,6 +124,8 @@ public class ApiAcessTeste {
         for (Jogador jogador : api.jogadores) {
             assertTrue("Jogador sem tropas para ser adicionadas",jogador.getTropasParaAdicionar() >= 3);
         }
+        api.reset();
+        api.resetInstancia();
     }
 
     @Test
@@ -116,7 +143,8 @@ public class ApiAcessTeste {
         for(Jogador jogador: api.jogadores)
             assertFalse(jogador.conquistouTerritorio);
 
-
+        api.reset();
+        api.resetInstancia();
 
     }
     @After
