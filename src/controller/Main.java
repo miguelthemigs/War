@@ -117,6 +117,12 @@ public class Main {
             System.out.println("\n\n---------- FINALIZANDO ATAQUE --------\n");
             System.out.println("\n----------------------------------------\n\n");
 
+            // Confirma que apos o ataque o jogo segue
+            if (api.acabou){
+                break;
+            }
+
+
             apit.remanejarTropas();
             System.out.println("\n********** TROPAS REMANEJADAS **********\n");
 

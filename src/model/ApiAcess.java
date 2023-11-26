@@ -17,6 +17,7 @@ public class ApiAcess {
     private boolean perguntaSalvamentoFeita = false;
 
     private  String salvamentoPath;
+    public boolean acabou = false;
 
     // Método para reiniciar o estado do jogo e dados específicos de partida
     public void reset() {
@@ -29,6 +30,7 @@ public class ApiAcess {
         // Limpar outros dados
         cartasEmJogo = new ArrayList<>(List.of(Cartas.Territorio.allTerritorios));
         perguntaSalvamentoFeita = false;
+        acabou = false;
         salvamentoPath = null;
     }
 
@@ -95,7 +97,7 @@ public class ApiAcess {
                     return true;
                 }
                 for (Jogador morto : mortos) { // Checa se nao existe o jogador que deveria destruir
-                    if (morto.getCor().equals(corAlvo)) {
+                    if (jogador.getObjetivo().equals(objetivo) && morto.getCor().equals(corAlvo) && morto.getMatou() == jogador) {
                         jogador.ganhouJogo = true;
                         JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                         return true;
@@ -448,14 +450,17 @@ public class ApiAcess {
         throw new RuntimeException("Nao encontramos o pais pedido");
     }
 
-    public void confirmaJogadores(){
-        for(Jogador jogador:jogadores){
-            if(jogador.getTerritoriosPossuidos().isEmpty()){
+    public void confirmaJogadores() {
+        ArrayList<Jogador> temp = new ArrayList<>(jogadores); // Create a shallow copy
+
+        for (Jogador jogador : temp) {
+            if (jogador.getTerritoriosPossuidos().isEmpty()) {
                 mortos.add(jogador);
                 jogadores.remove(jogador);
             }
         }
     }
+
 
     public void ataque() {
         ApiAttack api = ApiAttack.getInstancia(jogadores);
@@ -465,6 +470,7 @@ public class ApiAcess {
             api.iniciarProximoAtaque();
             confirmaJogadores();
             if(api2.checaSeGanhou()){
+                api2.acabou = true;
                 break;
             }
         }

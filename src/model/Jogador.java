@@ -15,9 +15,17 @@ class Jogador {
     private ArrayList<String> continentesPossuidos;
     private ArrayList<Territorio> poligonosPossuidos; // aqui so usarei os poligonos getPoligono()
     private String objetivo;
+
+    private Jogador matou = null;
     private int numTerritoriosConquistados = 0;
 
 
+    public Jogador getMatou() {
+        return matou;
+    }
+    public void setMatou(Jogador matou) {
+        this.matou = matou;
+    }
     public boolean conquistouTerritorio = false;
 
     public boolean ganhouJogo = false;
@@ -30,6 +38,7 @@ class Jogador {
         this.poligonosPossuidos.clear();
         this.objetivo = null;
         this.numTerritoriosConquistados = 0;
+        this.matou = null;
         this.conquistouTerritorio = false;
         this.ganhouJogo = false;
     }

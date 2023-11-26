@@ -334,7 +334,6 @@ public class ApiAttack extends JFrame implements Observer {
                 paisAtaque.removeTropas(tropasTransferir);
                 System.out.println("\nTerritorio conquistado (" + alvoSelecionado + ")\n");
                 notifyObservers();
-
             }
 
         }
@@ -431,6 +430,9 @@ public class ApiAttack extends JFrame implements Observer {
             if(jogador.getTerritoriosPossuidos().contains(pais)) {
                 jogador.removeTerritorio(pais);
                 jogador.removeNumTerritoriosConquistados();
+
+                // Definir quem matou o territorio mais recente do jogador
+                jogador.setMatou(jogadorAtual);
             }
         }
     }
