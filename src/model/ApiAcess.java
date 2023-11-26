@@ -323,7 +323,7 @@ public class ApiAcess {
 
         // Iterar sobre os jogadores
         for (Jogador jogador : jogadores) {
-            if (jogador.getPoligonosPossuidos().size() >= 3) {
+            if (!jogador.getPoligonosPossuidos().isEmpty()) {
                 boolean cartasSelecionadasCorretamente = false;
 
                 while (!cartasSelecionadasCorretamente) {
@@ -430,7 +430,7 @@ public class ApiAcess {
                 }
             }
             else {
-                JOptionPane.showMessageDialog(null, "O jogador " + jogador.getCor() + " possui menos de 3 cartas.", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "O jogador " + jogador.getCor() + " nao possui cartas.", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
