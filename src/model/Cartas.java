@@ -3,20 +3,20 @@ package model;
 class Cartas {
     // cada jogador tera um objetivo sorteado, ao objetivo ser sorteado, ele sera removido da lista, e outro sera sorteado
     public static String[] objetivo = { // 14 objetivos
-    "Destruir totalmente o jogador VERDE. Se você é o VERDE, ou não há VERDE na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.",
-    "Destruir totalmente o jogador AZUL. Se você é o AZUL, ou não há AZUL na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.",
-    "Destruir totalmente o jogador AMARELO. Se você é o AMARELO, ou não há AMARELO na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.",
     "Destruir totalmente o jogador VERMELHO. Se você é o VERMELHO, ou não há VERMELHO na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.",
+    "Destruir totalmente o jogador AZUL. Se você é o AZUL, ou não há AZUL na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.",
+    "Destruir totalmente o jogador VERDE. Se você é o VERDE, ou não há VERDE na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.",
+    "Destruir totalmente o jogador AMARELO. Se você é o AMARELO, ou não há AMARELO na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.",
     "Destruir totalmente o jogador PRETO. Se você é o PRETO, ou não há PRETO na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.",
-     "Destruir totalmente o jogador BRANCO. Se você é o BRANCO, ou não há BRANCO na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.",
+    "Destruir totalmente o jogador BRANCO. Se você é o BRANCO, ou não há BRANCO na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.",
     "Conquistar na totalidade a America do Norte e a Africa",
     "Conquistar na totalidade a Asia e a Africa",
     "Conquistar na totalidade a America do Norte e a Oceania",
     "Conquistar na totalidade Asia e America do  Sul",
     "Conquistar na totalidade a Europa, a America do Sul e mais um continente a sua escolha",
-     "Conquistar na totalidade a Europa, a Oceania e mais um continente a sua escolha",
-     "Conquistar 24 territórios a sua escolha",
-     "Conquistar 18 territorios com pelo menos 2 exercitos em cada"
+    "Conquistar na totalidade a Europa, a Oceania e mais um continente a sua escolha",
+    "Conquistar 24 territórios a sua escolha",
+    "Conquistar 18 territorios com pelo menos 2 exercitos em cada"
     };
 
 
