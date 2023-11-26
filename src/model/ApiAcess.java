@@ -11,6 +11,8 @@ public class ApiAcess {
     private static ApiAcess instancia = null;
     //private static final Object lockRecarga = new Object(); // Adicionado aqui
     public static ArrayList<Jogador> jogadores = new ArrayList<>();
+
+    public static ArrayList<Jogador> mortos = new ArrayList<>();
     ArrayList<Cartas.Territorio> cartasEmJogo = new ArrayList<>(List.of(Cartas.Territorio.allTerritorios));
     private boolean perguntaSalvamentoFeita = false;
 
@@ -92,8 +94,8 @@ public class ApiAcess {
                     JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                     return true;
                 }
-                for (Jogador oponente : jogadores) { // Checa se nao existe o jogador que deveria destruir
-                    if (oponente.getCor().equals(corAlvo) && oponente.getTerritoriosPossuidos().isEmpty()) {
+                for (Jogador morto : mortos) { // Checa se nao existe o jogador que deveria destruir
+                    if (morto.getCor().equals(corAlvo)) {
                         jogador.ganhouJogo = true;
                         JOptionPane.showMessageDialog(null, "Jogador " + jogador.getCor() + " ganhou!", "Parabéns!", JOptionPane.INFORMATION_MESSAGE);
                         return true;
@@ -447,7 +449,12 @@ public class ApiAcess {
     }
 
     public void confirmaJogadores(){
-        jogadores.removeIf(jogador -> jogador.getTerritoriosPossuidos().isEmpty());
+        for(Jogador jogador:jogadores){
+            if(jogador.getTerritoriosPossuidos().isEmpty()){
+                mortos.add(jogador);
+                jogadores.remove(jogador);
+            }
+        }
     }
 
     public void ataque() {

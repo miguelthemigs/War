@@ -457,8 +457,3 @@ public class ApiAttack extends JFrame implements Observer {
         }
     }
 }
-
-
-
-
-
