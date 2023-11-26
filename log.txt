@@ -1,84 +1,74 @@
-Cor: verde
+Cor: azul
 TropasAdd: 0
 Territórios:[
-Letônia, 1,
-ReinoUnido, 1,
-México, 1,
-CoréiadoNorte, 1,
-Indonésia, 1,
-França, 1,
-China, 1,
-Nigéria, 1,
-Suécia, 1,
-Argentina, 1,
-Québec, 1,
-Ucrânia, 1,
-Iraque, 1,
-Texas, 1,
-NovaYork, 1,
-ÁfricadoSul, 1,
 Irã, 1,
+Vancouver, 1,
+CoréiadoNorte, 1,
+Jordânia, 1,
+CoréiadoSul, 1,
+Romênia, 1,
+Argentina, 11,
+Espanha, 1,
+California, 1,
+Itália, 1,
+China, 1,
+Somália, 1,
+Alasca, 1,
+Letônia, 1,
+Venezuela, 1,
+Angola, 1,
+Brasil, 2,
+França, 1,
+Perth, 1,
+Québec, 1,
+NovaYork, 1,
+ArábiaSaudita, 1,
+Japão, 1,
+Sibéria, 1,
+Austrália, 1,
+México, 1,
+Peru, 2,
 ]
 Cartas:[
+Sibéria, quadrado,
 ]
 Premio: 0
 Objetivo: Conquistar na totalidade a America do Norte e a Oceania
 
 ----
 
-Cor: preto
+Cor: verde
 TropasAdd: 0
 Territórios:[
-Estônia, 1,
-Itália, 1,
-Paquistão, 1,
-Vancouver, 1,
-Venezuela, 1,
-Índia, 1,
-Espanha, 1,
-Japão, 1,
-Sibéria, 1,
-Egito, 1,
 Polônia, 1,
+Síria, 1,
+ÁfricadoSul, 1,
+Paquistão, 1,
+Ucrânia, 1,
+Suécia, 1,
+Turquia, 1,
+Estônia, 13,
+Nigéria, 1,
+Calgary, 1,
+Índia, 1,
+NovaZelândia, 1,
+Rússia, 1,
+Egito, 1,
+Tailândia, 1,
+Indonésia, 1,
+Argélia, 1,
+Cazaquistão, 1,
+Texas, 1,
 Groenlândia, 1,
 Bangladesh, 1,
-Cazaquistão, 1,
-Rússia, 1,
-Austrália, 1,
-CoréiadoSul, 1,
-]
-Cartas:[
-]
-Premio: 0
-Objetivo: Conquistar 24 territórios a sua escolha
-
-----
-
-Cor: branco
-TropasAdd: 0
-Territórios:[
-Alasca, 1,
-Peru, 1,
-Perth, 1,
-California, 1,
-Somália, 1,
-Calgary, 1,
+ReinoUnido, 1,
 Mongólia, 1,
-Jordânia, 1,
-ArábiaSaudita, 1,
-Brasil, 1,
-Tailândia, 1,
-Romênia, 1,
-Turquia, 1,
-NovaZelândia, 1,
-Síria, 1,
-Angola, 1,
-Argélia, 1,
+Iraque, 1,
 ]
 Cartas:[
 ]
 Premio: 0
-Objetivo: Conquistar na totalidade a Asia e a Africa
+Objetivo: Conquistar na totalidade a Europa, a Oceania e mais um continente a sua escolha
 
 ----
 

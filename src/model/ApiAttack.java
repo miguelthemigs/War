@@ -72,14 +72,8 @@ public class ApiAttack extends JFrame implements Observable, Observer {
             observers.add(o);
     }
 
-    @Override
     public void removeObserver(Observer o) {
         observers.remove(o);
-    }
-
-    @Override
-    public Object get() {
-        return null;
     }
 
 
