@@ -1,84 +1,74 @@
+Cor: azul
+TropasAdd: 0
+Territórios:[
+Peru, 1,
+Letônia, 1,
+Nigéria, 1,
+Austrália, 1,
+Argentina, 1,
+Romênia, 1,
+CoréiadoSul, 1,
+Groenlândia, 1,
+Espanha, 2,
+Ucrânia, 1,
+Egito, 9,
+Estônia, 1,
+NovaZelândia, 1,
+Mongólia, 1,
+Angola, 1,
+Brasil, 1,
+Polônia, 1,
+Irã, 1,
+Québec, 1,
+Suécia, 1,
+Cazaquistão, 1,
+Jordânia, 1,
+ReinoUnido, 1,
+California, 1,
+Japão, 1,
+Iraque, 1,
+Argélia, 4,
+]
+Cartas:[
+Rússia, triangulo,
+]
+Premio: 0
+Objetivo: Destruir totalmente o jogador VERDE. Se você é o VERDE, ou não há VERDE na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.
+
+----
+
 Cor: verde
 TropasAdd: 0
 Territórios:[
-França, 1,
-Índia, 1,
-CoréiadoNorte, 1,
-Calgary, 1,
-Venezuela, 1,
-Letônia, 1,
 Bangladesh, 1,
-Perth, 1,
-CoréiadoSul, 1,
-Síria, 1,
-Rússia, 1,
-NovaZelândia, 1,
-Nigéria, 1,
-Paquistão, 1,
 México, 1,
-Itália, 1,
-Québec, 1,
-]
-Cartas:[
-]
-Premio: 0
-Objetivo: Conquistar na totalidade a America do Norte e a Oceania
-
-----
-
-Cor: preto
-TropasAdd: 0
-Territórios:[
+Calgary, 1,
 NovaYork, 1,
-Argentina, 1,
-California, 1,
-Brasil, 1,
-Mongólia, 1,
-Jordânia, 1,
-Tailândia, 1,
-Ucrânia, 1,
-Indonésia, 1,
-Austrália, 1,
-Japão, 1,
-Suécia, 1,
-Sibéria, 1,
-Polônia, 1,
-Egito, 1,
-Espanha, 1,
-Angola, 1,
-]
-Cartas:[
-]
-Premio: 0
-Objetivo: Destruir totalmente o jogador PRETO. Se você é o PRETO, ou não há PRETO na partida, ou se esses exercitos já foram destruidos por outro jogador, você deve conquistar 24 terrítorios.
-
-----
-
-Cor: branco
-TropasAdd: 0
-Territórios:[
-Iraque, 1,
-Estônia, 1,
-Argélia, 1,
-ReinoUnido, 1,
-ArábiaSaudita, 1,
-Romênia, 1,
 Texas, 1,
-Somália, 1,
-Peru, 1,
-Alasca, 1,
-Irã, 1,
-Vancouver, 1,
+Paquistão, 1,
+França, 1,
+Indonésia, 1,
+CoréiadoNorte, 1,
+ArábiaSaudita, 1,
+Síria, 13,
+Tailândia, 1,
 Turquia, 1,
+Índia, 1,
+Vancouver, 1,
+Alasca, 1,
+Itália, 1,
+Sibéria, 1,
+Rússia, 1,
+Perth, 1,
+Venezuela, 1,
 ÁfricadoSul, 1,
-Cazaquistão, 1,
 China, 1,
-Groenlândia, 1,
+Somália, 1,
 ]
 Cartas:[
 ]
 Premio: 0
-Objetivo: Conquistar na totalidade a Europa, a Oceania e mais um continente a sua escolha
+Objetivo: Conquistar na totalidade a Asia e a Africa
 
 ----
 
