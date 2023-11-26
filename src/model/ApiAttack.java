@@ -162,7 +162,7 @@ public class ApiAttack extends JFrame implements Observer {
                     // Condicao para evitar bugs
                     if (selectedOrigem != null && !selectedOrigem.equals("Selecione o pais de origem")){
                         // Atualizar "alvo" combo box com base na seleção em "origem"
-                        updateAlvoComboBox(selectedOrigem, paisesFronteirasComboBox, jogadorAtual);
+                        updateAlvoComboBox(selectedOrigem, paisesFronteirasComboBox);
                     }
                 }
             });
@@ -188,9 +188,9 @@ public class ApiAttack extends JFrame implements Observer {
     }
 
     // Método para atualizar o combo box "alvo" com base na seleção em "origem"
-    private void updateAlvoComboBox(String selectedOrigem, JComboBox<String> alvoComboBox, Jogador jogador) {
+    private void updateAlvoComboBox(String selectedOrigem, JComboBox<String> alvoComboBox) {
         // Obter vizinhos não possuídos com base na seleção em "origem"
-        ArrayList<Pais> vizinhosNaoPossuidos = obterVizinhosNaoPossuidos(selectedOrigem, jogador);
+        ArrayList<Pais> vizinhosNaoPossuidos = obterVizinhosNaoPossuidos(selectedOrigem);
 
         // Limpar o combo box "alvo" e adicionar os vizinhos não possuídos
         alvoComboBox.removeAllItems();
@@ -205,7 +205,7 @@ public class ApiAttack extends JFrame implements Observer {
     }
 
     // Método para saber quais vizinhos de um território possuem outros donos
-    private ArrayList<Pais> obterVizinhosNaoPossuidos(String territorio, Jogador jogador) {
+    private ArrayList<Pais> obterVizinhosNaoPossuidos(String territorio) {
         ApiAcess api = ApiAcess.getInstancia();
         ArrayList<Pais> naoPossuidos = new ArrayList<>();
         Pais pais = api.StringtoPais(territorio);

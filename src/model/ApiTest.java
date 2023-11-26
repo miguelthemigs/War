@@ -47,7 +47,7 @@ public class ApiTest extends JFrame {
         Map<Pais, Integer> lista = new HashMap<>();
 
         while (true) {
-            updateMeusPaisesComboBox(meusPaisesComboBox, jogadorAtual);
+            updateMeusPaisesComboBox(meusPaisesComboBox);
             resetaComboBox(paisesFronteirasComboBox);
 
             getContentPane().removeAll();
@@ -73,7 +73,7 @@ public class ApiTest extends JFrame {
                     realizarRemanejamento(origem, destino, quantidadeTropas, lista);
                     GameMap.atualizarElipses();
 
-                    updateMeusPaisesComboBox(meusPaisesComboBox, jogadorAtual);
+                    updateMeusPaisesComboBox(meusPaisesComboBox);
                     resetaComboBox(paisesFronteirasComboBox);
                 }
             });
@@ -103,7 +103,7 @@ public class ApiTest extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     String selectedOrigem = (String) meusPaisesComboBox.getSelectedItem();
                     if (selectedOrigem != null && !selectedOrigem.equals("Selecione o pais de origem")) {
-                        updateFronteiraComboBox(selectedOrigem, paisesFronteirasComboBox, jogadorAtual);
+                        updateFronteiraComboBox(selectedOrigem, paisesFronteirasComboBox);
 
                         // Set the maximum value of the spinner to the troops in the selected origin country
                         int maxTroops = api.StringtoPais(selectedOrigem).getTropas() - 1;
@@ -159,11 +159,11 @@ public class ApiTest extends JFrame {
         }
     }
 
-    private void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox, Jogador jogador) {
+    private void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox) {
         meusPaisesComboBox.removeAllItems();
         meusPaisesComboBox.addItem("Selecione o pais de origem");
-        for (Pais territorio : jogador.getTerritoriosPossuidos()) {
-            if (territorio.getTropas() > 1 && !obterVizinhosPossuidos(territorio.getNome(), jogador).isEmpty()) {
+        for (Pais territorio : jogadorAtual.getTerritoriosPossuidos()) {
+            if (territorio.getTropas() > 1 && !obterVizinhosPossuidos(territorio.getNome()).isEmpty()) {
                 meusPaisesComboBox.addItem(territorio.getNome());
             }
         }
@@ -174,36 +174,40 @@ public class ApiTest extends JFrame {
         comboBox.addItem("Selecione o pais alvo");
     }
 
-    private void updateFronteiraComboBox(String selectedOrigem, JComboBox<String> alvoComboBox, Jogador jogador) {
-        ArrayList<Pais> vizinhosPossuidos = obterVizinhosPossuidos(selectedOrigem, jogador);
+    private void updateFronteiraComboBox(String selectedOrigem, JComboBox<String> alvoComboBox) {
+        ArrayList<Pais> vizinhosPossuidos = obterVizinhosPossuidos(selectedOrigem);
         alvoComboBox.removeAllItems();
         for (Pais pais : vizinhosPossuidos) {
             alvoComboBox.addItem(pais.getNome());
         }
     }
 
-    private ArrayList<Pais> obterVizinhosPossuidos(String territorio, Jogador jogador) {
+    private ArrayList<Pais> obterVizinhosPossuidos(String territorio) {
         ArrayList<Pais> possuidos = new ArrayList<>();
         Pais pais = api.StringtoPais(territorio);
         String[] fronteiras = pais.getFronteiras();
         for (String fronteira : fronteiras) {
-            if (jogador.getTerritoriosPossuidos().contains(api.StringtoPais(fronteira))) {
+            if (jogadorAtual.getTerritoriosPossuidos().contains(api.StringtoPais(fronteira))) {
                 possuidos.add(api.StringtoPais(fronteira));
             }
         }
-        System.out.println("\n\n'" + jogador.getCor() + "'\n\n");
-        System.out.println("[");
-        for (Pais paisf : possuidos) {
-            System.out.println(paisf.getNome() + ",");
-        }
-        System.out.println("]");
         return possuidos;
     }
 
+    private boolean podeRemanejar(){
+        for(Pais pais : jogadorAtual.getTerritoriosPossuidos()) {
+            if (pais.getTropas() > 1 && !obterVizinhosPossuidos(pais.getNome()).isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
     public void remanejarTropas() {
         for (Jogador jogador : jogadores) {
             jogadorAtual = jogador;
-            configureFrame();
+            if (podeRemanejar()){
+                configureFrame();
+            }
         }
     }
 }

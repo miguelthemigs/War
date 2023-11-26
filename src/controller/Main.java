@@ -77,6 +77,10 @@ public class Main {
 
         // Roda infinitamente. Quem para o jogo é a funcao "checaSeGanhou", chamda depois de cada ataque
         while (!api.checaSeGanhou()) {
+
+            api.salvamento();
+            System.out.println("\n********** RODADA SALVA **********\n");
+
             System.out.println("\n|||||||||||| INICIO DO LOOP ||||||||||||\n\n");
 
             apit.remanejarTropas();
@@ -121,9 +125,6 @@ public class Main {
             api.trocaCartasPoligono();
             System.out.println("\n------------------------------------------------");
             System.out.println("\n---------- FINALIZANDO PROCESSOS CARTAS ----------\n");
-
-            api.salvamento();
-            System.out.println("\n********** RODADA SALVA **********\n");
 
             System.out.println("\n|||||||||||| FIM DO LOOP ||||||||||||\n\n");
 
