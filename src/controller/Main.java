@@ -5,7 +5,7 @@ import model.ApiAcess;
 
 
 import model.ApiAttack;
-import model.ApiTest;
+import model.ApiRemanejar;
 import view.AtaqueGUI;
 import view.GameMap;
 import view.InitGame;
@@ -24,7 +24,7 @@ public class Main {
         ApiAcess api = ApiAcess.getInstancia();
         api.reset();
 
-        ApiTest apit = ApiTest.getInstancia();
+        ApiRemanejar apit = ApiRemanejar.getInstancia();
 
 
         InitGame view = new InitGame();
@@ -123,7 +123,7 @@ public class Main {
             }
 
 
-            apit.remanejarTropas();
+            ataque.mostraRemanejar();
             System.out.println("\n********** TROPAS REMANEJADAS **********\n");
 
             System.out.println("\n\n----------------------------------------------\n");

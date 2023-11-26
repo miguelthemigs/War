@@ -15,26 +15,7 @@ import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
 import javax.imageio.ImageIO;
-// precisamos usar o observer eu acho, para poder ver a mudanca de territorios possuidos de cada jogador, e assim ir pintando as bolinhas nos territorios
-/*
-no mapa ter
-    private List<Observer> observers;
-    private List<Territorio> territorios;
-no territorios ter a funcao update(List<Territorio> territorios) e extender Observer
-no Game Map ter public GameMap() {
-        this.observers = new ArrayList<>();
-        this.territorios = new ArrayList<>();
-    }
-    private void notifyObservers() {
-        for (Observer observer : observers) {
-            observer.update(territorios);
-        }
-        chamar sempre que houver uma mudança de estado que os observadores precisam saber, no caso seria quando:
-        inicio do jogo, onde os territorios estarao distribuidos
-        fim de um ataque, onde os territorios estarao diferentes
 
-       O método update é a lógica para atualizar as elipses dos territórios que pertencem a esse jogador.
-*/
 
 public class GameMap extends JPanel implements Observer {
     private BufferedImage imagem;

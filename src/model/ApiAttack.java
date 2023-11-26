@@ -1,6 +1,7 @@
 package model;
 
 import controller.Observer;
+import controller.Observable;
 import view.GameMap;
 
 import javax.swing.*;
@@ -12,11 +13,11 @@ import java.util.Arrays;
 
 import static view.GameMap.atualizarElipses;
 
-public class ApiAttack extends JFrame implements Observer {
+public class ApiAttack extends JFrame implements Observable, Observer {
 
     private int jogadorAtualIndex;
     private ArrayList<Jogador> jogadores;
-
+    private final ArrayList<Observer> observers = new ArrayList<>();
     private static ApiAttack instancia = null;
     private Jogador jogadorAtual;
     private ArrayList<Pais> territoriosJogador;
@@ -64,12 +65,23 @@ public class ApiAttack extends JFrame implements Observer {
         this.jogadorAtual = jogadorAtual;
         this.territoriosJogador = jogadorAtual.getTerritoriosPossuidos();
     }
-    private final ArrayList<Observer> observers = new ArrayList<>();
+
 
 
     public void addObserver(Observer o) {
             observers.add(o);
     }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public Object get() {
+        return null;
+    }
+
 
     public void notifyObservers() {
             for (Observer observer : observers) {

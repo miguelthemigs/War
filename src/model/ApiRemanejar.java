@@ -1,6 +1,5 @@
 package model;
 
-import controller.Observer;
 import view.GameMap;
 
 import javax.swing.*;
@@ -11,26 +10,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ApiTest extends JFrame {
-
+public class ApiRemanejar extends JFrame {
     ApiAcess api = ApiAcess.getInstancia();
-    private static ApiTest instancia = null;
-
-    // Gambiarra?
-    // Gambiarra?
-    // Gambiarra?
+    private static ApiRemanejar instancia = null;
     public static ArrayList<Jogador> jogadores = ApiAcess.jogadores;
-    // Gambiarra?
-    // Gambiarra?
-    // Gambiarra?
-
     private Jogador jogadorAtual;
     private JComboBox<String> meusPaisesComboBox = new JComboBox<>();
     private JComboBox<String> paisesFronteirasComboBox = new JComboBox<>();
 
-    public static ApiTest getInstancia() {
+    public static ApiRemanejar getInstancia() {
         if (instancia == null) {
-            instancia = new ApiTest();
+            instancia = new ApiRemanejar();
         }
         return instancia;
     }
@@ -140,7 +130,9 @@ public class ApiTest extends JFrame {
         System.out.printf("FIM DO LOOP");
     }
 
-    private void realizarRemanejamento(String origem, String destino, int quantidadeTropas, Map<Pais, Integer> list) {
+
+
+    public void realizarRemanejamento(String origem, String destino, int quantidadeTropas, Map<Pais, Integer> list) {
         System.out.printf("Remanejamento de tropas: %d tropas de %s para %s\n", quantidadeTropas, origem, destino);
         if (quantidadeTropas < (api.StringtoPais(origem).getTropas())) {
             ApiAcess api = ApiAcess.getInstancia();
@@ -159,7 +151,7 @@ public class ApiTest extends JFrame {
         }
     }
 
-    private void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox) {
+    public void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox) {
         meusPaisesComboBox.removeAllItems();
         meusPaisesComboBox.addItem("Selecione o pais de origem");
         for (Pais territorio : jogadorAtual.getTerritoriosPossuidos()) {
@@ -169,12 +161,12 @@ public class ApiTest extends JFrame {
         }
     }
 
-    private void resetaComboBox(JComboBox<String> comboBox) {
+    public void resetaComboBox(JComboBox<String> comboBox) {
         comboBox.removeAllItems();
         comboBox.addItem("Selecione o pais alvo");
     }
 
-    private void updateFronteiraComboBox(String selectedOrigem, JComboBox<String> alvoComboBox) {
+    public void updateFronteiraComboBox(String selectedOrigem, JComboBox<String> alvoComboBox) {
         ArrayList<Pais> vizinhosPossuidos = obterVizinhosPossuidos(selectedOrigem);
         alvoComboBox.removeAllItems();
         for (Pais pais : vizinhosPossuidos) {
@@ -182,7 +174,7 @@ public class ApiTest extends JFrame {
         }
     }
 
-    private ArrayList<Pais> obterVizinhosPossuidos(String territorio) {
+    public ArrayList<Pais> obterVizinhosPossuidos(String territorio) {
         ArrayList<Pais> possuidos = new ArrayList<>();
         Pais pais = api.StringtoPais(territorio);
         String[] fronteiras = pais.getFronteiras();
@@ -194,7 +186,7 @@ public class ApiTest extends JFrame {
         return possuidos;
     }
 
-    private boolean podeRemanejar(){
+    public boolean podeRemanejar(){
         for(Pais pais : jogadorAtual.getTerritoriosPossuidos()) {
             if (pais.getTropas() > 1 && !obterVizinhosPossuidos(pais.getNome()).isEmpty()) {
                 return true;

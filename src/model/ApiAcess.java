@@ -224,11 +224,8 @@ public class ApiAcess {
 
     public void checaContinentesJogador() {
         for (Jogador jogador : jogadores) {
-            // System.out.printf("Jogador (%d):\n", i + 1);
-            // Chama o método checaContinentes para o jogador atual
             jogador.checaContinentes();
             System.out.println("Jogador " + jogador.getCor() + " tem os seguintes continentes: " + jogador.getContinentesPossuidos());
-            //System.out.println("Fim\n");
         }
     }
     // Método para descobrir quantas tropas cada jogador ganha com base em territórios possuídos
