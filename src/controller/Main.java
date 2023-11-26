@@ -83,8 +83,6 @@ public class Main {
 
             System.out.println("\n|||||||||||| INICIO DO LOOP ||||||||||||\n\n");
 
-            apit.remanejarTropas();
-
             // Loop para percorrer todos os jogadores e identificar se eles possuem algum continente
             api.checaContinentesJogador();
             System.out.println("\n********** CONTINENTES CHECADOS **********\n");
@@ -118,6 +116,9 @@ public class Main {
             ataque.mostraAtaque(); // Efetua ataque dos jogadores
             System.out.println("\n\n---------- FINALIZANDO ATAQUE --------\n");
             System.out.println("\n----------------------------------------\n\n");
+
+            apit.remanejarTropas();
+            System.out.println("\n********** TROPAS REMANEJADAS **********\n");
 
             System.out.println("\n\n----------------------------------------------\n");
             System.out.println("\n---------- INICIANDO PROCESSOS CARTAS ----------\n");
