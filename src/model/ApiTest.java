@@ -16,17 +16,15 @@ public class ApiTest extends JFrame {
     ApiAcess api = ApiAcess.getInstancia();
     private static ApiTest instancia = null;
 
-
-    //Gambiarra
-    //Gambiarra
-    //Gambiarra
+    // Gambiarra?
+    // Gambiarra?
+    // Gambiarra?
     public static ArrayList<Jogador> jogadores = ApiAcess.jogadores;
-    //Gambiarra
-    //Gambiarra
-    //Gambiarra
+    // Gambiarra?
+    // Gambiarra?
+    // Gambiarra?
 
-
-
+    private Jogador jogadorAtual;
     private JComboBox<String> meusPaisesComboBox = new JComboBox<>();
     private JComboBox<String> paisesFronteirasComboBox = new JComboBox<>();
 
@@ -37,138 +35,120 @@ public class ApiTest extends JFrame {
         return instancia;
     }
 
-    // Método para deslocar tropas após o jogador finalizar uma rodada de ataques
-    public void remanejarTropas() {
-        for (Jogador jogador : jogadores) {
+    private void configureFrame() {
+        setTitle("Remanejar Tropas - Jogador " + jogadorAtual.getCor());
+        setSize(400, 200);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLocation(1025, 0);
 
-            // Configurar frame
-            setTitle("Remanejar Tropas - Jogador " + jogador.getCor());
-            setSize(400, 200);
-            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            setLocationRelativeTo(null);
-            setLocation(1025, 0);
+        SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, 99, 1);
+        JSpinner spinnerTropas = new JSpinner(spinnerModel);
+        Map<Pais, Integer> lista = new HashMap<>();
 
-            SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, 99, 1);
-            JSpinner spinnerTropas = new JSpinner(spinnerModel);
-            int remanjemaentos = 0;
-            Map<Pais, Integer> lista = new HashMap<>();
-            // Infinite loop until "Cancelar" is pressed
-            while (true) {
-                // Atualizar ComboBox de Meus Países
-                updateMeusPaisesComboBox(meusPaisesComboBox, jogador);
+        while (true) {
+            updateMeusPaisesComboBox(meusPaisesComboBox, jogadorAtual);
+            resetaComboBox(paisesFronteirasComboBox);
 
-                // Reseta items da combo box de fronteiras
-                resetaComboBox(paisesFronteirasComboBox);
+            getContentPane().removeAll();
+            repaint();
 
-                // Clear the contents of the frame for each iteration
-                getContentPane().removeAll();
-                repaint();
+            setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
+            JButton remanejarButton = new JButton("Remanejar");
+            JButton cancelarButton = new JButton("Finalizar");
 
-                // Configurar layout
-                setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+            remanejarButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String origem = (String) meusPaisesComboBox.getSelectedItem();
+                    String destino = (String) paisesFronteirasComboBox.getSelectedItem();
+                    int quantidadeTropas = (int) spinnerTropas.getValue();
 
-                // Criar botão de remanejar
-                JButton remanejarButton = new JButton("Remanejar");
-                JButton cancelarButton = new JButton("Finalizar");
-                remanejarButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        String origem = (String) meusPaisesComboBox.getSelectedItem();
-                        String destino = (String) paisesFronteirasComboBox.getSelectedItem();
-                        int quantidadeTropas = (int) spinnerTropas.getValue();
+                    if (destino == null || origem.equals("Selecione o pais de origem")) {
+                        JOptionPane.showMessageDialog(null, "Selecione países válidos.", "Erro", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
 
-                        // Verificar se os países selecionados são válidos
-                        if (destino == null || origem.equals("Selecione o pais de origem")) {
-                            JOptionPane.showMessageDialog(null, "Selecione países válidos.", "Erro", JOptionPane.ERROR_MESSAGE);
-                            return; // Sai do método se os países não forem válidos
-                        }
+                    realizarRemanejamento(origem, destino, quantidadeTropas, lista);
+                    GameMap.atualizarElipses();
 
-                        // Realizar o remanejamento de tropas
-                        realizarRemanejamento(origem, destino, quantidadeTropas, lista);
-                        GameMap.atualizarElipses();
+                    updateMeusPaisesComboBox(meusPaisesComboBox, jogadorAtual);
+                    resetaComboBox(paisesFronteirasComboBox);
+                }
+            });
 
-                        // Atualizar ComboBox de Meus Países após o remanejamento
-                        updateMeusPaisesComboBox(meusPaisesComboBox, jogador);
-                        // Reseta items da combo box de fronteiras
+            cancelarButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+            });
+
+            JPanel botoesPanel = new JPanel();
+            botoesPanel.setLayout(new FlowLayout());
+            botoesPanel.add(remanejarButton);
+            botoesPanel.add(cancelarButton);
+
+            add(new JLabel("Selecione o território de origem:"));
+            add(meusPaisesComboBox);
+            add(new JLabel("Selecione o território de destino:"));
+            add(paisesFronteirasComboBox);
+            add(new JLabel("Quantidade de tropas a serem remanejadas:"));
+            add(spinnerTropas);
+            add(botoesPanel);
+
+            meusPaisesComboBox.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String selectedOrigem = (String) meusPaisesComboBox.getSelectedItem();
+                    if (selectedOrigem != null && !selectedOrigem.equals("Selecione o pais de origem")) {
+                        updateFronteiraComboBox(selectedOrigem, paisesFronteirasComboBox, jogadorAtual);
+
+                        // Set the maximum value of the spinner to the troops in the selected origin country
+                        int maxTroops = api.StringtoPais(selectedOrigem).getTropas() - 1;
+                        SpinnerNumberModel spinnerModel = new SpinnerNumberModel(1, 1, maxTroops, 1);
+                        spinnerTropas.setModel(spinnerModel);
+                    } else {
                         resetaComboBox(paisesFronteirasComboBox);
+
+                        // If no valid country is selected, set the maximum value of the spinner to 1 or a positive integer
+                        SpinnerNumberModel spinnerModel = new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1);
+                        spinnerTropas.setModel(spinnerModel);
                     }
-                });
-                cancelarButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        dispose();  // Close the frame on "Cancelar"
-                    }
-                });
-
-                // Criar contêiner para os botões "Remanejar" e "Finalizar"
-                JPanel botoesPanel = new JPanel();
-
-                // Configurando layout para o contêiner dos botões
-                botoesPanel.setLayout(new FlowLayout());
-
-                // Adicionar botões ao contêiner
-                botoesPanel.add(remanejarButton);
-                botoesPanel.add(cancelarButton);
-
-                // Adicionar componentes ao frame
-                add(new JLabel("Selecione o território de origem:"));
-                add(meusPaisesComboBox);
-                add(new JLabel("Selecione o território de destino:"));
-                add(paisesFronteirasComboBox);
-                add(new JLabel("Selecione a quantidade de tropas a serem remanejadas:"));
-                add(spinnerTropas);
-                add(botoesPanel); // Adicionar o contêiner dos botões
-
-                // Adiciona ActionListener para atualizar "destino" combo box quando "origem" é selecionado
-                meusPaisesComboBox.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        // Obter o item selecionado em "origem"
-                        String selectedOrigem = (String) meusPaisesComboBox.getSelectedItem();
-                        // Condicao para evitar bugs
-                        if (selectedOrigem != null && !selectedOrigem.equals("Selecione o pais de origem")) {
-                            // Atualizar "destino" combo box com base na seleção em "origem"
-                            updateFronteiraComboBox(selectedOrigem, paisesFronteirasComboBox, jogador);
-                        }
-                    }
-                });
-
-                // Exibir frame
-                setVisible(true);
-
-                // Espera o frame ser descartado para poder sair do loopp
-                try {
-                    while (isVisible()) {
-                        Thread.sleep(100);
-                    }
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
                 }
+            });
 
-                // Quebra o frame se 'cancelar' for pressionado
-                if (!isVisible()) {
-                    break;
+
+            setVisible(true);
+
+            try {
+                while (isVisible()) {
+                    Thread.sleep(100);
                 }
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
             }
-            adicionarTropasAposRemanejar(lista); // aqui espera o fim do remanejamento
-            lista.clear();
-            GameMap.atualizarElipses();
+
+            if (!isVisible()) {
+                break;
+            }
         }
+        adicionarTropasAposRemanejar(lista);
+        lista.clear();
+        GameMap.atualizarElipses();
+        System.out.printf("FIM DO LOOP");
     }
 
     private void realizarRemanejamento(String origem, String destino, int quantidadeTropas, Map<Pais, Integer> list) {
-
         System.out.printf("Remanejamento de tropas: %d tropas de %s para %s\n", quantidadeTropas, origem, destino);
-        if(quantidadeTropas == (api.StringtoPais(origem).getTropas())){
+        if (quantidadeTropas < (api.StringtoPais(origem).getTropas())) {
             ApiAcess api = ApiAcess.getInstancia();
             api.StringtoPais(origem).removeTropas(quantidadeTropas);
             list.put(api.StringtoPais(destino), quantidadeTropas);
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Por favor, selecione um numero de tropas que voce tenha.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     public void adicionarTropasAposRemanejar(Map<Pais, Integer> lista) {
@@ -177,15 +157,11 @@ public class ApiTest extends JFrame {
             int valorAdicional = entry.getValue();
             pais.addTropas(valorAdicional);
         }
-
     }
+
     private void updateMeusPaisesComboBox(JComboBox<String> meusPaisesComboBox, Jogador jogador) {
-        // Zerar a JComboBox
         meusPaisesComboBox.removeAllItems();
-
         meusPaisesComboBox.addItem("Selecione o pais de origem");
-
-        // Adicionar apenas os territórios com mais de 1 tropa
         for (Pais territorio : jogador.getTerritoriosPossuidos()) {
             if (territorio.getTropas() > 1 && !obterVizinhosPossuidos(territorio.getNome(), jogador).isEmpty()) {
                 meusPaisesComboBox.addItem(territorio.getNome());
@@ -199,18 +175,14 @@ public class ApiTest extends JFrame {
     }
 
     private void updateFronteiraComboBox(String selectedOrigem, JComboBox<String> alvoComboBox, Jogador jogador) {
-        // Obter vizinhos não possuídos com base na seleção em "origem"
         ArrayList<Pais> vizinhosPossuidos = obterVizinhosPossuidos(selectedOrigem, jogador);
-
-        // Limpar o combo box "alvo" e adicionar os vizinhos não possuídos
         alvoComboBox.removeAllItems();
         for (Pais pais : vizinhosPossuidos) {
             alvoComboBox.addItem(pais.getNome());
         }
     }
-    // Método para descobrir quais vizinhos possuem o mesmo dono
+
     private ArrayList<Pais> obterVizinhosPossuidos(String territorio, Jogador jogador) {
-        System.out.println("\n\n'"+jogador.getCor()+"'\n\n");
         ArrayList<Pais> possuidos = new ArrayList<>();
         Pais pais = api.StringtoPais(territorio);
         String[] fronteiras = pais.getFronteiras();
@@ -219,6 +191,19 @@ public class ApiTest extends JFrame {
                 possuidos.add(api.StringtoPais(fronteira));
             }
         }
+        System.out.println("\n\n'" + jogador.getCor() + "'\n\n");
+        System.out.println("[");
+        for (Pais paisf : possuidos) {
+            System.out.println(paisf.getNome() + ",");
+        }
+        System.out.println("]");
         return possuidos;
+    }
+
+    public void remanejarTropas() {
+        for (Jogador jogador : jogadores) {
+            jogadorAtual = jogador;
+            configureFrame();
+        }
     }
 }
