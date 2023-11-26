@@ -149,7 +149,7 @@ class Jogador {
                 }
             }
             // Se todos os territórios do continente estiverem na lista, imprima "OPAAAA"
-            if (todosNoContinente) {
+            if (todosNoContinente && !continentesPossuidos.contains(contNome[contIndice])) {
                 continentesPossuidos.add(contNome[contIndice]);
             }
             contIndice++;
