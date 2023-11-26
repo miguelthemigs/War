@@ -277,49 +277,6 @@ public class ApiAcess {
         }
     }
 
-    public void posicionamentoExercitos() {
-        for (Jogador jogador : jogadores) {
-            System.out.println("\nJogador: " + jogador.getCor());
-            imprimirTerritoriosETropas(jogador);
-
-            while (jogador.getTropasParaAdicionar() > 0) {
-                System.out.println("Tropas disponíveis: " + jogador.getTropasParaAdicionar());
-
-                // Exemplo:
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("Em qual território você quer adicionar as tropas?");
-                String territorioNome = scanner.next();
-
-                Pais territorio = null;
-                for (Pais pais : jogador.getTerritoriosPossuidos()) {
-                    if (pais.getNome().equals(territorioNome)) {
-                        territorio = pais;
-                        break;
-                    }
-                }
-
-                if (territorio == null) {
-                    System.out.println("Território inválido.");
-                    continue;
-                }
-
-                System.out.println("Quantas tropas você quer adicionar? (Digite 0 para sair)");
-                int quantidade = scanner.nextInt();
-                if (quantidade > jogador.getTropasParaAdicionar()) {
-                    System.out.println("Mais tropas do que você tem. Tente novamente");
-                    continue;
-                }
-
-                if (quantidade == 0) {
-                    break;
-                }
-                territorio.addTropas(quantidade);
-                imprimirTerritoriosETropas(jogador);
-                jogador.diminuiTropasParaAdicionar(quantidade);
-
-            }
-        }
-    }
 
     public void trocaCartasPoligono() {
 

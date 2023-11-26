@@ -100,23 +100,7 @@ public class ApiAcessTeste {
             assertTrue("Jogador sem tropas para ser adicionadas",jogador.getTropasParaAdicionar() >= 3);
         }
     }
-    @Test
-    public void testePosicionamentoExercitos() {
-        // Adiciona alguns territórios fictícios aos jogadores para teste
-        for (Jogador jogador : api.jogadores) {
-            api.sorteiaTerritorios();
-        }
 
-        // Executa o método que você deseja testar
-        api.posicionamentoExercitos();
-
-        // Verifica se as tropas foram adicionadas corretamente aos territórios
-        for (Jogador jogador : api.jogadores) {
-            for (Pais territorio : jogador.getTerritoriosPossuidos()) {
-                assertTrue("Tropa adicionada incorretamente",territorio.getTropas() > 0);
-            }
-        }
-    }
     @Test
     public void testaDistribuicaoCartas(){
 
