@@ -86,7 +86,6 @@ public class ApiAcess {
             for (int i = 0; i <= 5; i++) { // Itero pelos objetivos de cores
                 String objetivo = objetivos[i];
                 Jogador.Cor corAlvo = Jogador.Cor.values()[i];
-                System.out.printf("coralvo: %s\nobj: %s\n\n", corAlvo, objetivo);
 
                 if (atendeCriterioVitoriaCores(jogador, objetivo, corAlvo)) { // Se o jogador tiver algum objetivo de cores, ele entra aqui
                     jogador.ganhouJogo = true;
