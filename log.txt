@@ -1,29 +1,51 @@
 Cor: azul
 TropasAdd: 0
 Territórios:[
-Ucrânia, 1,
-Letônia, 1,
-Turquia, 1,
-Peru, 1,
-Rússia, 1,
-Nigéria, 1,
-CoréiadoSul, 1,
-Paquistão, 1,
-Québec, 1,
-México, 1,
-NovaYork, 1,
-China, 1,
 ÁfricadoSul, 1,
-Angola, 1,
+ArábiaSaudita, 1,
+Paquistão, 1,
+NovaZelândia, 1,
+Japão, 1,
+Groenlândia, 1,
 Romênia, 1,
-Alasca, 1,
 Espanha, 1,
+Síria, 1,
+Calgary, 1,
+NovaYork, 1,
+Nigéria, 1,
 Bangladesh, 1,
-Texas, 1,
+Mongólia, 1,
+Iraque, 1,
+França, 1,
+Angola, 1,
+]
+Cartas:[
+]
+Premio: 0
+Objetivo: Conquistar 18 territorios com pelo menos 2 exercitos em cada
+
+----
+
+Cor: verde
+TropasAdd: 0
+Territórios:[
+California, 1,
+Tailândia, 1,
+Turquia, 1,
+Jordânia, 1,
+Cazaquistão, 1,
+Itália, 1,
+Ucrânia, 1,
 Sibéria, 1,
-Vancouver, 1,
-Egito, 1,
-Perth, 1,
+ReinoUnido, 1,
+México, 1,
+Québec, 1,
+Alasca, 1,
+CoréiadoNorte, 1,
+Peru, 1,
+Polônia, 1,
+Suécia, 1,
+Rússia, 1,
 ]
 Cartas:[
 ]
@@ -35,39 +57,28 @@ Objetivo: Destruir totalmente o jogador VERDE. Se você é o VERDE, ou não há 
 Cor: preto
 TropasAdd: 0
 Territórios:[
-França, 1,
-ArábiaSaudita, 1,
-Japão, 1,
-Itália, 1,
-Iraque, 1,
-Suécia, 1,
-Somália, 1,
+Letônia, 1,
+Texas, 1,
+Perth, 1,
 Argélia, 1,
-CoréiadoNorte, 1,
-Calgary, 1,
-Argentina, 1,
-Polônia, 1,
+Somália, 1,
 Indonésia, 1,
-Mongólia, 1,
-Brasil, 1,
-California, 1,
-NovaZelândia, 1,
-Groenlândia, 1,
-Jordânia, 1,
-Índia, 1,
-Síria, 1,
-Irã, 1,
+Vancouver, 1,
 Estônia, 1,
-Tailândia, 1,
-Venezuela, 1,
-ReinoUnido, 1,
+Índia, 1,
+Irã, 1,
+Brasil, 1,
+Argentina, 1,
+CoréiadoSul, 1,
+Egito, 1,
 Austrália, 1,
-Cazaquistão, 1,
+Venezuela, 1,
+China, 1,
 ]
 Cartas:[
 ]
 Premio: 0
-Objetivo: Conquistar na totalidade a Asia e a Africa
+Objetivo: Conquistar na totalidade a Europa, a America do Sul e mais um continente a sua escolha
 
 ----
 
