@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="26fffd74-6cca-4fef-9bdd-fcb43b92b8d2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testes/model/ApiAcessTeste.java" beforeDir="false" afterPath="$PROJECT_DIR$/testes/model/ApiAcessTeste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +77,20 @@
       <recent name="view" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in War">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="controller.Main" />
+      <module name="War" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in War" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="War" />
       <option name="PACKAGE_NAME" value="" />
@@ -133,29 +146,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApiAcessTeste.testeGerarJogadores" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="War" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="model" />
-      <option name="MAIN_CLASS_NAME" value="model.ApiAcessTeste" />
-      <option name="METHOD_NAME" value="testeGerarJogadores" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in War" />
         <item itemvalue="JUnit.ApiAcessTeste" />
         <item itemvalue="JUnit.ApiAcessTeste.testaDistribuicaoCartas" />
         <item itemvalue="JUnit.ApiAcessTeste.testeChecaContinentesJogador" />
-        <item itemvalue="JUnit.ApiAcessTeste.testeGerarJogadores" />
       </list>
     </recent_temporary>
   </component>

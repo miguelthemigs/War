@@ -24,9 +24,6 @@ public class Main {
         ApiAcess api = ApiAcess.getInstancia();
         api.reset();
 
-        ApiRemanejar apit = ApiRemanejar.getInstancia();
-
-
         InitGame view = new InitGame();
         InitGame.reset();
 
