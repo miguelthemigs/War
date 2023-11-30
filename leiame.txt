@@ -1,7 +1,0 @@
-Miguel Werneck Roale - 2210457
-Felipe Cancella - 2210487
-Diego Miranda - 2210996
-
-Main está na controller na classe Main
-video:
-https://drive.google.com/file/d/1chIwcMzZQV-_IGt384ZPZgaHA2Vrd3wv/view?usp=sharing
