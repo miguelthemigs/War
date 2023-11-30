@@ -23,6 +23,7 @@ This project implements a War Game using the Model-View-Controller (MVC) archite
 - You attack by selecting the countries that the enemies control. You can only attack a country if you have more than one army stationed there. Through testing methods, you can manipulate the outcome of the dice or roll it randomly in a normal game.
 ![Screenshot 2023-11-30 201512](https://github.com/miguelthemigs/war/assets/93150152/34c9d768-c94c-4bfb-b70f-29105bd4576d)
 ![Screenshot 2023-11-30 201554](https://github.com/miguelthemigs/war/assets/93150152/c8d17ddc-7958-4d84-a9f0-b91fed6d7d10)
+- If a player has conquered a country, they receive a territory card, which can be used to exchange for new armies.
 
 # Saving and testing
 - You can save the game mid-match by creating a log in a text file. Modifying the values in the text file can alter any aspect of the game. For testing purposes, we utilized this method to test the completion of objectives and determine the winner.
